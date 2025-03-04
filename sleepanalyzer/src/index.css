@@ -1,8 +1,18 @@
 @import "tailwindcss";
 
+/* is the theme component of tailwind */
 @theme {
+  /* changes the breakpoints of the screen */
   --breakpoint-*: initial;
   --breakpoint-sm: 480px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1060px;
+}
+
+html, 
+body,
+#root,
+.app {
+  height: 100%;
+  width: 100%;
 }
