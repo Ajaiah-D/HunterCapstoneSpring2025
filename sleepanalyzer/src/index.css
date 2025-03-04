@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* Need to install PostCSS Language Support to remove unknown rule error in VS code */
 /* is the theme component of tailwind */
 @theme {
   /* changes the breakpoints of the screen */
