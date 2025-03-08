@@ -41,6 +41,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
 
                 { aboveMediumScreen ? (
                   <div className={`${flexBetween} gap-8 text-sm`}>
+                    <Link to="/home"> Home </Link>
                     <Link to="/why">Why Sleep Analyzer?</Link>
                     <Link to="/analyze">Analyze</Link>
                     <Link to="/mental">Mental Health</Link>
