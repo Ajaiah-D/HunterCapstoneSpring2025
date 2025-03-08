@@ -3,11 +3,11 @@ import './App.css'
 
 import Navbar from '@/components/navbar'
 import { BrowserRouter, Routes, Route } from 'react-router'
-import Analyze from '@/pages/analyze'
+import Analyze from '@/pages/Analyze'
 import Home from '@/pages/Home'
-import Login from '@/pages/login'
-import Mental from '@/pages/mental'
-import Why from '@/pages/why'
+import Login from '@/pages/Login'
+import Mental from '@/pages/Mental'
+import Why from '@/pages/Why'
 
 function App() {
 
