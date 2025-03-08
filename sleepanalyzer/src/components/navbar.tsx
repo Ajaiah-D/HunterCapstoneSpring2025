@@ -35,14 +35,12 @@ const Navbar = (props: Props) => {
                 {/* determines how the navbar will appear on the screen depending on the screen size */}
 
                 { aboveMediumScreen ? (
-                <div className={`${flexBetween} w-full`}>
                   <div className={`${flexBetween} gap-8 text-sm`}>
                     <Link to="/why">Why Sleep Analyzer?</Link>
                     <Link to="/analyze">Analyze</Link>
                     <Link to="/mental">Mental Health</Link>
                     <Link to="/login">Login</Link>
-                  </div>
-                </div> ) 
+                  </div> ) 
                 : (
                   // create hamburger menu if screen size is not large
                   <button
