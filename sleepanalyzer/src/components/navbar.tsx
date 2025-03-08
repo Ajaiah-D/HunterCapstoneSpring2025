@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid"
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid"
 import { Link } from 'react-router-dom'
 
 type Props = {};
@@ -23,11 +23,11 @@ const Navbar = (props: Props) => {
               className={`${flexBetween} w-full`}
               >
                 <div>
-                    <Link to="/"> Sleep </Link>
+                    <Link to="/home"> Sleep </Link>
                 </div>
                 {/* The left side of navbar */}
                 <div className={`${flexBetween} gap-8 text-sm`}>
-                    <Link to="/why" className='bg-red-50'>Why Sleep Analyzer?</Link>
+                    <Link to="/why">Why Sleep Analyzer?</Link>
                     <Link to="/analyze">Analyze</Link>
                     <Link to="/mental">Mental Health</Link>
                     <Link to="/login">Login</Link>
