@@ -65,17 +65,19 @@ const Navbar = (props: Props) => {
                                bg-blue-300 
                                drop-shadow-xl">
                     <div className="flex justify-end p-12">
-                      <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
-                        <XMarkIcon className="h-6 w-g text-gray-500" />
+                      <button 
+                        onClick={() => setIsMenuToggled(!isMenuToggled)}>
+                        <XMarkIcon className="h-6 w-g text-pink-300" />
                       </button>
                     </div>
 
                     <div className='ml-[33%] flex flex-col gap-10 text-2xl'>
-                    <Link to="/why">Why Sleep Analyzer?</Link>
-                    <Link to="/analyze">Analyze</Link>
-                    <Link to="/mental">Mental Health</Link>
-                    <Link to="/login">Login</Link>
-                  </div>
+                      <Link to="/home"> Home </Link>
+                      <Link to="/why">Why Sleep Analyzer?</Link>
+                      <Link to="/analyze">Analyze</Link>
+                      <Link to="/mental">Mental Health</Link>
+                      <Link to="/login">Login</Link>
+                    </div>
                   </div>
                 )}
 
