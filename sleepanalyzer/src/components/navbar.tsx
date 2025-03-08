@@ -33,7 +33,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
               className={`${flexBetween} w-full gap-16`}
               >
                 <div className="font-header">
-                    <Link to="/home"> Sleep </Link>
+                    <Link to="/"> Sleep </Link>
                 </div>
                 
                 {/* LEFT SIDE OF NAVBAR */}
@@ -41,7 +41,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
 
                 { aboveMediumScreen ? (
                   <div className={`${flexBetween} gap-8`}>
-                    <Link to="/home"> Home </Link>
+                    <Link to="/"> Home </Link>
                     <Link to="/why">Why Sleep Analyzer?</Link>
                     <Link to="/analyze">Analyze</Link>
                     <Link to="/mental">Mental Health</Link>
@@ -76,7 +76,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                     </div>
 
                     <div className='ml-[33%] flex flex-col gap-10 text-2xl'>
-                      <Link to="/home"> Home </Link>
+                      <Link to="/"> Home </Link>
                       <Link to="/why">Why Sleep Analyzer?</Link>
                       <Link to="/analyze">Analyze</Link>
                       <Link to="/mental">Mental Health</Link>

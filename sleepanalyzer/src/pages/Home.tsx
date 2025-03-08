@@ -20,8 +20,11 @@ const Home = (props: Props) => {
                 <h1 className="text-6xl font-header">Sleep Better</h1>
               </div>
             </div>
-            <p className="text-2xl">The better way to understand sleep</p>
-            <button>Learn More</button>
+            <p className="mt-8 text-2xl">The better way to understand sleep</p>
+            
+            <div className="mt-8">
+              <button>Learn More</button>
+            </div>
           </div>
         </div>
       </div>

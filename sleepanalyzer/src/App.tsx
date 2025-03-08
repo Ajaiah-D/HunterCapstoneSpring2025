@@ -31,7 +31,7 @@ function App() {
           isTopOfPage={isTopOfPage}
         />
         <Routes>
-            <Route path="Home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="Why" element={<Why />} />
             <Route path="Analyze" element={<Analyze />} />
             <Route path="Mental" element={<Mental />} />
