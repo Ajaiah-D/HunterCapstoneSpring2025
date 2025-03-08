@@ -21,7 +21,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
   return (
     <nav>
       <div
-        className={`${navbarBackground} ${flexBetween} fixed top-0 z-30 w-full py-6`}
+        className={`${navbarBackground} ${flexBetween} fixed top-0 z-30 w-full py-6 font-main text-2xl`}
         >
         <div
           className={`${flexBetween} mx-auto w-5/6`}
@@ -32,7 +32,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
             <div 
               className={`${flexBetween} w-full gap-16`}
               >
-                <div>
+                <div className="font-header">
                     <Link to="/home"> Sleep </Link>
                 </div>
                 
@@ -40,7 +40,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                 {/* determines how the navbar will appear on the screen depending on the screen size */}
 
                 { aboveMediumScreen ? (
-                  <div className={`${flexBetween} gap-8 text-sm`}>
+                  <div className={`${flexBetween} gap-8`}>
                     <Link to="/home"> Home </Link>
                     <Link to="/why">Why Sleep Analyzer?</Link>
                     <Link to="/analyze">Analyze</Link>
