@@ -19,7 +19,7 @@ const Home = (props: Props) => {
               <div className="before:absolute before:-top-20">
               </div>
             </div> */}
-            <h1 className="text-7xl">The better way to understand sleep</h1>
+            <h1 className="text-6xl font-header">The better way to understand sleep</h1>
             <button>Start Now</button>
           </div>
         </div>
