@@ -4,19 +4,24 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid"
 import { Link } from 'react-router-dom'
 import useMediaQuery from '@/hooks/useMediaQuery';
 
-type Props = {};
+type Props = {
+  isTopOfPage: boolean;
+};
 
-const Navbar = (props: Props) => {
+const Navbar = ({ isTopOfPage }: Props) => {
   const flexBetween = "flex items-center justify-between";
 
   // changes navbar dependinng on screen size
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
-  
+
+  // scrolling will add a navbar background
+  const navbarBackground = isTopOfPage ? "" : "bg-blue-100 drop-shadow";
+
   return (
     <nav>
       <div
-        className={`${flexBetween} fixed top-0 z-30 w-full py-6`}
+        className={`${navbarBackground} ${flexBetween} fixed top-0 z-30 w-full py-6`}
         >
         <div
           className={`${flexBetween} mx-auto w-5/6`}

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 import Navbar from '@/components/navbar'
@@ -10,11 +10,27 @@ import Mental from '@/pages/Mental'
 import Why from '@/pages/Why'
 
 function App() {
+  const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
+  console.log(isTopOfPage);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY === 0) {
+        setIsTopOfPage(true);
+        console.log(isTopOfPage);
+      }
+      if (window.scrollY !== 0) setIsTopOfPage(false);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
       <BrowserRouter>
-        <Navbar />
+        <Navbar 
+          isTopOfPage={isTopOfPage}
+        />
         <Routes>
             <Route path="Home" element={<Home />} />
             <Route path="Why" element={<Why />} />
