@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
+
+/* Need to install PostCSS Language Support to remove unknown rule error in VS code */
+/* is the theme component of tailwind */
+@theme {
+  /* changes the breakpoints of the screen */
+  --breakpoint-*: initial;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1060px;
+  --font-header: "Sansita", sans-serif;
+  --font-main: "Abel", sans-serif;
+}
+
+html, 
+body,
+#root,
+.app {
+  height: 100%;
+  width: 100%;
+}
+
+button {
+  cursor:pointer;
+}
+
+#home {
+  /* creates an overlay on the background */
+  background-image: linear-gradient(0deg, rgba(193,189,219, 0.5), rgba(63,164,171, 0.7)), url("@/assets/nightsky.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
