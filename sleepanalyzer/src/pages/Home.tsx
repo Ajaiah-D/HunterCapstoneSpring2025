@@ -38,7 +38,11 @@ const Home = (props: Props) => {
             <p className="mt-8 text-2xl">The better way to understand sleep</p>
             
             <div className="mt-8">
-              <CustomButtom where="why" color="lightcoral">
+              <CustomButtom 
+                where="why" 
+                color="lightcoral"
+                otherCustomization=""
+              >
                 Learn More
               </CustomButtom>
             </div>
