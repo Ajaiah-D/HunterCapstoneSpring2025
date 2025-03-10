@@ -21,7 +21,17 @@ const Navbar = ({ isTopOfPage }: Props) => {
   return (
     <nav>
       <div
-        className={`${navbarBackground} ${flexBetween} fixed top-0 z-30 w-full py-6 font-main text-2xl`}
+        className={`
+          ${navbarBackground} 
+          ${flexBetween} 
+          fixed 
+          top-0 
+          z-30 
+          w-full 
+          py-6 
+          font-main 
+          text-2xl
+        `}
         >
         <div
           className={`${flexBetween} mx-auto w-5/6`}
@@ -33,7 +43,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
               className={`${flexBetween} w-full gap-16`}
               >
                 <div className="font-header">
-                    <Link to="/"> Sleep </Link>
+                    <Link className="text-white" to="/"> Sleep </Link>
                 </div>
                 
                 {/* LEFT SIDE OF NAVBAR */}
@@ -41,11 +51,11 @@ const Navbar = ({ isTopOfPage }: Props) => {
 
                 { aboveMediumScreen ? (
                   <div className={`${flexBetween} gap-8`}>
-                    <Link to="/"> Home </Link>
-                    <Link to="/why">Why Sleep Analyzer?</Link>
-                    <Link to="/analyze">Analyze</Link>
-                    <Link to="/mental">Mental Health</Link>
-                    <Link to="/login">Login</Link>
+                    <Link className="text-white" to="/"> Home </Link>
+                    <Link className="text-white" to="/why">Why Sleep Analyzer?</Link>
+                    <Link className="text-white" to="/analyze">Analyze</Link>
+                    <Link className="text-white" to="/mental">Mental Health</Link>
+                    <Link className="text-white" to="/login">Login</Link>
                   </div> ) 
                 : (
                   // create hamburger menu if screen size is not large
