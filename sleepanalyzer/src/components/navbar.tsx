@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid"
-import { Link } from 'react-router-dom'
+import CustomLink from './CustomLink';
 import useMediaQuery from '@/hooks/useMediaQuery';
 
 type Props = {
@@ -43,7 +43,9 @@ const Navbar = ({ isTopOfPage }: Props) => {
               className={`${flexBetween} w-full gap-16`}
               >
                 <div className="font-header">
-                    <Link className="text-white" to="/"> Sleep </Link>
+                  <CustomLink page="" textColor="white"> 
+                    Sleep 
+                  </CustomLink>
                 </div>
                 
                 {/* LEFT SIDE OF NAVBAR */}
@@ -51,11 +53,11 @@ const Navbar = ({ isTopOfPage }: Props) => {
 
                 { aboveMediumScreen ? (
                   <div className={`${flexBetween} gap-8`}>
-                    <Link className="text-white" to="/"> Home </Link>
-                    <Link className="text-white" to="/why">Why Sleep Analyzer?</Link>
-                    <Link className="text-white" to="/analyze">Analyze</Link>
-                    <Link className="text-white" to="/mental">Mental Health</Link>
-                    <Link className="text-white" to="/login">Login</Link>
+                    <CustomLink page="" textColor="white">Home</CustomLink>
+                    <CustomLink page="why" textColor="white">Why Sleep Analyzer?</CustomLink>
+                    <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
+                    <CustomLink page="mental" textColor="white">Mental Health</CustomLink>
+                    <CustomLink page="login" textColor="white">Login</CustomLink>
                   </div> ) 
                 : (
                   // create hamburger menu if screen size is not large
@@ -86,11 +88,11 @@ const Navbar = ({ isTopOfPage }: Props) => {
                     </div>
 
                     <div className='flex flex-col items-center gap-10 text-2xl'>
-                      <Link to="/"> Home </Link>
-                      <Link to="/why">Why Sleep Analyzer?</Link>
-                      <Link to="/analyze">Analyze</Link>
-                      <Link to="/mental">Mental Health</Link>
-                      <Link to="/login">Login</Link>
+                      <CustomLink page="" textColor="white">Home</CustomLink>
+                      <CustomLink page="why" textColor="white">Why Sleep Analyzer?</CustomLink>
+                      <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
+                      <CustomLink page="mental" textColor="white">Mental Health</CustomLink>
+                      <CustomLink page="login" textColor="white">Login</CustomLink>
                     </div>
                   </div>
                 )}
