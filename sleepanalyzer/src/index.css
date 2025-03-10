@@ -11,6 +11,7 @@
   --breakpoint-lg: 1060px;
   --font-header: "Sansita", sans-serif;
   --font-main: "Abel", sans-serif;
+  --color-lightcoral: #F08E80;
 }
 
 html, 
@@ -19,6 +20,7 @@ body,
 .app {
   height: 100%;
   width: 100%;
+  background: linear-gradient(0deg, rgba(193,189,219, 0.5), rgba(63,164,171, 0.7));
 }
 
 button {
