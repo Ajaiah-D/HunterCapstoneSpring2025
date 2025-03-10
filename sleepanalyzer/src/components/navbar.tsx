@@ -85,7 +85,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                       </button>
                     </div>
 
-                    <div className='ml-[33%] flex flex-col gap-10 text-2xl'>
+                    <div className='flex flex-col items-center gap-10 text-2xl'>
                       <Link to="/"> Home </Link>
                       <Link to="/why">Why Sleep Analyzer?</Link>
                       <Link to="/analyze">Analyze</Link>
