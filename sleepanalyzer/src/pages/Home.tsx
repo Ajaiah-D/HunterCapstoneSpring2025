@@ -1,8 +1,6 @@
 import React from "react";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import CustomButtom from "@/components/custombuttom";
-
-import nightsky from "@/assets/nightsky.jpg";
+import CustomButtom from "@/components/CustomButtom";
 
 type Props = {};
 
