@@ -5,9 +5,10 @@ type Props = {
     children: React.ReactNode;
     where: string;
     color: string;
+    otherCustomization: string;
 }
 
-const CustomButtom = ({ children, where, color }: Props) => {
+const CustomButtom = ({ children, where, color, otherCustomization }: Props) => {
   return (
     <Link 
         to= {"/" + where}
@@ -16,6 +17,7 @@ const CustomButtom = ({ children, where, color }: Props) => {
             px-10 
             py-2 
             bg-${color}
+            ${otherCustomization}
             hover:bg-transparent
             hover: border-2
             hover:text-white
