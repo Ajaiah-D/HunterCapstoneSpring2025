@@ -36,8 +36,27 @@ const Login = (props: Props) => {
                   type="text"
                   placeholder="Username"
                   title="Username"
-                >
-              </input>
+                  className="
+                    border-2 
+                    border-white
+                    rounded-md
+                    px-2
+                    py-2"
+                />
+              </div>
+              <div className="mt-8">
+                <p>Password</p>
+                <input 
+                  type="text"
+                  placeholder="Password"
+                  title="Password"
+                  className="
+                    border-2 
+                    border-white
+                    rounded-md
+                    px-2
+                    py-2"
+                />
               </div>
             </div>
             
