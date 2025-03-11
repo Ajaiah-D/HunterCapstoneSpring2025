@@ -47,7 +47,7 @@ const Login = (props: Props) => {
               <div className="mt-8">
                 <p>Password</p>
                 <input 
-                  type="text"
+                  type="password"
                   placeholder="Password"
                   title="Password"
                   className="
