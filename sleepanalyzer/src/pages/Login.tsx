@@ -26,9 +26,18 @@ const Login = (props: Props) => {
           md:h-5/6">
         <div className="z-10 mt-32 md:basis-3/5">
           <div className="md:-mt-20">
-            <div className="relative">
-              <div className="before:absolute before:-top-20">
+            <div className="">
+              <div className="">
                 <h1 className="text-6xl font-header">Login</h1>
+              </div>
+              <div className="mt-8">
+                <p>Username</p>
+                <input 
+                  type="text"
+                  placeholder="Username"
+                  title="Username"
+                >
+              </input>
               </div>
             </div>
             
