@@ -66,12 +66,12 @@ const Login = (props: Props) => {
             
             <div className="mt-8">
               <CustomButtom 
-                page="why" 
+                page="#" 
                 customization="ml-8">
                 Sign In
               </CustomButtom>
               <CustomButtom 
-                page="why" 
+                page="#" 
                 customization="ml-8"
               >
                 Sign Up
