@@ -25,13 +25,15 @@ const Login = (props: Props) => {
           justify-center 
           md:h-5/6">
         <div className="z-10 mt-32 md:basis-3/5">
-          <div className="md:-mt-20">
-            <div className="">
+          <div className="md:-mt-20" >
+            <div className="w-fit m-auto">
               <div className="">
-                <h1 className="text-6xl font-header">Login</h1>
+                <h1 className="text-4xl font-header">Login</h1>
               </div>
               <div className="mt-8">
-                <p>Username</p>
+                <p className="text-left mb-1 ml-1">
+                  Username
+                </p>
                 <input 
                   type="text"
                   placeholder="Username"
@@ -45,7 +47,9 @@ const Login = (props: Props) => {
                 />
               </div>
               <div className="mt-8">
-                <p>Password</p>
+                <p className="text-left mb-1 ml-1">
+                  Password
+                </p>
                 <input 
                   type="password"
                   placeholder="Password"
@@ -62,15 +66,13 @@ const Login = (props: Props) => {
             
             <div className="mt-8">
               <CustomButtom 
-                where="why" 
-                color="lightcoral"
-                otherCustomization="ml-8">
-                Login
+                page="#" 
+                customization="ml-8">
+                Sign In
               </CustomButtom>
               <CustomButtom 
-                where="why" 
-                color="lightcoral"
-                otherCustomization="ml-8"
+                page="#" 
+                customization="ml-8"
               >
                 Sign Up
               </CustomButtom>

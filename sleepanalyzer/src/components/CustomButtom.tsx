@@ -3,25 +3,24 @@ import { Link } from 'react-router-dom'
 
 type Props = {
     children: React.ReactNode;
-    where: string;
-    color: string;
-    otherCustomization: string;
+    page: string;
+    customization: string;
 }
 
-const CustomButtom = ({ children, where, color, otherCustomization }: Props) => {
+const CustomButtom = ({ children, page, customization }: Props) => {
   return (
     <Link 
-        to= {"/" + where}
+        to= {"/" + page}
         className={`
+            ${customization}
             rounded-md 
             px-10 
             py-2 
-            bg-${color}
-            ${otherCustomization}
+            bg-lightcoral
             hover:bg-transparent
             hover: border-2
-            hover:text-white
-            hover: border-${color}
+            hover: text-white
+            hover: border-lightcoral
         `}
     >
         { children }

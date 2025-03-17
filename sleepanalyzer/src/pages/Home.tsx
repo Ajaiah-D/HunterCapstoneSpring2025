@@ -39,9 +39,8 @@ const Home = (props: Props) => {
             
             <div className="mt-8">
               <CustomButtom 
-                where="why" 
-                color="lightcoral"
-                otherCustomization=""
+                page="why" 
+                customization= ""
               >
                 Learn More
               </CustomButtom>

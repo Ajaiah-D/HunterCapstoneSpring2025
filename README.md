@@ -2,3 +2,6 @@
 
 ## Home Page
 ![A picture of how the home page of our website looks like](home.png)
+
+## Login Page
+![A picture of how the home page of our website looks like](login.png)
