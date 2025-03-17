@@ -62,15 +62,13 @@ const Login = (props: Props) => {
             
             <div className="mt-8">
               <CustomButtom 
-                where="why" 
-                color="lightcoral"
-                otherCustomization="ml-8">
+                page="why" 
+                customization="ml-8">
                 Login
               </CustomButtom>
               <CustomButtom 
-                where="why" 
-                color="lightcoral"
-                otherCustomization="ml-8"
+                page="why" 
+                customization="ml-8"
               >
                 Sign Up
               </CustomButtom>
