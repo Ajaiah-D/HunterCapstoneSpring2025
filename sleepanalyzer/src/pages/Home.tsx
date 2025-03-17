@@ -1,8 +1,6 @@
 import React from "react";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import CustomButtom from "@/components/custombuttom";
-
-import nightsky from "@/assets/nightsky.jpg";
+import CustomButtom from "@/components/CustomButtom";
 
 type Props = {};
 
@@ -40,7 +38,10 @@ const Home = (props: Props) => {
             <p className="mt-8 text-2xl">The better way to understand sleep</p>
             
             <div className="mt-8">
-              <CustomButtom where="why" color="lightcoral">
+              <CustomButtom 
+                page="why" 
+                customization= ""
+              >
                 Learn More
               </CustomButtom>
             </div>

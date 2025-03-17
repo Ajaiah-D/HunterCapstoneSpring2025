@@ -11,7 +11,6 @@ import Why from '@/pages/Why'
 
 function App() {
   const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
-  console.log(isTopOfPage);
 
   useEffect(() => {
     const handleScroll = () => {
