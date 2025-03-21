@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
 import './App.css'
 
 import Navbar from '@/components/Navbar'
-import { BrowserRouter, Routes, Route } from 'react-router'
 import Analyze from '@/pages/Analyze'
 import Home from '@/pages/Home'
 import Login from '@/pages/Login'
@@ -31,6 +31,8 @@ function App() {
         />
         <Routes>
             <Route path="/" element={<Home />} />
+            {/* Forces page to go to homepage if path does not exist */}
+            <Route path="*" element={<Navigate to='/' />} />
             <Route path="Why" element={<Why />} />
             <Route path="Analyze" element={<Analyze />} />
             <Route path="Mental" element={<Mental />} />
