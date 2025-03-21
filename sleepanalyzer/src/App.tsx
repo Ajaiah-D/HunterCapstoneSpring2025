@@ -8,6 +8,7 @@ import Home from '@/pages/Home'
 import Login from '@/pages/Login'
 import Mental from '@/pages/Mental'
 import Why from '@/pages/Why'
+import Signup from './pages/Signup'
 
 function App() {
   const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
@@ -37,6 +38,7 @@ function App() {
             <Route path="Analyze" element={<Analyze />} />
             <Route path="Mental" element={<Mental />} />
             <Route path="Login" element={<Login />} />
+            <Route path="Signup" element={<Signup />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -7,7 +7,7 @@ import CustomInput from '@/components/CustomInput';
 
 type Props = {};
 
-const Login = (props: Props) => {
+const Signup = (props: Props) => {
 
   /* change flex direction of section if screen size is too small */
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
@@ -25,25 +25,6 @@ const Login = (props: Props) => {
                          p-15`}
              id="login"
       >
-      {/* <div className="border-2 border-amber-950 
-                      p-5 
-                      flex 
-                      flex-col 
-                      justify-center 
-                      items-center 
-                      h-[20rem]
-                      w-[30rem]
-                      gap-3">
-        <h1 className="text-3xl md:font-bold">
-          Hi, there!
-        </h1>
-        <p>
-          Don't have an account? Begin your journey with us!
-        </p>
-        <CustomButtom page="#" customization="w-1/2">
-            Sign Up
-        </CustomButtom>
-      </div> */}
       <div className="border-2 
                     border-white 
                     p-5 
@@ -52,27 +33,23 @@ const Login = (props: Props) => {
                     bg-transparent
                     rounded-3xl">
         <form className="flex flex-col justify-center items-center gap-3 p-5">
-          <h1 className="text-5xl"> Login </h1>
-          <h2 className="text-3xl"> Let's get you back in </h2>
+          <h1 className="text-5xl"> Signup </h1>
+          <h2 className="text-3xl"> Hi there! Let's start your journey with us. </h2>
           <div className="w-full">
             <CustomInput  type="email" 
                           placeholder="Email" 
                           title="Email" 
                           customization=""/>
-            <EnvelopeIcon className="w-6 text-white absolute right-25 top-1/3 translate-y-5 translate-3" />
+            <EnvelopeIcon className="w-6 text-white absolute right-25 top-1/3 translate-y-16 translate-3" />
           </div>
           <div className="w-full">
             <CustomInput  type="password" 
                           placeholder="Password" 
                           title="password" 
                           customization=""/>
-            <LockClosedIcon className=" w-6 text-white absolute right-22 bottom-1/2 translate-y-11"/>
+            <LockClosedIcon className=" w-6 text-white absolute right-22 bottom-1/3 translate-y-6"/>
           </div>
           <CustomButtom page="login" 
-                        customization="w-5/6">
-            Sign In
-          </CustomButtom>
-          <CustomButtom page="signup" 
                         customization="w-5/6">
             Sign Up
           </CustomButtom>
@@ -83,4 +60,4 @@ const Login = (props: Props) => {
 
 };
 
-export default Login;
+export default Signup;
