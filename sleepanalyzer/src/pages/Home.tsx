@@ -5,7 +5,7 @@ import CustomButtom from "@/components/CustomButtom";
 type Props = {};
 
 const Home = (props: Props) => {
-  const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
+  // const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
 
   return (
     <section
