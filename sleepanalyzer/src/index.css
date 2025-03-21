@@ -27,9 +27,16 @@ button {
   cursor:pointer;
 }
 
-#home {
+#home, #login {
   /* creates an overlay on the background */
   background-image: linear-gradient(0deg, rgba(193,189,219, 0.5), rgba(63,164,171, 0.7)), url("@/assets/nightsky.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#login {
+  /* creates an overlay on the background */
+  background-image: linear-gradient(180deg, rgba(193,189,219, 0.7), rgba(63,164,171, 0.7)), url("@/assets/nightsky.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
