@@ -12,10 +12,6 @@ const Login = (props: Props) => {
   /* change flex direction of section if screen size is too small */
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
   const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col"
-
-  function handleClick() {
-    console.log("You have clicked this.");
-  }
   
   return (
     <section className={`h-screen
