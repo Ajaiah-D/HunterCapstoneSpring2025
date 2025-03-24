@@ -25,11 +25,11 @@ const Signup = (props: Props) => {
   const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col";
 
   const [userInfo, setUserInfo] = useState(initialUser);
+  // disable button to prevent multiple users from being created
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const {googleSignIn, signUp} = useContext(AuthContext);
-  //const {googleSignIn, signUp} = useAuth;
   const navigate = useNavigate();
 
   const handleGoogleSignin = async(e: React.MouseEvent<HTMLElement>) => {
@@ -52,30 +52,30 @@ const Signup = (props: Props) => {
       }
   }
 
-  const handleSubmit = async() => {
-      console.log("Let's start!")
+  const handleSubmit = async(e: React.SyntheticEvent<HTMLFormElement>) => {
+      e.preventDefault();
       setLoading(true);
-      console.log("Creating: ", userInfo)
-      // try {
-      //     console.log("Creating: ", userInfo)
-      //     while (userInfo.password !== userInfo.confirmPassword) {
-      //       setError("Passwords MUST match. Please confirm your password again.")
-      //       console.log(error);
-      //     }
-      //     setLoading(true);
-      //     await signUp(userInfo);
-      //     setUserInfo(userInfo);
-      //     navigate("/profile");
-      //     console.log("User Info: ", userInfo)
-      // } catch(error) {
-      //   if (typeof error === "object" && 
-      //     error && "message" in error &&
-      //     typeof error.message === "string"
-      //   ) {
-      //     // message gets narrowed to string!
-      //     setError(error.message)
-      //   };
-      //}
+      try {
+          if (userInfo.password !== userInfo.confirmPassword) {
+            console.log(error);
+            setLoading(false);
+            return setError("Passwords MUST match. Please confirm your password again.")
+          }
+          setLoading(true);
+          //await signUp(userInfo);
+          setUserInfo(userInfo);
+          navigate("/profile");
+          console.log("User Info: ", userInfo)
+      } catch(error) {
+        if (typeof error === "object" && 
+          error && "message" in error &&
+          typeof error.message === "string"
+        ) {
+          // message gets narrowed to string!
+          setError(error.message);
+        };
+      }
+      setLoading(false);
   }
   
   return (
@@ -108,6 +108,14 @@ const Signup = (props: Props) => {
           <h1 className="text-5xl"> Signup </h1>
           <h2 className="text-3xl"> Hi there! Let's start your journey with us. </h2>
           <div className="w-full">
+            <CustomInput  type="string" 
+                          placeholder="Name"
+                          value={userInfo.displayName} 
+                          title="name" 
+                          onChange={(e) => 
+                            setUserInfo({ ...userInfo, displayName: e.target.value})
+                          }
+            />
             <CustomInput  type="email" 
                           placeholder="Email"
                           value={userInfo.email} 
@@ -140,7 +148,7 @@ const Signup = (props: Props) => {
             />
             <LockClosedIcon className=" w-6 text-white absolute right-22 bottom-1/2 translate-y-20"/>
           </div>
-          <button>
+          <button disabled={loading}>
             Sign Up
           </button>
           {
