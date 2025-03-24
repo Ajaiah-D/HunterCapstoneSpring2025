@@ -2,17 +2,21 @@ import React from 'react'
 
 type Props = {
     placeholder: string,
+    value?: string, 
     type: string;
     title: string;
-    customization: string;
+    customization?: string;
+    onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-const CustomInput = ({ placeholder, type, title, customization }: Props) => {
+const CustomInput = ({ placeholder, value, type, title, customization, onChange }: Props) => {
     return (
         <input 
             placeholder={placeholder}
+            value={value}
             type={type}
             title={title}
+            onChange={onChange}
             required
             className={`
                 ${customization}
