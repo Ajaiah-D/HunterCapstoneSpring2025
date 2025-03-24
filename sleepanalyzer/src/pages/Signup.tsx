@@ -32,6 +32,7 @@ const Signup = (props: Props) => {
     const {googleSignIn, signUp} = useContext(AuthContext);
     const navigate = useNavigate();
 
+    // handling login
     const handleGoogleSignin = async(e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
         try {
@@ -76,6 +77,7 @@ const Signup = (props: Props) => {
         setLoading(false);
     }
     
+    // signup page content
     return (
         <section 
           className={`h-screen
@@ -171,12 +173,15 @@ const Signup = (props: Props) => {
                     >
                         Login
                     </CustomButtom>
+
+                    {/* printing the error if an error is returned */}
                     {
                       error &&
                       <div className="error text-zinc-900">
                         {error}
                       </div>
                     }
+                    
                     <div className="gap-5 flex flex-col">
                         <div>
                             <hr className="border-t-2 border-white"/>
