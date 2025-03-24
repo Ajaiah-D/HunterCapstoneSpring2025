@@ -46,7 +46,7 @@ const Login = (props: Props) => {
       }
   }
 
-  const handleSubmit = async(e: React.SyntheticEvent<HTMLFormElement>) => {
+  const handleSubmit = async(e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
         setLoading(true);
         try {
@@ -102,7 +102,7 @@ const Login = (props: Props) => {
                     backdrop-blur-xl 
                     bg-transparent
                     rounded-3xl">
-        <form className="flex flex-col justify-center items-center gap-3 p-5" onSubmit={handleSubmit}>
+        <form className="flex flex-col justify-center items-center gap-3 p-5">
           <h1 className="text-5xl"> Login </h1>
           <h2 className="text-3xl"> Let's get you back in </h2>
           <div className="w-full">
@@ -127,9 +127,10 @@ const Login = (props: Props) => {
                           />
             {/* <LockClosedIcon className=" w-6 text-white absolute right-22 bottom-1/2"/> */}
           </div>
-          <button>
+          <CustomButtom onClick={handleSubmit}
+                        customization="w-5/6">
             Sign In
-          </button>
+          </CustomButtom>
           <CustomButtom page="signup" 
                         customization="w-5/6">
             Sign Up

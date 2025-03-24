@@ -52,7 +52,7 @@ const Signup = (props: Props) => {
       }
   }
 
-  const handleSubmit = async(e: React.SyntheticEvent<HTMLFormElement>) => {
+  const handleSubmit = async(e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault();
       setLoading(true);
       try {
@@ -103,7 +103,6 @@ const Signup = (props: Props) => {
                          items-center 
                          gap-3 
                          p-5"
-              onSubmit={handleSubmit}
         >
           <h1 className="text-5xl"> Signup </h1>
           <h2 className="text-3xl"> Hi there! Let's start your journey with us. </h2>
@@ -148,9 +147,17 @@ const Signup = (props: Props) => {
             />
             {/* <LockClosedIcon className=" w-6 text-white absolute right-22 bottom-1/2 translate-y-20"/> */}
           </div>
-          <button disabled={loading}>
+          <CustomButtom 
+            onClick={handleSubmit}
+            customization="w-5/6"
+            disabled={loading}
+          >
+            Sign In
+          </CustomButtom>
+          <CustomButtom page="signup"
+                        customization="w-5/6">
             Sign Up
-          </button>
+          </CustomButtom>
           {
             error &&
             <div className="error text-zinc-900">
