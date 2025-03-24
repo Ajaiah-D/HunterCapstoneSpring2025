@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { LockClosedIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
+// import { LockClosedIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 import { RiGoogleLine } from "react-icons/ri";
 
 import useMediaQuery from '@/hooks/useMediaQuery';
@@ -114,7 +114,7 @@ const Login = (props: Props) => {
                             setUserInfo({ ...userInfo, email: e.target.value})
                           }
                           />
-            <EnvelopeIcon className="w-6 text-white absolute right-25 top-1/4 translate-y-9 translate-3" />
+            {/* <EnvelopeIcon className="w-6 text-white absolute right-25 top-1/4 translate-y-9 translate-3" /> */}
           </div>
           <div className="w-full">
             <CustomInput  type="password" 
@@ -125,7 +125,7 @@ const Login = (props: Props) => {
                             setUserInfo({ ...userInfo, password: e.target.value})
                           } 
                           />
-            <LockClosedIcon className=" w-6 text-white absolute right-22 bottom-1/2"/>
+            {/* <LockClosedIcon className=" w-6 text-white absolute right-22 bottom-1/2"/> */}
           </div>
           <button>
             Sign In
