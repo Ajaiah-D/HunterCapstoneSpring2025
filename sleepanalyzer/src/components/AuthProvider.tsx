@@ -56,10 +56,9 @@ const AuthProvider = ({ children }: Props) => {
     }
 
     useEffect(() => {
-        // tells us if a user is logged in or not by checking is auth changed
+        // tells us if a user is logged in or not by checking if auth changed
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                console.log("User: ", user)
                 setUser(user);
             }
         });
