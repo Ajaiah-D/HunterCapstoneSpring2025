@@ -8,6 +8,7 @@ import CustomInput from '@/components/CustomInput';
 import { AuthContext } from '@/components/AuthProvider';
 import { useNavigate } from 'react-router';
 import { UserLogin } from '@/types/interface';
+import { Link } from 'react-router-dom';
 
 type Props = {};
 
@@ -126,6 +127,22 @@ const Login = (props: Props) => {
                           } 
                           />
             {/* <LockClosedIcon className=" w-6 text-white absolute right-22 bottom-1/2"/> */}
+          </div>
+          <div className="w-5/6 flex justify-between">
+              <div>
+                  <input type="checkbox" className="mr-2"/>
+                  <label htmlFor="" className="">
+                      Remember Me
+                  </label> 
+              </div>          
+              <Link 
+                to=""
+                className="hover:underline w-fit"
+              >
+                  <p className="mr-2 w-full">
+                      Forgot Password?
+                  </p>
+              </Link>                
           </div>
           <CustomButtom onClick={handleSubmit}
                         customization="w-5/6">
