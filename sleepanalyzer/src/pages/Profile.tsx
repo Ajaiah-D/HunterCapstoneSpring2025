@@ -8,9 +8,9 @@ type Props = {}
 const Profile = (props: Props) => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
-  const userExists = user?.displayName ? true : false
+  const userExists = user ? true : false
   const userName = userExists ? user?.displayName : "Guest" 
-  console.log(userExists, " : ", userName)
+  console.log(user)
 
   const handleClick = async() => {
     try {
