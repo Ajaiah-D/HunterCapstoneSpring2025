@@ -46,7 +46,9 @@ function App() {
               <Route path="Mental" element={<Mental />} />
               <Route path="Login" element={<Login />} />
               <Route path="Signup" element={<Signup />} />
-              <Route path="Profile" element={<ProtectedRoutes><Profile /></ProtectedRoutes>} />
+              <Route element={<ProtectedRoutes />}>
+                <Route path="Profile" element={<Profile />} />
+              </Route>
           </Routes>
         </BrowserRouter>
       </AuthProvider>
