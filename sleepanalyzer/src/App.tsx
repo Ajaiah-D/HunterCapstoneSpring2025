@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
 
+// pages that we can navigate to
 import Navbar from '@/components/Navbar'
 import Analyze from '@/pages/Analyze'
 import Home from '@/pages/Home'
@@ -11,7 +12,9 @@ import Why from '@/pages/Why'
 import Signup from '@/pages/Signup'
 import Profile from '@/pages/Profile'
 
-import AuthProvider from './components/AuthProvider'
+// components to protect or determine what pages show
+import AuthProvider from '@/components/AuthProvider'
+import ProtectedRoutes from '@/components/ProtectedRoutes'
 
 function App() {
   const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
@@ -43,7 +46,7 @@ function App() {
               <Route path="Mental" element={<Mental />} />
               <Route path="Login" element={<Login />} />
               <Route path="Signup" element={<Signup />} />
-              <Route path="Profile" element={<Profile />} />
+              <Route path="Profile" element={<ProtectedRoutes><Profile /></ProtectedRoutes>} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
