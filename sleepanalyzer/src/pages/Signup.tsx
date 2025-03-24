@@ -62,7 +62,7 @@ const Signup = (props: Props) => {
             return setError("Passwords MUST match. Please confirm your password again.")
           }
           setLoading(true);
-          //await signUp(userInfo);
+          await signUp(userInfo);
           setUserInfo(userInfo);
           navigate("/profile");
           console.log("User Info: ", userInfo)
