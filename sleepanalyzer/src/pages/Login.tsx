@@ -1,22 +1,74 @@
-import React from 'react';
-import { UserCircleIcon, LockClosedIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
+import React, { useContext, useState } from 'react';
+// import { LockClosedIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
+import { RiGoogleLine } from "react-icons/ri";
 
 import useMediaQuery from '@/hooks/useMediaQuery';
 import CustomButtom from '@/components/CustomButtom';
 import CustomInput from '@/components/CustomInput';
+import { AuthContext } from '@/components/AuthProvider';
+import { useNavigate } from 'react-router';
+import { UserLogin } from '@/types/interface';
+import { Link } from 'react-router-dom';
 
 type Props = {};
+
+const userLoggingIn: UserLogin = {
+  email: "",
+  password: "",
+};
 
 const Login = (props: Props) => {
 
   /* change flex direction of section if screen size is too small */
-  const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
-  const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col"
+  // const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
+  // const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col"
+  const [loading, setLoading] = useState(false);
+  const [userInfo, setUserInfo] = useState(userLoggingIn);
+  const [error, setError] = useState("");
+
+  const {googleSignIn, logIn} = useContext(AuthContext);
+   const navigate = useNavigate();
+
+  const handleGoogleSignin = async(e: React.MouseEvent<HTMLElement>) => {
+      e.preventDefault();
+      try {
+          setLoading(true);
+          await googleSignIn();
+          navigate("/profile");
+      } catch(error) {
+          if (typeof error === "object" && 
+              error && "message" in error &&
+              typeof error.message === "string"
+          ) {
+            // message gets narrowed to string!
+            setError(error.message)
+            console.log(error);
+          };
+      }
+  }
+
+  const handleSubmit = async(e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault();
+        setLoading(true);
+        try {
+            console.log("Signing In.")
+            await logIn(userInfo);
+            navigate("/profile");
+        } catch(error) {
+          if (typeof error === "object" && 
+            error && "message" in error &&
+            typeof error.message === "string"
+          ) {
+            setLoading(false);
+            // message gets narrowed to string!
+            return setError(error.message);
+          };
+        }
+    }
   
   return (
     <section className={`h-screen
                          flex
-                         ${flexDirection}
                          justify-center
                          items-center
                          text-center
@@ -56,19 +108,43 @@ const Login = (props: Props) => {
           <h2 className="text-3xl"> Let's get you back in </h2>
           <div className="w-full">
             <CustomInput  type="email" 
+                          value={userInfo.email}
                           placeholder="Email" 
                           title="Email" 
-                          customization=""/>
-            <EnvelopeIcon className="w-6 text-white absolute right-25 top-1/3 translate-y-5 translate-3" />
+                          onChange={(e) => 
+                            setUserInfo({ ...userInfo, email: e.target.value})
+                          }
+                          />
+            {/* <EnvelopeIcon className="w-6 text-white absolute right-25 top-1/4 translate-y-9 translate-3" /> */}
           </div>
           <div className="w-full">
             <CustomInput  type="password" 
+                          value={userInfo.password}
                           placeholder="Password" 
-                          title="password" 
-                          customization=""/>
-            <LockClosedIcon className=" w-6 text-white absolute right-22 bottom-1/2 translate-y-11"/>
+                          title="password"
+                          onChange={(e) => 
+                            setUserInfo({ ...userInfo, password: e.target.value})
+                          } 
+                          />
+            {/* <LockClosedIcon className=" w-6 text-white absolute right-22 bottom-1/2"/> */}
           </div>
-          <CustomButtom page="login" 
+          <div className="w-5/6 flex justify-between">
+              <div>
+                  <input type="checkbox" className="mr-2"/>
+                  <label htmlFor="" className="">
+                      Remember Me
+                  </label> 
+              </div>          
+              <Link 
+                to=""
+                className="hover:underline w-fit"
+              >
+                  <p className="mr-2 w-full">
+                      Forgot Password?
+                  </p>
+              </Link>                
+          </div>
+          <CustomButtom onClick={handleSubmit}
                         customization="w-5/6">
             Sign In
           </CustomButtom>
@@ -76,6 +152,24 @@ const Login = (props: Props) => {
                         customization="w-5/6">
             Sign Up
           </CustomButtom>
+          {
+            error &&
+            <div className="error text-zinc-900">
+              {error}
+            </div>
+          }
+          <div className="gap-5 flex flex-col">
+              <div>
+                <hr className="border-t-2 border-white"/>
+                <p> OR </p>
+                <hr className="border-t-2 border-white"/>
+              </div>
+              <div className="social-icons">
+                <button className="border-2 border-white rounded-xl p-2" onClick={handleGoogleSignin} disabled={loading}>
+                  <RiGoogleLine/>
+                </button>
+              </div>
+          </div>
         </form>
       </div>
     </section>

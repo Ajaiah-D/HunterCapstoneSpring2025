@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
 
+// pages that we can navigate to
 import Navbar from '@/components/Navbar'
 import Analyze from '@/pages/Analyze'
 import Home from '@/pages/Home'
 import Login from '@/pages/Login'
 import Mental from '@/pages/Mental'
 import Why from '@/pages/Why'
-import Signup from './pages/Signup'
+import Signup from '@/pages/Signup'
+import Profile from '@/pages/Profile'
+
+// components to protect or determine what pages show
+import AuthProvider from '@/components/AuthProvider'
+import ProtectedRoutes from '@/components/ProtectedRoutes'
 
 function App() {
   const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
@@ -26,21 +32,26 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Navbar 
-          isTopOfPage={isTopOfPage}
-        />
-        <Routes>
-            <Route path="/" element={<Home />} />
-            {/* Forces page to go to homepage if path does not exist */}
-            <Route path="*" element={<Navigate to='/' />} />
-            <Route path="Why" element={<Why />} />
-            <Route path="Analyze" element={<Analyze />} />
-            <Route path="Mental" element={<Mental />} />
-            <Route path="Login" element={<Login />} />
-            <Route path="Signup" element={<Signup />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <Navbar 
+            isTopOfPage={isTopOfPage}
+          />
+          <Routes>
+              <Route path="/" element={<Home />} />
+              {/* Forces page to go to homepage if path does not exist */}
+              <Route path="*" element={<Navigate to='/' />} />
+              <Route path="Why" element={<Why />} />
+              <Route path="Analyze" element={<Analyze />} />
+              <Route path="Mental" element={<Mental />} />
+              <Route path="Login" element={<Login />} />
+              <Route path="Signup" element={<Signup />} />
+              <Route element={<ProtectedRoutes />}>
+                <Route path="Profile" element={<Profile />} />
+              </Route>
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </>
   )
 }
