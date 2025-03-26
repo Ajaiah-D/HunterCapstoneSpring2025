@@ -3,9 +3,12 @@ import { createUserWithEmailAndPassword, onAuthStateChanged,
          signInWithEmailAndPassword, 
          signInWithPopup, 
          signOut, 
-         User, GoogleAuthProvider } from "firebase/auth";
+         User, GoogleAuthProvider, 
+         updatePassword,
+         updateProfile} from "firebase/auth";
 import { auth } from '../firebaseConfig';
 import { UserLogin, UserSignup } from '@/types/interface';
+import { abort } from 'process';
 
 type Props = {
     children: React.ReactNode;
@@ -17,6 +20,7 @@ type AuthContextData = {
     signUp: typeof signUp;
     logOut: typeof logOut;
     googleSignIn: typeof googleSignIn;
+    updateUsername: typeof updateUsername;
 };
 
 const logIn = (creds: UserLogin) => {
@@ -36,12 +40,21 @@ const googleSignIn = () => {
     return signInWithPopup(auth, googleAuthProvider);
 };
 
+const updateUsername = (user: User, displayName: string) => {
+    const updatedUser = updateProfile(user, {displayName: displayName});
+    if(auth.currentUser != null) {
+        auth.updateCurrentUser(user);
+    }
+    return updatedUser;
+}
+
 const AuthContext = createContext<AuthContextData>({
     user: auth.currentUser,
     logIn,
     signUp,
     logOut,
     googleSignIn,
+    updateUsername,
 });
 
 const AuthProvider = ({ children }: Props) => {
@@ -53,6 +66,7 @@ const AuthProvider = ({ children }: Props) => {
         signUp,
         logOut,
         googleSignIn,
+        updateUsername,
     }
 
     useEffect(() => {

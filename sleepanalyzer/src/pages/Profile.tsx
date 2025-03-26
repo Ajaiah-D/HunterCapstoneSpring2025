@@ -1,5 +1,5 @@
 import { AuthContext } from '@/components/AuthProvider';
-import CustomButtom from '@/components/CustomButtom';
+import CustomButton from '@/components/CustomButton';
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router';
 
@@ -8,8 +8,7 @@ type Props = {}
 const Profile = (props: Props) => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
-  const userExists = user ? true : false
-  const userName = userExists ? user?.email : "Guest" 
+  const userName = user ? user.displayName : "Guest";
 
   const handleClick = async() => {
     try {
@@ -28,9 +27,9 @@ const Profile = (props: Props) => {
           <h1 className="text-5xl">Hi, {userName}!</h1>
         </div>
         <div>
-          <button onClick={handleClick}>
-              Sign Out
-          </button>
+          <CustomButton onClick={handleClick}>
+              Logout
+          </CustomButton>
         </div>
     </div>
     
