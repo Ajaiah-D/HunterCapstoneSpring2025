@@ -1,6 +1,6 @@
 import React from "react";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import CustomButtom from "@/components/CustomButtom";
+import CustomButton from "@/components/CustomButton";
 
 type Props = {};
 
@@ -38,12 +38,12 @@ const Home = (props: Props) => {
             <p className="mt-8 text-2xl">The better way to understand sleep</p>
             
             <div className="mt-8">
-              <CustomButtom 
+              <CustomButton 
                 page="why" 
                 customization= ""
               >
                 Learn More
-              </CustomButtom>
+              </CustomButton>
             </div>
           </div>
         </div>
