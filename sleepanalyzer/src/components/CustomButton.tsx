@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom'
 type Props = {
     children: React.ReactNode;
     page?: string;
-    customization: string;
+    customization?: string;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
     disabled?: boolean;
 }
 
-const CustomButtom = ({ children, page, customization, onClick, disabled }: Props) => {
+const CustomButton = ({ children, page, customization, onClick, disabled }: Props) => {
     const style = 
       "rounded-md px-10 py-2 bg-lightcoral hover:bg-transparent hover: border-2 hover: text-white hover: border-lightcoral " + customization;
     const button = onClick ? true : false;
@@ -37,4 +37,4 @@ const CustomButtom = ({ children, page, customization, onClick, disabled }: Prop
     }
 }
 
-export default CustomButtom;
+export default CustomButton;
