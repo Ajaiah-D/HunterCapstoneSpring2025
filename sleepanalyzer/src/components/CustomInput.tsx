@@ -27,7 +27,7 @@ const CustomInput = ({ placeholder, value, type, title, customization, onChange 
                 border-white
                 m-2
                 bg-transparent
-                w-5/6
+                w-4/6
             `}
         />
     )
