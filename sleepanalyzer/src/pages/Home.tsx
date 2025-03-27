@@ -1,6 +1,8 @@
 import React from "react";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import CustomButton from "@/components/CustomButton";
+import CustomInput from "@/components/CustomInput";
+import { TypeAnimation } from 'react-type-animation';
 
 type Props = {};
 
@@ -23,30 +25,66 @@ const Home = (props: Props) => {
         id="cover" 
         className="
           md:flex 
+          flex-col
           mx-auto 
           w-5/6 
           items-center 
           justify-center 
-          md:h-5/6">
-        <div className="z-10 mt-32 md:basis-3/5">
-          <div className="md:-mt-20">
-            <div className="relative">
-              <div className="before:absolute before:-top-20">
-                <h1 className="text-6xl font-header">Sleep Better</h1>
-              </div>
+          md:h-full">
+            <div className="min-h-[3.5/6]">
+                <TypeAnimation
+                    sequence={[
+                      "Sleep Stressfree",
+                      3000,
+                      "Sleep Better",
+                      3000,
+                      "Sleep More",
+                      3000
+                    ]}
+                    repeat={Infinity}
+                    speed={{type: "keyStrokeDelayInMs", value: 100}}
+                    className="text-4xl uppercase sm:text-7xl md:text-8xl lg:text-9xl"
+              />
             </div>
-            <p className="mt-8 text-2xl">The better way to understand sleep</p>
+            <p className="mt-8 text-2xl">The only way to understand sleep</p>
             
             <div className="mt-8">
               <CustomButton 
                 page="why" 
-                customization= ""
               >
                 Learn More
               </CustomButton>
             </div>
+      </div>
+      <div id="why" className="p-10 text-black h-screen flex justify-center items-center">
+          <div className="w-5/6 grid m-auto gap-3 p-5">
+              <h1 className="font-header text-5xl mb-10">Why Sleep Analyzer?</h1>
+              <p className="text-3xl"> Sleep is critical to our development, health and everyday life.</p>
+              <p> Lack of sleep can lead to: </p>
+              <ul className="list-disc w-fit grid m-auto">
+                <li>Daytime sleepiness and less energy</li>
+                <li>Greater risk in getting severe diseases</li>
+              </ul>
           </div>
-        </div>
+      </div>
+      <div id="" className="p-10 text-black bg-white h-screen flex justify-center items-center">
+          <div className="w-5/6 grid m-auto gap-3 p-5">
+              <h1 className="font-header text-5xl mb-10">What do we do?</h1>
+              <h2 className="font-header text-5xl mb-10">Analyze</h2>
+              <h2 className="font-header text-5xl mb-10">Recommend</h2>
+              <h2 className="font-header text-5xl mb-10">Track</h2>
+          </div>
+      </div>
+      <div id="contacts" className="p-10 text-black bg-lightcoral h-screen flex justify-center items-center">
+          <div className="w-full gap-3 p-5 flex flex-col justify-center items-center">
+              <h1 className="font-header text-5xl mb-10">Need help? Contact us</h1>
+              <CustomInput placeholder="Name" type="string" title="Name">
+              </CustomInput>
+              <CustomInput placeholder="Email" type="email" title="Email">
+              </CustomInput>
+              <CustomInput placeholder="Message" type="string" title="Message" customization="h-[200px] text-wrap">
+              </CustomInput>
+          </div>
       </div>
     </section>
   );
