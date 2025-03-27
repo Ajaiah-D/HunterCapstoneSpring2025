@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router';
 import { UserLogin, UserSignup } from '@/types/interface';
 import { Link } from 'react-router-dom';
 import CustomButton from '@/components/CustomButton';
-import { updateProfile, User } from 'firebase/auth';
 import { auth } from '@/firebaseConfig';
 
 type Props = {};
@@ -29,8 +28,8 @@ const newUser: UserSignup = {
 const Login = (props: Props) => {
 
     /* change flex direction of section if screen size is too small */
-    // const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
-    // const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col"
+    const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
+    const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col"
     const [loading, setLoading] = useState(false);
     const [userLoginInfo, setUserLoginInfo] = useState(userLoggingIn);
     const [userSignupInfo, setUserSignupInfo] = useState(newUser);
@@ -92,7 +91,7 @@ const Login = (props: Props) => {
             setLoading(true);
             await signUp(userSignupInfo);
             if(user != null) {
-                updateUsername(userSignupInfo.displayName); 
+                updateUsername(user, userSignupInfo.displayName); 
                 console.log(auth.currentUser);
                 navigate("/profile");
             }
@@ -111,14 +110,15 @@ const Login = (props: Props) => {
   
     return (
         <section className={`h-screen
-                            flex
-                            justify-center
-                            items-center
-                            text-center
-                            font-main
-                            text-header
-                            p-15`}
-                
+          flex
+          ${flexDirection}
+          justify-center
+          items-center
+          text-center
+          font-main
+          text-header
+          p-15`}
+
         >
             <div className="border-2 border-amber-900 flex rounded-2xl w-[50rem] h-5/6">
                 <div className="flex-1">
@@ -227,11 +227,6 @@ const Login = (props: Props) => {
                   {/* Login Part       */}
                   <form className="flex flex-col justify-center items-center gap-3 h-full" hidden={!onLogin}>
                     <h1 className="text-5xl"> Login </h1>
-                    <div className="social-icons">
-                        <button className="border-2 border-white rounded-xl p-2 flex gap-2" onClick={handleGoogleSignin} disabled={loading}>
-                            <RiGoogleLine className="translate-y-1"/> Login with Google
-                        </button>
-                    </div>
                     <div className="w-full">
                       <CustomInput  type="email" 
                                     value={userLoginInfo.email}
@@ -274,12 +269,18 @@ const Login = (props: Props) => {
                                   customization="w-4/6">
                       Sign In
                     </CustomButton>
+                    <hr/>
                     {
                       error &&
                       <div className="error text-zinc-900">
                         {error}
                       </div>
                     }
+                    <div className="social-icons">
+                        <button className="border-2 border-white rounded-xl p-2 flex gap-2" onClick={handleGoogleSignin} disabled={loading}>
+                            <RiGoogleLine className="translate-y-1"/> Login with Google
+                        </button>
+                    </div>
                   </form>
                 </div>
             </div>
