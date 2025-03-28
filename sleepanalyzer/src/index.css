@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Abel&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Molle&display=swap');
 @import "tailwindcss";
 
 /* Need to install PostCSS Language Support to remove unknown rule error in VS code */
@@ -9,7 +10,7 @@
   --breakpoint-sm: 480px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1060px;
-  --font-header: "Sansita", sans-serif;
+  --font-header: "Molle", cursive;
   --font-main: "Abel", sans-serif;
   --color-lightcoral: #F08E80;
 }
@@ -20,7 +21,15 @@ body,
 .app {
   height: 100%;
   width: 100%;
-  background: linear-gradient(0deg, rgba(193,189,219, 0.5), rgba(63,164,171, 0.7));
+  background: linear-gradient(0deg, rgba(193,189,219, 0.4), rgba(63,164,171, 0.5));
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  overflow: auto;
 }
 
 button {
@@ -36,7 +45,7 @@ button {
 
 #login {
   /* creates an overlay on the background */
-  background-image: linear-gradient(180deg, rgba(193,189,219, 0.7), rgba(63,164,171, 0.7)), url("@/assets/nightsky.jpg");
+  background-image: linear-gradient(180deg, rgba(193,189,219, 0.5), rgba(255, 255, 255)), url("@/assets/nightsky.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
