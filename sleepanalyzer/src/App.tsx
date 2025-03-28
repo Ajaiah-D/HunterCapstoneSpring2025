@@ -9,7 +9,6 @@ import Home from '@/pages/Home'
 import Login from '@/pages/Login'
 import Mental from '@/pages/Mental'
 import Why from '@/pages/Why'
-import Signup from '@/pages/Signup'
 import Profile from '@/pages/Profile'
 
 // components to protect or determine what pages show
@@ -45,7 +44,6 @@ function App() {
               <Route path="Analyze" element={<Analyze />} />
               <Route path="Mental" element={<Mental />} />
               <Route path="Login" element={<Login />} />
-              <Route path="Signup" element={<Signup />} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="Profile" element={<Profile />} />
               </Route>
