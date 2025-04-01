@@ -4,10 +4,11 @@ import { BannerLayer } from "react-scroll-parallax/dist/components/ParallaxBanne
 type Props = {
     backimage: string,
     foreimage?: string,
+    height: string,
     children: React.ReactNode,
 };
 
-const ParallaxScroll = ({backimage, foreimage, children}:Props) => {
+const ParallaxScroll = ({backimage, foreimage, children, height}:Props) => {
     const background: BannerLayer = {
         image: backimage,
         translateY: [0, 50],
@@ -22,7 +23,7 @@ const ParallaxScroll = ({backimage, foreimage, children}:Props) => {
         shouldAlwaysCompleteAnimation: true,
         expanded: false,
         children: (
-        <div className="absolute inset-0 flex justify-center items-center">
+        <div className="absolute inset-0 flex flex-col justify-center items-center">
             {children}
         </div>
         )
@@ -45,7 +46,7 @@ const ParallaxScroll = ({backimage, foreimage, children}:Props) => {
     return (
         <ParallaxBanner
         layers={[background, headline, foreground, gradientOverlay]}
-        className="h-screen"
+        className={`${height}`}
         />
     );
 };
