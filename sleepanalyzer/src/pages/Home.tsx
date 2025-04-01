@@ -1,10 +1,10 @@
 import React from "react";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { ParallaxProvider } from 'react-scroll-parallax';
+import { TypeAnimation } from 'react-type-animation';
 import ParallaxScroll from '@/components/ParallaxScroll';
 import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
-import { TypeAnimation } from 'react-type-animation';
 
 type Props = {};
 
@@ -14,7 +14,7 @@ const Home = (props: Props) => {
     return (
         <section className="font-main text-white">
             <ParallaxProvider>
-                <ParallaxScroll backimage="/src/assets/nightsky.jpg">
+                <ParallaxScroll backimage="/src/assets/starfall.gif" height="h-screen">
                     <div className="md: flex flex-col items-center justify-center">
                         <div className="min-h-[3.5/6]">
                             <TypeAnimation
@@ -42,7 +42,7 @@ const Home = (props: Props) => {
                         </div>
                     </div>
                 </ParallaxScroll>
-                <div id="why" className="p-10 h-screen w-screen bg-black grid place-items-center">
+                <div id="why" className="p-10 h-screen w-screen bg-linear-to-t from-[#33A7FA] to-[#33A7FA] grid place-items-center">
                     <div className="w-5/6 gap-3 p-5 flex flex-col justify-center items-center">
                         <h1 className="font-header text-5xl mb-10">Why Sleep Analyzer?</h1>
                         <p className="text-3xl"> Sleep is critical to our development, health and everyday life.</p>
