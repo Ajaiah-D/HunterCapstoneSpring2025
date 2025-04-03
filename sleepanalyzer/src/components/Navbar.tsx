@@ -16,7 +16,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
 
   // scrolling will add a navbar background
-  const navbarBackground = isTopOfPage ? "" : "bg-[#7AC0C5] drop-shadow";
+  const navbarBackground = isTopOfPage ? "" : "bg-[#33a7fa] drop-shadow";
 
   return (
     <nav>
@@ -62,7 +62,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                 : (
                   // create hamburger menu if screen size is not large
                   <button
-                    className="rounded-full bg-[#7AC0C5] p-2"
+                    className="rounded-full bg-lightcoral p-2"
                     onClick={() => setIsMenuToggled(!isMenuToggled)}
                   >
                     <Bars3Icon className="h-6 w-6 text-white" />
@@ -78,7 +78,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                                z-40 
                                w-[300px]
                                h-screen
-                               bg-[#7AC0C5] 
+                              bg-[#33a7fa]
                                drop-shadow-xl">
                     <div className="flex justify-end p-12">
                       <button 
