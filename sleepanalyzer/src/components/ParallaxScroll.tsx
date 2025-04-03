@@ -11,17 +11,20 @@ type Props = {
 const ParallaxScroll = ({backimage, foreimage, children, height}:Props) => {
     const background: BannerLayer = {
         image: backimage,
-        translateY: [0, 50],
-        opacity: [1, 0.3],
-        scale: [1.05, 1, "easeOutCubic"],
-        shouldAlwaysCompleteAnimation: true
+        scale: [2, 1, "easeOutCubic"],
+        shouldAlwaysCompleteAnimation: true,
+        style: {
+            position: "fixed",
+        }
     };
 
     const headline: BannerLayer = {
-        translateY: [0, 30],
-        scale: [1, 1.05, "easeOutCubic"],
+        opacity: [1, 0, "easeInOutCubic"],
         shouldAlwaysCompleteAnimation: true,
         expanded: false,
+        style: {
+            position: "fixed",
+        },
         children: (
         <div className="absolute inset-0 flex flex-col justify-center items-center">
             {children}
@@ -40,7 +43,7 @@ const ParallaxScroll = ({backimage, foreimage, children, height}:Props) => {
         opacity: [0, 1, "easeOutCubic"],
         shouldAlwaysCompleteAnimation: true,
         expanded: false,
-        children: <div className="gradient absolute inset-0"/>
+        children: <div className="absolute inset-0"/>
     };
 
     return (
