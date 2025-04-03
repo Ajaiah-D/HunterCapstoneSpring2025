@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 // import { LockClosedIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 import { RiGoogleLine } from "react-icons/ri";
+import { IconContext } from 'react-icons';
 
 import useMediaQuery from '@/hooks/useMediaQuery';
 import CustomInput from '@/components/CustomInput';
@@ -10,6 +11,7 @@ import { UserLogin, UserSignup } from '@/types/interface';
 import { Link } from 'react-router-dom';
 import CustomButton from '@/components/CustomButton';
 import { auth } from '@/firebaseConfig';
+import { linearGradient } from 'framer-motion/client';
 
 type Props = {};
 
@@ -119,22 +121,19 @@ const Login = (props: Props) => {
           font-main
           text-header
           p-15
-          bg-[url(/src/assets/starfall.gif)]
-          bg-cover`}
-
+          `}
+          id="login"
         >
-            <div className="border-2 flex rounded-2xl w-[50rem] h-5/6 text-[#fff]">
+            <div className="flex rounded-2xl w-[60rem] h-5/6 text-white border-4 border-white">
                 <div className="flex-1">
-                    {/* leading you to sign up page from login part */}
-                    <div className="flex flex-col justify-center items-center gap-5 h-full" hidden={!onLogin}>
-                        <h1 className="text-6xl font-header font-semibold">Welcome</h1>
-                        <h2 className="text-3xl"> Let's get you back in </h2>
-                        <p>
-                            Don't have an account?
-                        </p>
-                        <CustomButton customization="w-4/6" onClick={(e) => setOnLogin(false)}>
-                            Sign Up
-                        </CustomButton>
+                    {/* the welcome message on the login page */}
+                    <div className="flex flex-col justify-center items-center gap-5 h-full bg-white" hidden={!onLogin}>
+                        <h1 className="text-6xl font-header font-semibold bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text text-transparent">
+                            Welcome, Friend!
+                        </h1>
+                        <h2 className="text-5xl bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text bg-left-top text-transparent"> 
+                            Let's get you back in 
+                        </h2>
                     </div>
                     {/* signup part */}
                     <form 
@@ -165,7 +164,6 @@ const Login = (props: Props) => {
                                   setUserSignupInfo({ ...userSignupInfo, email: e.target.value})
                               }
                             />
-                            {/* <EnvelopeIcon className="w-6 text-white absolute right-25 top-1/3 translate-y-2 translate-3" /> */}
                         </div>
                         <div className="w-full">
                             <CustomInput  
@@ -177,7 +175,6 @@ const Login = (props: Props) => {
                                 setUserSignupInfo({ ...userSignupInfo, password: e.target.value})
                               }
                             />
-                            {/* <LockClosedIcon className=" w-6 text-white absolute right-22 bottom-1/2 translate-y-2"/> */}
                         </div>
                         <div className="w-full">
                             <CustomInput  
@@ -189,7 +186,6 @@ const Login = (props: Props) => {
                                   setUserSignupInfo({ ...userSignupInfo, confirmPassword: e.target.value})
                               }
                             />
-                            {/* <LockClosedIcon className=" w-6 text-white absolute right-22 bottom-1/2 translate-y-20"/> */}
                         </div>
                         <CustomButton 
                           onClick={handleSignupSubmit}
@@ -198,92 +194,100 @@ const Login = (props: Props) => {
                         >
                             Sign Up
                         </CustomButton>
+                        {/* Clicking the button will switch to the signup page */}
+                        <p>
+                            Already have an account?
+                            <CustomButton noOriginalStyle={true} customization="underline hover:text-lightcoral ml-1" onClick={
+                              (e) => {setOnLogin(true); setError("");}}>
+                                Login
+                            </CustomButton>
+                        </p>
                         {/* printing the error if an error is returned */}
                         {
                           error &&
-                          <div className="error text-zinc-900">
+                          <div className="error text-white">
                             {error}
                           </div>
                         }
                     </form>
                 </div>
-                <div className="p-5 flex-1">
-                    {/* Directing you to login page from the signup page */}
-                    <div className="flex flex-col justify-center items-center gap-5 h-full" hidden={onLogin}>
-                        <h1 className="text-6xl font-header font-semibold">Hi, there!</h1>
-                        <h2 className="text-3xl"> Let's start your journey with us! </h2>
-                        <p>
-                            Already have an account?
-                        </p>
-                        <CustomButton customization="w-4/6" onClick={(e) => setOnLogin(true)}>
-                            Login
-                        </CustomButton>
+                <div className="flex-1">
+                    {/* Welcome message to user on signup page  */}
+                    <div className="flex flex-col justify-center items-center gap-5 h-full bg-white" hidden={onLogin}>
+                        <h1 className="text-6xl font-header font-semibold bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text text-transparent">
+                            Hi, there!
+                        </h1>
+                        <h2 className="text-3xl bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text text-transparent"> 
+                            Let's start your journey with us! 
+                        </h2>
                         <div className="gap-5 flex flex-col">
-                        <hr/>
-                        <div className="social-icons">
-                            <button className="border-2 border-white rounded-xl p-2 w-full flex gap-2" onClick={handleGoogleSignin} disabled={loading}>
-                                <RiGoogleLine className="translate-y-1"/> <p>Login with Google</p>
-                            </button>
+                            <div className="social-icons">
+                                <button className="border-2 border-lightcoral bg-[url(@/assets/starfall.gif)] bg-cover rounded-xl p-2 w-full flex gap-2 hover:bg-bottom" onClick={handleGoogleSignin} disabled={loading}>
+                                    <RiGoogleLine className="translate-y-1"/> 
+                                    <p className="">Login with Google</p>
+                                </button>
+                            </div>
                         </div>
-                    </div>
                     </div>      
-                  {/* Login Part       */}
+                  {/* Login Part */}
                   <form className="flex flex-col justify-center items-center gap-3 h-full" hidden={!onLogin}>
-                    <h1 className="text-5xl"> Login </h1>
-                    <div className="w-full">
-                      <CustomInput  type="email" 
-                                    value={userLoginInfo.email}
-                                    placeholder="Email" 
-                                    title="Email" 
-                                    onChange={(e) => 
-                                      setUserLoginInfo({ ...userLoginInfo, email: e.target.value})
-                                    }
-                                    />
-                      {/* <EnvelopeIcon className="w-6 text-white absolute right-25 top-1/4 translate-y-9 translate-3" /> */}
-                    </div>
-                    <div className="w-full">
-                      <CustomInput  type="password" 
-                                    value={userLoginInfo.password}
-                                    placeholder="Password" 
-                                    title="password"
-                                    onChange={(e) => 
-                                      setUserLoginInfo({ ...userLoginInfo, password: e.target.value})
-                                    } 
-                                    />
-                      {/* <LockClosedIcon className=" w-6 text-white absolute right-22 bottom-1/2"/> */}
-                    </div>
-                    <div className="w-4/6 flex justify-between">
-                        <div>
-                            <input type="checkbox" className="mr-2"/>
-                            <label htmlFor="" className="">
-                                Remember Me
-                            </label> 
-                        </div>          
-                        <Link 
-                          to=""
-                          className="hover:underline w-fit"
-                        >
-                            <p className="mr-2 w-full">
-                                Forgot Password?
-                            </p>
-                        </Link>                
-                    </div>
-                    <CustomButton onClick={handleLoginSubmit}
-                                  customization="w-4/6">
-                      Sign In
-                    </CustomButton>
-                    <hr/>
-                    {
-                      error &&
-                      <div className="error text-zinc-900">
-                        {error}
+                      <h1 className="text-5xl"> 
+                          Login 
+                      </h1>
+                      <div className="w-full">
+                          <CustomInput  type="email" 
+                                        value={userLoginInfo.email}
+                                        placeholder="Email" 
+                                        title="Email" 
+                                        onChange={(e) => 
+                                          setUserLoginInfo({ ...userLoginInfo, email: e.target.value})
+                                        }
+                          />
                       </div>
-                    }
-                    <div className="social-icons">
-                        <button className="border-2 border-white rounded-xl p-2 flex gap-2" onClick={handleGoogleSignin} disabled={loading}>
-                            <RiGoogleLine className="translate-y-1"/> Login with Google
-                        </button>
-                    </div>
+                      <div className="w-full">
+                          <CustomInput  type="password" 
+                                        value={userLoginInfo.password}
+                                        placeholder="Password" 
+                                        title="password"
+                                        onChange={(e) => 
+                                          setUserLoginInfo({ ...userLoginInfo, password: e.target.value})
+                                        } 
+                          />
+                      </div>
+                      <div className="w-4/6 flex justify-between">
+                          <div>
+                              <input type="checkbox" className="mr-2"/>
+                              <label htmlFor="" className="">
+                                  Remember Me
+                              </label> 
+                          </div>          
+                          <CustomButton noOriginalStyle={true} customization="underline hover:text-lightcoral ml-5">
+                              Forgot Password
+                          </CustomButton>               
+                      </div>
+                      <CustomButton onClick={handleLoginSubmit}
+                                    customization="w-4/6">
+                          Sign In
+                      </CustomButton>
+                      <p>
+                          Don't have an account? 
+                          <CustomButton noOriginalStyle={true} customization="underline hover:text-lightcoral ml-1" onClick={
+                            (e) => {setOnLogin(false); setError("");}}>
+                              Sign Up
+                          </CustomButton>
+                      </p>
+                      {
+                        error &&
+                        <div className="error text-white">
+                          {error}
+                        </div>
+                      }
+                      {/* Leads to login page when clicked */}
+                      <div className="social-icons">
+                          <button className="border-2 border-white rounded-xl p-2 flex gap-2" onClick={handleGoogleSignin} disabled={loading}>
+                              <RiGoogleLine className="translate-y-1"/> Login with Google
+                          </button>
+                      </div>
                   </form>
                 </div>
             </div>
