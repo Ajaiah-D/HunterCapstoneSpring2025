@@ -117,13 +117,15 @@ const Login = (props: Props) => {
           text-center
           font-main
           text-header
-          p-15`}
+          p-15
+          bg-[url(/src/assets/starfall.gif)]
+          bg-cover`}
 
         >
-            <div className="border-2 border-amber-900 flex rounded-2xl w-[50rem] h-5/6">
+            <div className="border-2 flex rounded-2xl w-[50rem] h-5/6 text-[#fff]">
                 <div className="flex-1">
                     {/* leading you to sign up page from login part */}
-                    <div className="flex flex-col justify-center items-center gap-5 h-full border-2 border-purple-300" hidden={!onLogin}>
+                    <div className="flex flex-col justify-center items-center gap-5 h-full" hidden={!onLogin}>
                         <h1 className="text-6xl font-header font-semibold">Welcome</h1>
                         <h2 className="text-3xl"> Let's get you back in </h2>
                         <p>
@@ -135,7 +137,7 @@ const Login = (props: Props) => {
                     </div>
                     {/* signup part */}
                     <form 
-                        className="flex flex-col justify-center items-center gap-3 h-full border-2 border-red-400"
+                        className="flex flex-col justify-center items-center gap-3 h-full"
                         hidden={onLogin}
                     >
                         <h1 className="text-3xl"> 
@@ -204,7 +206,7 @@ const Login = (props: Props) => {
                         }
                     </form>
                 </div>
-                <div className="border-2 border-white p-5 flex-1">
+                <div className="p-5 flex-1">
                     {/* Directing you to login page from the signup page */}
                     <div className="flex flex-col justify-center items-center gap-5 h-full" hidden={onLogin}>
                         <h1 className="text-6xl font-header font-semibold">Hi, there!</h1>
