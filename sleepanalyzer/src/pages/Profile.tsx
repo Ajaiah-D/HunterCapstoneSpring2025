@@ -21,19 +21,37 @@ const Profile = (props: Props) => {
   }
 
   return (
-    <div className="container flex flex-col justify-center items-center text-center h-full gap-5">
-        <div>
-          <h1 className="text-6xl">Profile</h1>
-          <h1 className="text-5xl">Hi, {userName}!</h1>
-        </div>
-        <div>
-          <CustomButton onClick={handleClick}>
-              Logout
-          </CustomButton>
-        </div>
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#ffd6d6] via-[#f9a8d4] to-[#fbcfe8] text-gray-900 font-main flex flex-col items-center justify-center p-10 gap-10 text-center">
+      {/* Greeting */}
+      <div>
+        <h1 className="text-5xl font-bold mb-2">Welcome, {userName}!</h1>
+        <p className="text-xl text-gray-300">Here’s your sleep dashboard.</p>
+      </div>
+
+      {/* Navigation Buttons */}
+      <div className="flex gap-4">
+        <CustomButton onClick={() => navigate('/analyze')}>
+          Analyze New Sleep
+        </CustomButton>
+        <CustomButton onClick={() => navigate('/history')}>
+          View Sleep History
+        </CustomButton>
+      </div>
+
+      {/* Chart Placeholder */}
+      <div className="w-full max-w-2xl bg-gray-800 rounded-lg p-6 mt-6">
+        <h2 className="text-2xl font-semibold mb-4">📊 Sleep Quality Overview</h2>
+        <p className="text-gray-400">Charts coming soon! You’ll be able to see trends in your sleep quality once data is saved.</p>
+      </div>
+
+      {/* Logout */}
+      <div className="mt-8">
+        <CustomButton onClick={handleClick}>
+          Logout
+        </CustomButton>
+      </div>
     </div>
-    
-  )
+  );
 };
 
 export default Profile;
