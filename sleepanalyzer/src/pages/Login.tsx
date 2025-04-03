@@ -107,7 +107,8 @@ const Login = (props: Props) => {
         setLoading(false);
     }
         
-  
+    console.log("Login page rendered!");
+
     return (
         <section className={`h-screen
           flex
