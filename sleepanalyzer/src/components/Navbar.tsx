@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid"
 import CustomLink from './CustomLink';
 import useMediaQuery from '@/hooks/useMediaQuery';
+import { AuthContext } from './AuthProvider';
 
 type Props = {
   isTopOfPage: boolean;
@@ -17,6 +18,8 @@ const Navbar = ({ isTopOfPage }: Props) => {
 
   // scrolling will add a navbar background
   const navbarBackground = isTopOfPage ? "" : "bg-[#33a7fa] drop-shadow";
+
+  const {user} = useContext(AuthContext);
 
   return (
     <nav>
@@ -57,7 +60,14 @@ const Navbar = ({ isTopOfPage }: Props) => {
                     <CustomLink page="why" textColor="white">Why Sleep Analyzer?</CustomLink>
                     <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
                     {/* <CustomLink page="mental" textColor="white">Mental Health</CustomLink> */}
-                    <CustomLink page="login" textColor="white">Login</CustomLink>
+                    {/* If user is logged in, render profile, if not show login page */}
+                    { user ? (
+                        <CustomLink page="profile" textColor="white">Profile</CustomLink> 
+                      ) 
+                      : (
+                        <CustomLink page="login" textColor="white">Login</CustomLink>
+                      )
+                    }
                   </div> ) 
                 : (
                   // create hamburger menu if screen size is not large
@@ -92,7 +102,13 @@ const Navbar = ({ isTopOfPage }: Props) => {
                       <CustomLink page="why" textColor="white">Why Sleep Analyzer?</CustomLink>
                       <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
                       <CustomLink page="mental" textColor="white">Mental Health</CustomLink>
-                      <CustomLink page="login" textColor="white">Login</CustomLink>
+                      {/* If user is logged in, render profile, if not show login page */}
+                      { user ? (
+                        <CustomLink page="profile" textColor="white">Profile</CustomLink> 
+                      ) 
+                      : (
+                        <CustomLink page="login" textColor="white">Login</CustomLink>
+                      )}
                     </div>
                   </div>
                 )}
