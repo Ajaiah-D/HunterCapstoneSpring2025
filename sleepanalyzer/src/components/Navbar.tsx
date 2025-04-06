@@ -72,12 +72,12 @@ const Navbar = ({ isTopOfPage }: Props) => {
                 {/* MOBILE MENU */}
                 { !aboveMediumScreen && isMenuToggled && (
                   <div 
-                    className="fixed 
+                    className="fixed
                                right-0 
                                bottom-0 
-                               z-40 
+                               z-100 
                                w-[300px]
-                               h-screen
+                               h-full
                               bg-[#33a7fa]
                                drop-shadow-xl">
                     <div className="flex justify-end p-12">
@@ -87,7 +87,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                       </button>
                     </div>
 
-                    <div className='flex flex-col items-center gap-10 text-2xl'>
+                    <div className='center gap-10 text-2xl bg-[#33a7fa] p-10'>
                       <CustomLink page="" textColor="white">Home</CustomLink>
                       <CustomLink page="why" textColor="white">Why Sleep Analyzer?</CustomLink>
                       <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
