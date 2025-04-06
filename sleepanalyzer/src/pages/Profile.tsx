@@ -8,7 +8,7 @@ type Props = {}
 const Profile = (props: Props) => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
-  const userName = user ? user.displayName : "Guest";
+  const userName = user ? user.email : "Guest";
 
   const handleClick = async() => {
     try {
@@ -21,11 +21,11 @@ const Profile = (props: Props) => {
   }
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#ffd6d6] via-[#f9a8d4] to-[#fbcfe8] text-gray-900 font-main flex flex-col items-center justify-center p-10 gap-10 text-center">
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E] text-gray-900 font-main flex flex-col items-center justify-center p-10 gap-10 text-center">
       {/* Greeting */}
       <div>
         <h1 className="text-5xl font-bold mb-2">Welcome, {userName}!</h1>
-        <p className="text-xl text-gray-300">Here’s your sleep dashboard.</p>
+        <p className="text-xl text-white">Here’s your sleep dashboard.</p>
       </div>
 
       {/* Navigation Buttons */}
@@ -39,9 +39,12 @@ const Profile = (props: Props) => {
       </div>
 
       {/* Chart Placeholder */}
-      <div className="w-full max-w-2xl bg-gray-800 rounded-lg p-6 mt-6">
-        <h2 className="text-2xl font-semibold mb-4">📊 Sleep Quality Overview</h2>
-        <p className="text-gray-400">Charts coming soon! You’ll be able to see trends in your sleep quality once data is saved.</p>
+      <div className="text-gray-400 w-full max-w-2xl bg-gray-800 rounded-lg p-6 mt-6">
+        <div className="">
+          📊
+        </div> 
+        <h2 className="text-2xl font-semibold mb-4">Sleep Quality Overview</h2>
+        <p>Charts coming soon! You’ll be able to see trends in your sleep quality once data is saved.</p>
       </div>
 
       {/* Logout */}
