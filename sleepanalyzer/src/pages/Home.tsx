@@ -64,7 +64,7 @@ const Home = (props: Props) => {
                             </ul>
                     </motion.div>
                 </div>
-                <div id="what" className="p-10 text-black bg-[#33A7FA] h-screen grid place-items-center">
+                <div id="what" className="p-10 text-white bg-linear-to-b from-[#080044] to-[#33A7FA] h-screen grid place-items-center">
                     <motion.div className="center w-5/6 gap-5"
                         variants={{
                             hidden: {opacity: 0, y: 75},
@@ -89,8 +89,9 @@ const Home = (props: Props) => {
                                 <h3> Save and track your sleep data so you can see how it has changed and improved. </h3>
                             </div>
                         </div>
-                        <CustomButton page="analyze" customization="mt-10 flex gap-2" noOriginalStyle={true}>
+                        <CustomButton page="analyze" customization="center mt-10 gap-2" noOriginalStyle={true}>
                             <FaArrowRight/>
+                            Try It Now!
                         </CustomButton>
                     </motion.div>
                 </div>
