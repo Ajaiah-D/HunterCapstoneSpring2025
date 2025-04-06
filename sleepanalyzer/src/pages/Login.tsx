@@ -118,6 +118,7 @@ const Login = (props: Props) => {
     };
 
     // login motion 
+    // need to add motion when changing between login and sign up pages
 
 
     console.log("Login page rendered!");
