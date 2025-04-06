@@ -51,7 +51,7 @@ const Analyze = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gradient-to-br from-blue-500 to-indigo-600">
+    <div className="flex justify-center items-center h-screen bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E] ">
       <div className="bg-white shadow-xl rounded-lg p-8 w-full max-w-3xl border border-gray-300">
         <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Analyze Your Sleep</h1>
 
