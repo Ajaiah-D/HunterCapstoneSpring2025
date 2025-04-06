@@ -30,12 +30,21 @@ button {
   cursor:pointer;
 }
 
-#home, #login {
-  background-image: linear-gradient(0deg, rgba(193,189,219, 0.5), rgba(63,164,171, 0.7)), url("@/assets/nightsky.jpg");
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#login {
+  background-image: linear-gradient(180deg, rgba(175, 149, 242, 1), rgba(44, 34, 158, 1), rgba(22, 19, 102, 1)), url("@/assets/starfall.gif");
   background-repeat: no-repeat;
   background-size: cover;
+  background-blend-mode: screen;
 }
 
 .gradient {
-  background: linear-gradient(rgba(14, 62, 151, 0.5) 50%, black);
+  background: linear-gradient(rgba(22, 19, 102, 0.5) 50%, rgba(8, 0, 68, 1));
 }
