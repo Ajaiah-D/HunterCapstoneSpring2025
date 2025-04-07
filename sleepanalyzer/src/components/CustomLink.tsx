@@ -1,23 +1,26 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 type Props = {
-    children: React.ReactNode;
-    page: string;
-    textColor: string;
-}
+  children: React.ReactNode;
+  page: string;
+  textColor: string;
+};
 
 const CustomLink = ({ children, page, textColor }: Props) => {
   return (
     <Link
-        to= {"/" + page}
-        className={`
+      to={"/" + page}
+      className={`
             text-${textColor}
+            p-3
+            active:underline
+            hover:text-lightcoral
         `}
     >
-        { children }
+      {children}
     </Link>
-  )
-}
+  );
+};
 
 export default CustomLink;

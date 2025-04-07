@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid"
 import CustomLink from './CustomLink';
 import useMediaQuery from '@/hooks/useMediaQuery';
+import { AuthContext } from './AuthProvider';
+import CustomButton from './CustomButton';
 
 type Props = {
   isTopOfPage: boolean;
@@ -16,7 +19,19 @@ const Navbar = ({ isTopOfPage }: Props) => {
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
 
   // scrolling will add a navbar background
-  const navbarBackground = isTopOfPage ? "" : "bg-blue-100 drop-shadow";
+  const navbarBackground = isTopOfPage ? "" : "bg-[#33a7fa] drop-shadow";
+
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed", error);
+    }
+  };
 
   return (
     <nav>
@@ -26,7 +41,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
           ${flexBetween} 
           fixed 
           top-0 
-          z-30 
+          z-1000 
           w-full 
           py-6 
           font-main 
@@ -54,48 +69,51 @@ const Navbar = ({ isTopOfPage }: Props) => {
                 { aboveMediumScreen ? (
                   <div className={`${flexBetween} gap-8`}>
                     <CustomLink page="" textColor="white">Home</CustomLink>
-                    {/* <CustomLink page="why" textColor="white">Why Sleep Analyzer?</CustomLink> */}
+                    <CustomLink page="why" textColor="white">Why?</CustomLink>
                     <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
                     {/* <CustomLink page="mental" textColor="white">Mental Health</CustomLink> */}
-                    <CustomLink page="login" textColor="white">Login</CustomLink>
+                    {user ? (<><CustomLink page="profile" textColor="white">Hello, {user.displayName || user.email}</CustomLink>
+                      <CustomButton onClick={handleLogout} noOriginalStyle={true} customization="text-white underline hover:text-lightcoral transition">Log Out</CustomButton></>) : 
+                    (<CustomLink page="login" textColor="white">Login</CustomLink>)}
                   </div> ) 
                 : (
                   // create hamburger menu if screen size is not large
                   <button
-                    className="rounded-full bg-blue-100 p-2"
+                    className="rounded-full bg-lightcoral p-2"
                     onClick={() => setIsMenuToggled(!isMenuToggled)}
                   >
                     <Bars3Icon className="h-6 w-6 text-white" />
                   </button>
                 )}
 
-                {/* MOBILE MENU */}
-                { !aboveMediumScreen && isMenuToggled && (
-                  <div 
-                    className="fixed 
-                               right-0 
-                               bottom-0 
-                               z-40 
-                               w-[300px]
-                               h-screen
-                               bg-blue-300 
-                               drop-shadow-xl">
-                    <div className="flex justify-end p-12">
-                      <button 
-                        onClick={() => setIsMenuToggled(!isMenuToggled)}>
-                        <XMarkIcon className="h-6 w-g text-pink-300" />
-                      </button>
-                    </div>
-
-                    <div className='flex flex-col items-center gap-10 text-2xl'>
-                      <CustomLink page="" textColor="white">Home</CustomLink>
-                      <CustomLink page="why" textColor="white">Why Sleep Analyzer?</CustomLink>
-                      <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
-                      <CustomLink page="mental" textColor="white">Mental Health</CustomLink>
-                      <CustomLink page="login" textColor="white">Login</CustomLink>
-                    </div>
+              {/* MOBILE MENU */}
+              {!aboveMediumScreen && isMenuToggled && (
+                <div
+                  className="fixed
+                             right-0 
+                             bottom-0 
+                             z-100 
+                             w-[300px]
+                             h-full
+                           bg-[#33a7fa]
+                             drop-shadow-xl"
+                >
+                  <div className="flex justify-end p-12">
+                    <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
+                      <XMarkIcon className="h-6 w-g text-pink-300" />
+                    </button>
                   </div>
-                )}
+                  <div className='center gap-10 text-2xl bg-[#33a7fa] p-10'>
+                    <CustomLink page="" textColor="white">Home</CustomLink>
+                    <CustomLink page="why" textColor="white">Why?</CustomLink>
+                    <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
+                    <CustomLink page="mental" textColor="white">Mental Health</CustomLink>
+                    {user ? (<button onClick={handleLogout} 
+                    className="text-white underline hover:text-lightcoral transition">Log Out</button>) : 
+                    (<CustomLink page="login" textColor="white">Login</CustomLink>)}
+                  </div>
+                </div>
+              )}
 
             </div>
           </div>

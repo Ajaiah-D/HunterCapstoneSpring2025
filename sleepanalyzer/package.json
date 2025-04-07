@@ -14,10 +14,15 @@
     "@tailwindcss/vite": "^4.0.9",
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
+    "firebase": "^11.5.0",
+    "framer-motion": "^12.6.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
     "react-router": "^7.2.0",
     "react-router-dom": "^7.2.0",
+    "react-scroll-parallax": "^3.4.5",
+    "react-type-animation": "^3.2.0",
     "tailwindcss": "^4.0.9"
   },
   "devDependencies": {
