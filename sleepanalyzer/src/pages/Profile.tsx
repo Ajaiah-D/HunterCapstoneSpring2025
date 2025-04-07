@@ -13,7 +13,6 @@ const Profile = (props: Props) => {
       navigate("/login");
     }
   }, [user]);
-  const userName = user ? user.email : "Guest";
 
   const handleClick = async () => {
     try {
@@ -33,7 +32,7 @@ const Profile = (props: Props) => {
       
       {/* Greeting */}
       <div>
-        <h1 className="text-5xl font-bold mb-2">Welcome, {userName}!</h1>
+        <h1 className="text-5xl font-bold mb-2">Welcome, {user.displayName || user.email}</h1>
         <p className="text-xl text-white">Here’s your sleep dashboard.</p>
       </div>
 

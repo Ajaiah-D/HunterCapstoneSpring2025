@@ -5,6 +5,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid"
 import CustomLink from './CustomLink';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import { AuthContext } from './AuthProvider';
+import CustomButton from './CustomButton';
 
 type Props = {
   isTopOfPage: boolean;
@@ -71,8 +72,8 @@ const Navbar = ({ isTopOfPage }: Props) => {
                     <CustomLink page="why" textColor="white">Why?</CustomLink>
                     <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
                     {/* <CustomLink page="mental" textColor="white">Mental Health</CustomLink> */}
-                    {user ? (<><span className="text-white">Hello, {user.displayName || user.email}</span>
-                      <button onClick={handleLogout} className="text-white underline hover:text-lightcoral transition">Log Out</button></>) : 
+                    {user ? (<><CustomLink page="profile" textColor="white">Hello, {user.displayName || user.email}</CustomLink>
+                      <CustomButton onClick={handleLogout} noOriginalStyle={true} customization="text-white underline hover:text-lightcoral transition">Log Out</CustomButton></>) : 
                     (<CustomLink page="login" textColor="white">Login</CustomLink>)}
                   </div> ) 
                 : (
