@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
-import { useState } from "react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
-import CustomLink from "./CustomLink";
-import useMediaQuery from "@/hooks/useMediaQuery";
-import { AuthContext } from "./AuthProvider";
+import React, { useContext } from 'react';
+import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid"
+import CustomLink from './CustomLink';
+import useMediaQuery from '@/hooks/useMediaQuery';
+import { AuthContext } from './AuthProvider';
 
 type Props = {
   isTopOfPage: boolean;
@@ -19,7 +20,17 @@ const Navbar = ({ isTopOfPage }: Props) => {
   // scrolling will add a navbar background
   const navbarBackground = isTopOfPage ? "" : "bg-[#33a7fa] drop-shadow";
 
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed", error);
+    }
+  };
 
   return (
     <nav>
@@ -35,52 +46,45 @@ const Navbar = ({ isTopOfPage }: Props) => {
           font-main 
           text-2xl
         `}
-      >
-        <div className={`${flexBetween} mx-auto w-5/6`}>
-          <div className={`${flexBetween} w-full gap-16`}>
-            <div className={`${flexBetween} w-full gap-16`}>
-
-              {/* logo */}
-              <div className="font-header">
-                <CustomLink page="" textColor="white">
-                  Sleep
-                </CustomLink>
-              </div>
-
-              {/* LEFT SIDE OF NAVBAR */}
-              {/* determines how the navbar will appear on the screen depending on the screen size */}
-              {aboveMediumScreen ? (
-                <div className={`${flexBetween} gap-8`}>
-                  <CustomLink page="" textColor="white">
-                    Home
+        >
+        <div
+          className={`${flexBetween} mx-auto w-5/6`}
+          >
+          <div 
+            className={`${flexBetween} w-full gap-16`}
+            >
+            <div 
+              className={`${flexBetween} w-full gap-16`}
+              >
+                <div className="font-header">
+                  <CustomLink page="" textColor="white"> 
+                    Sleep 
                   </CustomLink>
-                  <CustomLink page="why" textColor="white">
-                    Why Sleep Analyzer?
-                  </CustomLink>
-                  <CustomLink page="analyze" textColor="white">
-                    Analyze
-                  </CustomLink>
-                  {/* <CustomLink page="mental" textColor="white">Mental Health</CustomLink> */}
-                  {/* If user is logged in, render profile, if not show login page */}
-                  {user ? (
-                    <CustomLink page="profile" textColor="white">
-                      Profile
-                    </CustomLink>
-                  ) : (
-                    <CustomLink page="login" textColor="white">
-                      Login
-                    </CustomLink>
-                  )}
                 </div>
-              ) : (
-                // create hamburger menu if screen size is not large
-                <button
-                  className="rounded-full bg-lightcoral p-2"
-                  onClick={() => setIsMenuToggled(!isMenuToggled)}
-                >
-                  <Bars3Icon className="h-6 w-6 text-white" />
-                </button>
-              )}
+                
+                {/* LEFT SIDE OF NAVBAR */}
+                {/* determines how the navbar will appear on the screen depending on the screen size */}
+
+                { aboveMediumScreen ? (
+                  <div className={`${flexBetween} gap-8`}>
+                    <CustomLink page="" textColor="white">Home</CustomLink>
+                    <CustomLink page="why" textColor="white">Why Sleep Analyzer?</CustomLink>
+                    <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
+                    {/* <CustomLink page="mental" textColor="white">Mental Health</CustomLink> */}
+                    {/* <CustomLink page="login" textColor="white">Login</CustomLink> */}
+                    {user ? (<><span className="text-white">Hello, {user.displayName || user.email}</span>
+                      <button onClick={handleLogout} className="text-white underline hover:text-lightcoral transition">Log Out</button></>) : 
+                    (<CustomLink page="login" textColor="white">Login</CustomLink>)}
+                  </div> ) 
+                : (
+                  // create hamburger menu if screen size is not large
+                  <button
+                    className="rounded-full bg-lightcoral p-2"
+                    onClick={() => setIsMenuToggled(!isMenuToggled)}
+                  >
+                    <Bars3Icon className="h-6 w-6 text-white" />
+                  </button>
+                )}
 
               {/* MOBILE MENU */}
               {!aboveMediumScreen && isMenuToggled && (
@@ -100,32 +104,18 @@ const Navbar = ({ isTopOfPage }: Props) => {
                     </button>
                   </div>
 
-                  <div className="center gap-10 text-2xl bg-[#33a7fa] p-10">
-                    <CustomLink page="" textColor="white">
-                      Home
-                    </CustomLink>
-                    <CustomLink page="why" textColor="white">
-                      Why Sleep Analyzer?
-                    </CustomLink>
-                    <CustomLink page="analyze" textColor="white">
-                      Analyze
-                    </CustomLink>
-                    <CustomLink page="mental" textColor="white">
-                      Mental Health
-                    </CustomLink>
-                    {/* If user is logged in, render profile, if not show login page */}
-                    {user ? (
-                      <CustomLink page="profile" textColor="white">
-                        Profile
-                      </CustomLink>
-                    ) : (
-                      <CustomLink page="login" textColor="white">
-                        Login
-                      </CustomLink>
-                    )}
+                    <div className='center gap-10 text-2xl bg-[#33a7fa] p-10'>
+                      <CustomLink page="" textColor="white">Home</CustomLink>
+                      <CustomLink page="why" textColor="white">Why Sleep Analyzer?</CustomLink>
+                      <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
+                      <CustomLink page="mental" textColor="white">Mental Health</CustomLink>
+                      {user ? (<button onClick={handleLogout} 
+                      className="text-white underline hover:text-lightcoral transition">Log Out</button>) : 
+                      (<CustomLink page="login" textColor="white">Login</CustomLink>
+)}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
             </div>
           </div>

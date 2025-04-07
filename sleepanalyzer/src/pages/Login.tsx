@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 // import { LockClosedIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 import { RiGoogleLine } from "react-icons/ri";
 
@@ -44,10 +44,18 @@ const Login = (props: Props) => {
   const [error, setError] = useState("");
 
 
-  const { googleSignIn, logIn, signUp, updateUsername, user } =
-    useContext(AuthContext);
+    const { googleSignIn, logIn, signUp, updateUsername, user } =
+        useContext(AuthContext);
+        
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      if (user) {
+        navigate("/profile");
+      }
+    }, [user]);
+
 
   // google login and sign up
   const handleGoogleSignin = async (e: React.MouseEvent<HTMLElement>) => {

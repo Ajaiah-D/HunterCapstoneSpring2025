@@ -1,24 +1,32 @@
-import { AuthContext } from "@/components/AuthProvider";
-import CustomButton from "@/components/CustomButton";
-import React, { useContext } from "react";
-import { useNavigate } from "react-router";
+import { AuthContext } from '@/components/AuthProvider';
+import CustomButton from '@/components/CustomButton';
+import { useContext, useEffect } from "react";
+import { useNavigate } from 'react-router';
 
 type Props = {};
 
 const Profile = (props: Props) => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
   const userName = user ? user.email : "Guest";
 
   const handleClick = async () => {
     try {
       await logOut();
-      navigate("/login");
-      console.log("Logout Success!");
+      setTimeout(() => {
+        navigate("/login");
+      }, 200); // short delay
     } catch (error) {
-      console.log(error);
+      console.log("Logout failed:", error);
     }
   };
+  
+  if (!user) return null;
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E] text-gray-900 font-main flex flex-col items-center justify-center p-10 gap-10 text-center">
