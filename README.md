@@ -7,4 +7,4 @@
 ![A picture of how the home page of our website looks like](login.png) -->
 
 ## Mobile Version
-![A picture of how the home page of our website looks like on a smaller screen.](mobile.gif)
+<img src="mobile.gif" alt="drawing" style="height:500px;"/>
