@@ -3,6 +3,7 @@
 @import "tailwindcss";
 
 /* Need to install PostCSS Language Support to remove unknown rule error in VS code */
+
 /* is the theme component of tailwind */
 @theme {
   /* changes the breakpoints of the screen */
@@ -15,6 +16,7 @@
   --color-lightcoral: #F08E80;
 }
 
+/* shared css across all pages */
 html, 
 body,
 #root,
@@ -27,7 +29,7 @@ body,
 }
 
 button {
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .center {
@@ -38,6 +40,7 @@ button {
   text-align: center;
 }
 
+/* login and sign up page */
 #login {
   background-image: linear-gradient(180deg, rgba(175, 149, 242, 1), rgba(44, 34, 158, 1), rgba(22, 19, 102, 1)), url("@/assets/starfall.gif");
   background-repeat: no-repeat;
@@ -45,6 +48,7 @@ button {
   background-blend-mode: screen;
 }
 
+/* for the Parallax Scroll Component */
 .gradient {
   background: linear-gradient(rgba(22, 19, 102, 0.5) 50%, rgba(8, 0, 68, 1));
 }

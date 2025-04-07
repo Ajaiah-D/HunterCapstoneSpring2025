@@ -16,7 +16,9 @@ const Analyze = () => {
 
   const [response, setResponse] = useState(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -53,29 +55,98 @@ const Analyze = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E] ">
       <div className="bg-white shadow-xl rounded-lg p-8 w-full max-w-3xl border border-gray-300">
-        <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Analyze Your Sleep</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
+          Analyze Your Sleep
+        </h1>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
-            <input className="border p-2 rounded bg-gray-100 text-gray-800" name="age" type="number" placeholder="Age" onChange={handleChange} required />
-            <select className="border p-2 rounded bg-gray-100 text-gray-800" name="gender" onChange={handleChange}>
+            <input
+              className="border p-2 rounded bg-gray-100 text-gray-800"
+              name="age"
+              type="number"
+              placeholder="Age"
+              onChange={handleChange}
+              required
+            />
+            <select
+              className="border p-2 rounded bg-gray-100 text-gray-800"
+              name="gender"
+              onChange={handleChange}
+            >
               <option value="0">Male</option>
               <option value="1">Female</option>
             </select>
-            <input className="border p-2 rounded bg-gray-100 text-gray-800" name="sleep_duration" type="number" placeholder="Sleep Duration (hours)" onChange={handleChange} required />
-            <input className="border p-2 rounded bg-gray-100 text-gray-800" name="rem_sleep_percentage" type="number" placeholder="REM Sleep %" onChange={handleChange} required />
-            <input className="border p-2 rounded bg-gray-100 text-gray-800" name="light_sleep_percentage" type="number" placeholder="Light Sleep %" onChange={handleChange} required />
-            <input className="border p-2 rounded bg-gray-100 text-gray-800" name="awakenings" type="number" placeholder="Awakenings" onChange={handleChange} required />
-            <input className="border p-2 rounded bg-gray-100 text-gray-800" name="caffeine_consumption" type="number" placeholder="Caffeine Consumption" onChange={handleChange} required />
-            <input className="border p-2 rounded bg-gray-100 text-gray-800" name="alcohol_consumption" type="number" placeholder="Alcohol Consumption" onChange={handleChange} required />
-            <select className="border p-2 rounded bg-gray-100 text-gray-800" name="smoking_status" onChange={handleChange}>
+            <input
+              className="border p-2 rounded bg-gray-100 text-gray-800"
+              name="sleep_duration"
+              type="number"
+              placeholder="Sleep Duration (hours)"
+              onChange={handleChange}
+              required
+            />
+            <input
+              className="border p-2 rounded bg-gray-100 text-gray-800"
+              name="rem_sleep_percentage"
+              type="number"
+              placeholder="REM Sleep %"
+              onChange={handleChange}
+              required
+            />
+            <input
+              className="border p-2 rounded bg-gray-100 text-gray-800"
+              name="light_sleep_percentage"
+              type="number"
+              placeholder="Light Sleep %"
+              onChange={handleChange}
+              required
+            />
+            <input
+              className="border p-2 rounded bg-gray-100 text-gray-800"
+              name="awakenings"
+              type="number"
+              placeholder="Awakenings"
+              onChange={handleChange}
+              required
+            />
+            <input
+              className="border p-2 rounded bg-gray-100 text-gray-800"
+              name="caffeine_consumption"
+              type="number"
+              placeholder="Caffeine Consumption"
+              onChange={handleChange}
+              required
+            />
+            <input
+              className="border p-2 rounded bg-gray-100 text-gray-800"
+              name="alcohol_consumption"
+              type="number"
+              placeholder="Alcohol Consumption"
+              onChange={handleChange}
+              required
+            />
+            <select
+              className="border p-2 rounded bg-gray-100 text-gray-800"
+              name="smoking_status"
+              onChange={handleChange}
+            >
               <option value="0">Non-Smoker</option>
               <option value="1">Smoker</option>
             </select>
-            <input className="border p-2 rounded bg-gray-100 text-gray-800" name="exercise_frequency" type="number" placeholder="Exercise Frequency" onChange={handleChange} required />
+            <input
+              className="border p-2 rounded bg-gray-100 text-gray-800"
+              name="exercise_frequency"
+              type="number"
+              placeholder="Exercise Frequency"
+              onChange={handleChange}
+              required
+            />
           </div>
 
-          <button type="submit" className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+          >
             Predict
           </button>
         </form>
@@ -83,16 +154,24 @@ const Analyze = () => {
         {response && (
           <div className="mt-6 p-4 border rounded bg-white text-center shadow-md">
             <h2 className="text-xl font-semibold text-gray-800">Results:</h2>
-            <p className="text-2xl font-bold text-blue-700">{response.sleep_efficiency}% Sleep Efficiency</p>
+            <p className="text-2xl font-bold text-blue-700">
+              {response.sleep_efficiency}% Sleep Efficiency
+            </p>
 
-            <h3 className="text-lg font-semibold mt-4 text-gray-800">Recommendations:</h3>
+            <h3 className="text-lg font-semibold mt-4 text-gray-800">
+              Recommendations:
+            </h3>
             <ul className="text-left mx-auto max-w-md text-gray-700">
               {response.recommendations.length > 0 ? (
                 response.recommendations.map((rec: string, index: number) => (
-                  <li key={index} className="mt-1">✔ {rec}</li>
+                  <li key={index} className="mt-1">
+                    ✔ {rec}
+                  </li>
                 ))
               ) : (
-                <p className="text-gray-500 italic">No recommendations needed. Your sleep is good!</p>
+                <p className="text-gray-500 italic">
+                  No recommendations needed. Your sleep is good!
+                </p>
               )}
             </ul>
           </div>
