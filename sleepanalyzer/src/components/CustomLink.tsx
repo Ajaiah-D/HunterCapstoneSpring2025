@@ -15,6 +15,7 @@ const CustomLink = ({ children, page, textColor }: Props) => {
             text-${textColor}
             p-3
             active:underline
+            hover:text-lightcoral
         `}
     >
       {children}
