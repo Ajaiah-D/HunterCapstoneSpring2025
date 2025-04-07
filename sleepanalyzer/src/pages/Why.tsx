@@ -6,11 +6,10 @@ type Props = {};
 const Why = (props: Props) => {
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
   const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col";
-  const heightLength = aboveMediumScreen ? "h-screen" : "h-fit";
 
   return (
     <section
-      className={`center bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E] ${heightLength} w-screen text-white gap-8`}
+      className={`center bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E] h-fit w-screen text-white gap-8`}
     >
       <div className="grid gap-8 p-5 sm:mt-15">
         <h1 className="text-6xl">Why Sleep Analzyer?</h1>
