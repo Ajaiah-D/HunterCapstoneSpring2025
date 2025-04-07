@@ -13,18 +13,12 @@ const ParallaxScroll = ({ backimage, foreimage, children, height }: Props) => {
     image: backimage,
     scale: [2, 1, "easeOutCubic"],
     shouldAlwaysCompleteAnimation: true,
-    style: {
-      position: "fixed",
-    },
   };
 
   const headline: BannerLayer = {
     opacity: [1, 0, "easeInOutCubic"],
     shouldAlwaysCompleteAnimation: true,
     expanded: false,
-    style: {
-      position: "fixed",
-    },
     children: (
       <div className="absolute inset-0 flex flex-col justify-center items-center">
         {children}
