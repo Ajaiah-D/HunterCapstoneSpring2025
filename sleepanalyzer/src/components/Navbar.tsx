@@ -1,11 +1,10 @@
-import React from 'react';
-import { useContext } from 'react';
-import { AuthContext } from './AuthProvider';
+import React, { useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid"
 import CustomLink from './CustomLink';
 import useMediaQuery from '@/hooks/useMediaQuery';
+import { AuthContext } from './AuthProvider';
 
 type Props = {
   isTopOfPage: boolean;

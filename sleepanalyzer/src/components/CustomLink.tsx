@@ -13,6 +13,8 @@ const CustomLink = ({ children, page, textColor }: Props) => {
         to= {"/" + page}
         className={`
             text-${textColor}
+            p-3
+            active:underline
         `}
     >
         { children }

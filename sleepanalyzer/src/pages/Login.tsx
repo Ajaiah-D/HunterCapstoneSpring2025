@@ -29,8 +29,8 @@ const Login = (props: Props) => {
     /* change flex direction of section if screen size is too small */
     const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
     const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col";
-    const heightLength = aboveMediumScreen ? "h-screen" : "h-fit";
-    
+    const aboveSmallScreen = useMediaQuery("(min-width: 400px)");
+    const heightLength = aboveSmallScreen ? "h-screen" : "h-fit";
 
     const [loading, setLoading] = useState(false);
     const [userLoginInfo, setUserLoginInfo] = useState(userLoggingIn);

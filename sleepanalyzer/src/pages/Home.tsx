@@ -30,7 +30,7 @@ const Home = (props: Props) => {
                                 ]}
                                 repeat={Infinity}
                                 speed={{type: "keyStrokeDelayInMs", value: 100}}
-                                className="uppercase sm:text-7xl md:text-8xl lg:text-9xl [text-shadow:_0_10px_0_rgb(55_70_176_/_40%)]"
+                                className="uppercase sm:text-7xl md:text-8xl lg:text-9xl text-3xl [text-shadow:_0_10px_0_rgb(55_70_176_/_40%)]"
                           />
                         </div>
                         <p className="mt-8 text-2xl">The only way to understand sleep</p>

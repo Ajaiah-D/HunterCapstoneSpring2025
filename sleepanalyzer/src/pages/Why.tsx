@@ -9,7 +9,7 @@ const Why = (props: Props) => {
   const heightLength = aboveMediumScreen ? "h-screen" : "h-fit";
   
   return (
-    <section className={`center bg-[#4361FE] ${heightLength} w-screen text-white gap-8`}>
+    <section className={`center bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E] ${heightLength} w-screen text-white gap-8`}>
       <div className="grid gap-8 p-5 sm:mt-15">
         <h1 className="text-6xl">
             Why Sleep Analzyer?
@@ -38,28 +38,34 @@ const Why = (props: Props) => {
             The Statistics
           </h3>
           <div className={`flex ${flexDirection} gap-5`}>
-            <div className="center gap-3">
-              {/* <img 
+            <div className="center gap-3 flex-1">
+              <img 
               src="https://media.istockphoto.com/id/1330603241/vector/man-with-heart-attack-pain-touching-chest-heart-treatment-health-care-and-disease-diagnostic.jpg?s=612x612&w=0&k=20&c=Z0JUqeFLODFlqePkacQAPPMi1Xrh56ujjlHPFO1ehs0="
-              className="h-[100px] rounded-4xl"/> */}
+              className="h-[100px] rounded-4xl"/>
               <p>
                 48% increased risk of developing heart disease
               </p>
             </div>
-            <div>
-              <img src='' />
+            <div className="center gap-3 flex-1">
+              <img 
+              src="https://media.istockphoto.com/id/1330603241/vector/man-with-heart-attack-pain-touching-chest-heart-treatment-health-care-and-disease-diagnostic.jpg?s=612x612&w=0&k=20&c=Z0JUqeFLODFlqePkacQAPPMi1Xrh56ujjlHPFO1ehs0="
+              className="h-[100px] rounded-4xl"/>
               <p>
                 3x more likely to develop Type II Diabetes
               </p>
             </div>
-            <div>
-              <img src='' />
+            <div className="center gap-3 flex-1"> 
+              <img 
+              src="https://media.istockphoto.com/id/1330603241/vector/man-with-heart-attack-pain-touching-chest-heart-treatment-health-care-and-disease-diagnostic.jpg?s=612x612&w=0&k=20&c=Z0JUqeFLODFlqePkacQAPPMi1Xrh56ujjlHPFO1ehs0="
+              className="h-[100px] rounded-4xl"/>
               <p>
                 33% increased risk of dementia
               </p>
             </div>
-            <div>
-              <img src='' />
+            <div className="center gap-3 flex-1">
+              <img 
+              src="https://media.istockphoto.com/id/1330603241/vector/man-with-heart-attack-pain-touching-chest-heart-treatment-health-care-and-disease-diagnostic.jpg?s=612x612&w=0&k=20&c=Z0JUqeFLODFlqePkacQAPPMi1Xrh56ujjlHPFO1ehs0="
+              className="h-[100px] rounded-4xl"/>
               <p>
                 Sleep debt have also caused lead to 6000 fatal car crashes because 1 in 25 people fall asleep behind the wheel.
               </p>
