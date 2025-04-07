@@ -1,4 +1,7 @@
 import React from 'react';
+import { useContext } from 'react';
+import { AuthContext } from './AuthProvider';
+import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid"
 import CustomLink from './CustomLink';
@@ -17,6 +20,18 @@ const Navbar = ({ isTopOfPage }: Props) => {
 
   // scrolling will add a navbar background
   const navbarBackground = isTopOfPage ? "" : "bg-[#33a7fa] drop-shadow";
+
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed", error);
+    }
+  };
 
   return (
     <nav>
@@ -57,7 +72,10 @@ const Navbar = ({ isTopOfPage }: Props) => {
                     <CustomLink page="why" textColor="white">Why Sleep Analyzer?</CustomLink>
                     <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
                     {/* <CustomLink page="mental" textColor="white">Mental Health</CustomLink> */}
-                    <CustomLink page="login" textColor="white">Login</CustomLink>
+                    {/* <CustomLink page="login" textColor="white">Login</CustomLink> */}
+                    {user ? (<><span className="text-white">Hello, {user.displayName || user.email}</span>
+                      <button onClick={handleLogout} className="text-white underline hover:text-lightcoral transition">Log Out</button></>) : 
+                    (<CustomLink page="login" textColor="white">Login</CustomLink>)}
                   </div> ) 
                 : (
                   // create hamburger menu if screen size is not large
@@ -92,7 +110,10 @@ const Navbar = ({ isTopOfPage }: Props) => {
                       <CustomLink page="why" textColor="white">Why Sleep Analyzer?</CustomLink>
                       <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
                       <CustomLink page="mental" textColor="white">Mental Health</CustomLink>
-                      <CustomLink page="login" textColor="white">Login</CustomLink>
+                      {user ? (<button onClick={handleLogout} 
+                      className="text-white underline hover:text-lightcoral transition">Log Out</button>) : 
+                      (<CustomLink page="login" textColor="white">Login</CustomLink>
+)}
                     </div>
                   </div>
                 )}

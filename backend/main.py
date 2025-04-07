@@ -1,11 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from auth import router as auth_router
 import pickle
 import numpy as np
 from pydantic import BaseModel
-
+from db import Base, engine
+from models import SleepEntry
+Base.metadata.create_all(bind=engine)
 #load trained model
+
 with open("sleep_model.pkl", "rb") as f:
     model = pickle.load(f)
 

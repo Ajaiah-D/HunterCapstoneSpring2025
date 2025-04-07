@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 // import { LockClosedIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 import { RiGoogleLine } from "react-icons/ri";
 
@@ -30,6 +30,7 @@ const Login = (props: Props) => {
     const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
     const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col";
     const heightLength = aboveMediumScreen ? "h-screen" : "h-fit";
+    
 
     const [loading, setLoading] = useState(false);
     const [userLoginInfo, setUserLoginInfo] = useState(userLoggingIn);
@@ -39,8 +40,16 @@ const Login = (props: Props) => {
 
     const { googleSignIn, logIn, signUp, updateUsername, user } =
         useContext(AuthContext);
+        
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+      if (user) {
+        navigate("/profile");
+      }
+    }, [user]);
+
 
     // google login and sign up
     const handleGoogleSignin = async (e: React.MouseEvent<HTMLElement>) => {

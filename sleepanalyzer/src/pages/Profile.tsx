@@ -1,6 +1,6 @@
 import { AuthContext } from '@/components/AuthProvider';
 import CustomButton from '@/components/CustomButton';
-import React, { useContext } from 'react'
+import { useContext, useEffect } from "react";
 import { useNavigate } from 'react-router';
 
 type Props = {}
@@ -8,17 +8,25 @@ type Props = {}
 const Profile = (props: Props) => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
   const userName = user ? user.displayName : "Guest";
 
-  const handleClick = async() => {
+  const handleClick = async () => {
     try {
       await logOut();
-      navigate("/login");
-      console.log("Logout Success!")
-    } catch(error) {
-      console.log(error)
+      setTimeout(() => {
+        navigate("/login");
+      }, 200); // short delay
+    } catch (error) {
+      console.log("Logout failed:", error);
     }
-  }
+  };
+  
+  if (!user) return null;
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#ffd6d6] via-[#f9a8d4] to-[#fbcfe8] text-gray-900 font-main flex flex-col items-center justify-center p-10 gap-10 text-center">
