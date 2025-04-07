@@ -113,11 +113,6 @@ const Login = (props: Props) => {
       }
       setLoading(true);
       await signUp(userSignupInfo);
-      if (user != null) {
-        updateUsername(user, userSignupInfo.displayName);
-        console.log(auth.currentUser);
-        navigate("/profile");
-      }
     } catch (error) {
       if (
         typeof error === "object" &&
