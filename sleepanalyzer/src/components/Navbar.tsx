@@ -103,19 +103,17 @@ const Navbar = ({ isTopOfPage }: Props) => {
                       <XMarkIcon className="h-6 w-g text-pink-300" />
                     </button>
                   </div>
-
-                    <div className='center gap-10 text-2xl bg-[#33a7fa] p-10'>
-                      <CustomLink page="" textColor="white">Home</CustomLink>
-                      <CustomLink page="why" textColor="white">Why Sleep Analyzer?</CustomLink>
-                      <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
-                      <CustomLink page="mental" textColor="white">Mental Health</CustomLink>
-                      {user ? (<button onClick={handleLogout} 
-                      className="text-white underline hover:text-lightcoral transition">Log Out</button>) : 
-                      (<CustomLink page="login" textColor="white">Login</CustomLink>
-)}
-                    </div>
+                  <div className='center gap-10 text-2xl bg-[#33a7fa] p-10'>
+                    <CustomLink page="" textColor="white">Home</CustomLink>
+                    <CustomLink page="why" textColor="white">Why Sleep Analyzer?</CustomLink>
+                    <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
+                    <CustomLink page="mental" textColor="white">Mental Health</CustomLink>
+                    {user ? (<button onClick={handleLogout} 
+                    className="text-white underline hover:text-lightcoral transition">Log Out</button>) : 
+                    (<CustomLink page="login" textColor="white">Login</CustomLink>)}
                   </div>
-                )}
+                </div>
+              )}
 
             </div>
           </div>
