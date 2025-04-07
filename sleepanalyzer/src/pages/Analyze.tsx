@@ -55,12 +55,17 @@ const Analyze = () => {
 
   // responsive height
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
-  const height = !response || aboveMediumScreen ? "h-screen" : "h-fit";
+  let height = "h-fit";
+  if (aboveMediumScreen && response) {
+    height = "h-fit";
+  } else if (aboveMediumScreen) {
+    height = "h-screen"; 
+  } 
   const columns = aboveMediumScreen ? "grid-cols-2" : "grid-cols-1";
 
   return (
     <div className={`center ${height} bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E]`}>
-      <div className="h-[90px]"></div>
+      <div className="h-[60px]"></div>
       <div className="w-full max-w-3xl p-4">
 
         {/* form to put in sleep data */}
