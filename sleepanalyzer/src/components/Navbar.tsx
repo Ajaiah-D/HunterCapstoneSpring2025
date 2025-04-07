@@ -40,7 +40,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
           ${flexBetween} 
           fixed 
           top-0 
-          z-30 
+          z-1000 
           w-full 
           py-6 
           font-main 
@@ -68,10 +68,9 @@ const Navbar = ({ isTopOfPage }: Props) => {
                 { aboveMediumScreen ? (
                   <div className={`${flexBetween} gap-8`}>
                     <CustomLink page="" textColor="white">Home</CustomLink>
-                    <CustomLink page="why" textColor="white">Why Sleep Analyzer?</CustomLink>
+                    <CustomLink page="why" textColor="white">Why?</CustomLink>
                     <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
                     {/* <CustomLink page="mental" textColor="white">Mental Health</CustomLink> */}
-                    {/* <CustomLink page="login" textColor="white">Login</CustomLink> */}
                     {user ? (<><span className="text-white">Hello, {user.displayName || user.email}</span>
                       <button onClick={handleLogout} className="text-white underline hover:text-lightcoral transition">Log Out</button></>) : 
                     (<CustomLink page="login" textColor="white">Login</CustomLink>)}
@@ -105,7 +104,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                   </div>
                   <div className='center gap-10 text-2xl bg-[#33a7fa] p-10'>
                     <CustomLink page="" textColor="white">Home</CustomLink>
-                    <CustomLink page="why" textColor="white">Why Sleep Analyzer?</CustomLink>
+                    <CustomLink page="why" textColor="white">Why?</CustomLink>
                     <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
                     <CustomLink page="mental" textColor="white">Mental Health</CustomLink>
                     {user ? (<button onClick={handleLogout} 
