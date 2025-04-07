@@ -37,7 +37,7 @@ const ParallaxScroll = ({ backimage, foreimage, children, height }: Props) => {
     opacity: [0, 1, "easeOutCubic"],
     shouldAlwaysCompleteAnimation: true,
     expanded: false,
-    children: <div className="absolute inset-0" />,
+    children: <div className="gradient absolute inset-0" />,
   };
 
   return (
