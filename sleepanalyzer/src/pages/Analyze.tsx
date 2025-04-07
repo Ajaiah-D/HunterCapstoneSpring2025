@@ -55,7 +55,7 @@ const Analyze = () => {
 
   // responsive height
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
-  const height = !response ? "h-screen" : "h-fit";
+  const height = !response || aboveMediumScreen ? "h-screen" : "h-fit";
   const columns = aboveMediumScreen ? "grid-cols-2" : "grid-cols-1";
 
   return (
