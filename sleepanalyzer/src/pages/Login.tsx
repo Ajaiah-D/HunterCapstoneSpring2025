@@ -44,7 +44,7 @@ const Login = (props: Props) => {
   const [error, setError] = useState("");
 
 
-    const { googleSignIn, logIn, signUp, updateUsername, user } =
+    const { googleSignIn, logIn, signUp, user } =
         useContext(AuthContext);
         
 
@@ -164,7 +164,7 @@ const Login = (props: Props) => {
           {/* signup part */}
           <form className="center gap-3 pt-5 h-full" hidden={onLogin}>
             <h1 className="text-3xl">Signup</h1>
-            <div className="w-full">
+            {/* <div className="w-full">
               <CustomInput
                 type="string"
                 placeholder="Name"
@@ -177,7 +177,7 @@ const Login = (props: Props) => {
                   })
                 }
               />
-            </div>
+            </div> */}
             <div className="w-full">
               <CustomInput
                 type="email"
@@ -303,9 +303,9 @@ const Login = (props: Props) => {
             </div>
             <div className="w-4/6 flex justify-between">
               <div>
-                <input type="checkbox" className="mr-2" />
-                <label htmlFor="" className="">
+                <label>
                   Remember Me
+                  <input type="checkbox" className="ml-2" />
                 </label>
               </div>
               <CustomButton
