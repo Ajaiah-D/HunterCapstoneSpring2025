@@ -1,3 +1,4 @@
+import useMediaQuery from "@/hooks/useMediaQuery";
 import React, { useState } from "react";
 
 const Analyze = () => {
@@ -52,15 +53,22 @@ const Analyze = () => {
     }
   };
 
-  return (
-    <div className="flex justify-center items-center h-screen bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E] ">
-      <div className="bg-white shadow-xl rounded-lg p-8 w-full max-w-3xl border border-gray-300">
-        <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
-          Analyze Your Sleep
-        </h1>
+  // responsive height
+  const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
+  const height = !response ? "h-screen" : "h-fit";
+  const columns = aboveMediumScreen ? "grid-cols-2" : "grid-cols-1";
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+  return (
+    <div className={`center ${height} bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E]`}>
+      <div className="h-[90px]"></div>
+      <div className="w-full max-w-3xl p-4">
+
+        {/* form to put in sleep data */}
+        <form onSubmit={handleSubmit} className="space-y-4 bg-white border-2 border-gray-300 shadow-xl rounded-lg p-8">
+          <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
+            Analyze Your Sleep
+          </h1>
+          <div className={`grid ${columns} gap-4`}>
             <input
               className="border p-2 rounded bg-gray-100 text-gray-800"
               name="age"
