@@ -7,6 +7,7 @@ import CustomButton from "@/components/CustomButton";
 // import CustomInput from "@/components/CustomInput";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
+import SlideInTransition from "@/components/SlideInTransition";
 
 type Props = {};
 
@@ -52,15 +53,9 @@ const Home = (props: Props) => {
           id="why"
           className="p-10 h-screen w-screen bg-[#080044] grid place-items-center"
         >
-          <motion.div
+          <SlideInTransition
             className="center w-4/6 gap-3 p-5"
-            variants={{
-              hidden: { opacity: 0, y: 75 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            initial="hidden"
-            transition={{ duration: 0.5, delay: 0.25 }}
-            whileInView={"visible"}
+            repeat={true}
           >
             <h1 className="font-header text-5xl mb-10">Why Sleep Analyzer?</h1>
             <p className="text-3xl">
@@ -72,7 +67,7 @@ const Home = (props: Props) => {
               <li>Daytime sleepiness and less energy</li>
               <li>Greater risk in getting severe diseases</li>
             </ul>
-          </motion.div>
+          </SlideInTransition>
         </div>
 
         {/* what we do section */}
@@ -80,15 +75,9 @@ const Home = (props: Props) => {
           id="what"
           className="p-10 text-white bg-linear-to-b from-[#080044] to-[#33A7FA] h-screen grid place-items-center"
         >
-          <motion.div
+          <SlideInTransition
             className="center w-5/6 gap-5"
-            variants={{
-              hidden: { opacity: 0, y: 75 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            initial="hidden"
-            transition={{ duration: 0.5, delay: 0.25 }}
-            whileInView={"visible"}
+            repeat={true}
           >
             <h1 className="font-header text-5xl mb-10">What do we do?</h1>
             <div className="gap-10 center">
@@ -123,7 +112,7 @@ const Home = (props: Props) => {
               <FaArrowRight />
               Try It Now!
             </CustomButton>
-          </motion.div>
+          </SlideInTransition>
         </div>
 
         {/* contacts section */}

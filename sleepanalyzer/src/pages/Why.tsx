@@ -1,3 +1,4 @@
+import SlideInTransition from "@/components/SlideInTransition";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import React from "react";
 
@@ -8,10 +9,10 @@ const Why = (props: Props) => {
   const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col";
 
   return (
-    <section
+    <div 
       className={`center bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E] h-fit w-screen text-white gap-8`}
     >
-      <div className="grid gap-8 p-5 sm:mt-15">
+      <SlideInTransition className="grid gap-8 p-5 sm:mt-15">
         <h1 className="text-6xl">Why Sleep Analzyer?</h1>
 
         {/* explaining why we need sleep analyzer */}
@@ -78,8 +79,8 @@ const Why = (props: Props) => {
 
         </div>
         
-      </div>
-    </section>
+      </SlideInTransition>
+    </div>
   );
 };
 

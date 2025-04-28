@@ -1,3 +1,4 @@
+import SlideInTransition from "@/components/SlideInTransition";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import React, { useState } from "react";
 
@@ -66,7 +67,7 @@ const Analyze = () => {
   return (
     <div className={`center ${height} bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E]`}>
       <div className="h-[60px]"></div>
-      <div className="w-full max-w-3xl p-4">
+      <SlideInTransition className="w-full max-w-3xl p-4">
 
         {/* form to put in sleep data */}
         <form onSubmit={handleSubmit} className="space-y-4 bg-white border-2 border-gray-300 shadow-xl rounded-lg p-8">
@@ -189,7 +190,7 @@ const Analyze = () => {
             </ul>
           </div>
         )}
-      </div>
+      </SlideInTransition>
     </div>
   );
 };
