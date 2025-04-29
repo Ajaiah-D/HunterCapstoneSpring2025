@@ -1,6 +1,12 @@
 import useMediaQuery from "@/hooks/useMediaQuery";
 import React, { useState } from "react";
 
+// Define the type for the response
+type ResponseType = {
+  sleep_efficiency: number;
+  recommendations: string[];
+};
+
 const Analyze = () => {
   const [formData, setFormData] = useState({
     age: "",
@@ -15,7 +21,8 @@ const Analyze = () => {
     exercise_frequency: "",
   });
 
-  const [response, setResponse] = useState(null);
+  // Use the defined type for the response state
+  const [response, setResponse] = useState<ResponseType | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -46,7 +53,7 @@ const Analyze = () => {
         body: JSON.stringify(formattedData),
       });
 
-      const data = await res.json();
+      const data: ResponseType = await res.json();
       setResponse(data);
     } catch (error) {
       console.error("Error fetching data:", error);
