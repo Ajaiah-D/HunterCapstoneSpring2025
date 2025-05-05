@@ -346,6 +346,7 @@ const Login = (props: Props) => {
         
       </div>
 
+      {/* Error message if there is an error */}
       {error && 
           <div 
             className="fixed bg-red-400 text-white p-5 right-3 bottom-3 rounded-md drop-shadow-xl">
