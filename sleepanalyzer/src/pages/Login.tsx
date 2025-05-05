@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-// import { LockClosedIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 import { RiGoogleLine } from "react-icons/ri";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
