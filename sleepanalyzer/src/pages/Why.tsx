@@ -1,3 +1,4 @@
+import SlideInTransition from "@/components/SlideInTransition";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import React from "react";
 
@@ -8,10 +9,10 @@ const Why = (props: Props) => {
   const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col";
 
   return (
-    <section
+    <div 
       className={`center bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E] h-fit w-screen text-white gap-8`}
     >
-      <div className="grid gap-8 p-5 sm:mt-15">
+      <SlideInTransition className="grid gap-8 p-5 sm:mt-15">
         <h1 className="text-6xl">Why Sleep Analzyer?</h1>
 
         {/* explaining why we need sleep analyzer */}
@@ -77,9 +78,22 @@ const Why = (props: Props) => {
           </div>
 
         </div>
+
+        {/* benefits of sleep analyzer */}
+        <div className="text-center grid gap-10">
+          <h1 className="text-6xl">What can a sleep analyzer do for you?</h1>
+          <p className="w-4/6 m-auto grid">
+            A sleep analyzer can help met the needs of everyone experiencing sleep problems
+            by tracking your sleep quality and patterns and ways on how you can improve your sleep.
+            As of right now, 77% of users have reported sleep analyzers were helpful (AASM, 2023) 
+            and 68% of users have improved their behavior and sleeping habits because of it (AASM, 2023).
+            This shows sleep analyzers are really effective.
+          </p>
+
+        </div>
         
-      </div>
-    </section>
+      </SlideInTransition>
+    </div>
   );
 };
 

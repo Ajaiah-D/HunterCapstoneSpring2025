@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-// import { LockClosedIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 import { RiGoogleLine } from "react-icons/ri";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
@@ -30,7 +29,8 @@ const Login = (props: Props) => {
   /* change flex direction of section if screen size is too small */
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
   const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col";
-  const aboveSmallScreen = useMediaQuery("(min-width: 400px)");
+  const messageVisible = aboveMediumScreen ? "visible" : "hidden";
+  const aboveSmallScreen = useMediaQuery("(min-width: 600px)");
   const heightLength = aboveSmallScreen ? "h-screen" : "h-fit";
 
   // determines if the button should be disabled on not, prevents double checking 
@@ -134,16 +134,17 @@ const Login = (props: Props) => {
 
   return (
     <section
-      className={`${heightLength}
+      className={`h-screen
                 center
                 font-main
                 text-header
                 p-15
+                w-full
             `}
       id="login"
     >
       <div
-        className={`flex ${flexDirection} rounded-2xl w-5/6 h-full mt-10 text-white border-4 border-white`}
+        className={`flex ${flexDirection} rounded-2xl w-5/6 ${heightLength} mt-5 text-white border-4 border-white`}
       >
         <div className="flex-1">
 
@@ -156,7 +157,7 @@ const Login = (props: Props) => {
             <h1 className="text-6xl font-header font-semibold bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text text-transparent">
               Welcome, Friend!
             </h1>
-            <h2 className="text-5xl bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text bg-left-top text-transparent">
+            <h2 className={`text-5xl bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text bg-left-top text-transparent ${messageVisible}`}>
               Let's get you back in
             </h2>
           </motion.div>
@@ -243,9 +244,6 @@ const Login = (props: Props) => {
               </CustomButton>
             </p>
 
-            {/* printing the error if an error is returned */}
-            {error && <div className="error text-white">{error}</div>}
-
           </form>
         </div>
 
@@ -331,7 +329,6 @@ const Login = (props: Props) => {
                 Sign Up
               </CustomButton>
             </p>
-            {error && <div className="error text-white">{error}</div>}
 
             {/* Leads to login page when clicked */}
             <div className="social-icons">
@@ -347,6 +344,15 @@ const Login = (props: Props) => {
         </div>
         
       </div>
+
+      {/* Error message if there is an error */}
+      {error && 
+          <div 
+            className="fixed bg-red-400 text-white p-5 right-3 bottom-3 rounded-md drop-shadow-xl">
+            {error}
+          </div>
+      }
+
     </section>
   );
 };

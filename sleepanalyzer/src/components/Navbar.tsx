@@ -89,12 +89,12 @@ const Navbar = ({ isTopOfPage }: Props) => {
               {/* MOBILE MENU */}
               {!aboveMediumScreen && isMenuToggled && (
                 <div
-                  className="fixed
+                  className="absolute
                              right-0 
-                             bottom-0 
+                             top-0
                              z-100 
                              w-[300px]
-                             h-full
+                             h-screen
                            bg-[#33a7fa]
                              drop-shadow-xl"
                 >

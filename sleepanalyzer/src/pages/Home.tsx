@@ -7,6 +7,7 @@ import CustomButton from "@/components/CustomButton";
 // import CustomInput from "@/components/CustomInput";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
+import SlideInTransition from "@/components/SlideInTransition";
 
 type Props = {};
 
@@ -50,45 +51,33 @@ const Home = (props: Props) => {
         {/* why sleep analyzer section */}
         <div
           id="why"
-          className="p-10 h-screen w-screen bg-[#080044] grid place-items-center"
+          className="p-10 h-screen w-screen bg-[#080044] grid place-items-center overflow-y-hidden"
         >
-          <motion.div
-            className="center w-4/6 gap-3 p-5"
-            variants={{
-              hidden: { opacity: 0, y: 75 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            initial="hidden"
-            transition={{ duration: 0.5, delay: 0.25 }}
-            whileInView={"visible"}
+          <SlideInTransition
+            className="center w-4/6 gap-3 text-3xl"
+            repeat={true}
           >
             <h1 className="font-header text-5xl mb-10">Why Sleep Analyzer?</h1>
-            <p className="text-3xl">
-              {" "}
+            <p className="text-4xl">
               Sleep is critical to our development, health and everyday life.
             </p>
             <p> Lack of sleep can lead to: </p>
-            <ul className="list-disc w-fit grid m-auto">
-              <li>Daytime sleepiness and less energy</li>
+            <ul className="list-disc w-fit grid m-auto text-left">
               <li>Greater risk in getting severe diseases</li>
+              <li>Daytime sleepiness and less energy</li>
+              <li>Poor sleep quality which has been linked to higher risk of heart disease</li>
             </ul>
-          </motion.div>
+          </SlideInTransition>
         </div>
 
         {/* what we do section */}
         <div
           id="what"
-          className="p-10 text-white bg-linear-to-b from-[#080044] to-[#33A7FA] h-screen grid place-items-center"
+          className="p-10 text-white bg-linear-to-b from-[#080044] to-[#33A7FA] h-screen grid place-items-center overflow-y-hidden"
         >
-          <motion.div
+          <SlideInTransition
             className="center w-5/6 gap-5"
-            variants={{
-              hidden: { opacity: 0, y: 75 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            initial="hidden"
-            transition={{ duration: 0.5, delay: 0.25 }}
-            whileInView={"visible"}
+            repeat={true}
           >
             <h1 className="font-header text-5xl mb-10">What do we do?</h1>
             <div className="gap-10 center">
@@ -123,7 +112,7 @@ const Home = (props: Props) => {
               <FaArrowRight />
               Try It Now!
             </CustomButton>
-          </motion.div>
+          </SlideInTransition>
         </div>
 
         {/* contacts section */}

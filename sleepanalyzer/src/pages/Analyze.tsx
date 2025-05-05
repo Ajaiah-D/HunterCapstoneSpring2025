@@ -1,5 +1,12 @@
+import SlideInTransition from "@/components/SlideInTransition";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import React, { useState } from "react";
+
+// Define the type for the response
+type ResponseType = {
+  sleep_efficiency: number;
+  recommendations: string[];
+};
 
 const Analyze = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +22,8 @@ const Analyze = () => {
     exercise_frequency: "",
   });
 
-  const [response, setResponse] = useState(null);
+  // Use the defined type for the response state
+  const [response, setResponse] = useState<ResponseType | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -46,7 +54,7 @@ const Analyze = () => {
         body: JSON.stringify(formattedData),
       });
 
-      const data = await res.json();
+      const data: ResponseType = await res.json();
       setResponse(data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -66,7 +74,7 @@ const Analyze = () => {
   return (
     <div className={`center ${height} bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E]`}>
       <div className="h-[60px]"></div>
-      <div className="w-full max-w-3xl p-4">
+      <SlideInTransition className="w-full max-w-3xl p-4">
 
         {/* form to put in sleep data */}
         <form onSubmit={handleSubmit} className="space-y-4 bg-white border-2 border-gray-300 shadow-xl rounded-lg p-8">
@@ -189,7 +197,7 @@ const Analyze = () => {
             </ul>
           </div>
         )}
-      </div>
+      </SlideInTransition>
     </div>
   );
 };

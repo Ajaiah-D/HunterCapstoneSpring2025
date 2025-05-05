@@ -1,64 +1,68 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, Depends
+from sqlalchemy.orm import Session
+from db import SessionLocal, engine
+import models
 import pickle
 import numpy as np
-from pydantic import BaseModel
-from db import Base, engine
-from models import SleepEntry
-Base.metadata.create_all(bind=engine)
-#load trained model
 
-with open("sleep_model.pkl", "rb") as f:
+# Load your model
+with open('sleep_model.pkl', 'rb') as f:
     model = pickle.load(f)
 
-#initialize FastAPI app
+# Create tables if they don't exist yet
+models.Base.metadata.create_all(bind=engine)
+
 app = FastAPI()
 
-#Fix CORS issue
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Only allow your React app
-    allow_credentials=True,
-    allow_methods=["*"],  # Allow all methods (POST, GET, etc.)
-    allow_headers=["*"],  # Allow all headers
-)
+# Dependency to get a DB session
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
-#define request structure
-class SleepData(BaseModel):
-    age: int
-    gender: int
-    sleep_duration: float
-    rem_sleep_percentage: float
-    light_sleep_percentage: float
-    awakenings: int
-    caffeine_consumption: float
-    alcohol_consumption: float
-    smoking_status: int
-    exercise_frequency: int
-
-#API endpoint for predictions
 @app.post("/predict")
-def predict_sleep(data: SleepData):
-    input_data = np.array([[data.age, data.gender, data.sleep_duration, 
-                            data.rem_sleep_percentage, data.light_sleep_percentage,
-                            data.awakenings, data.caffeine_consumption, 
-                            data.alcohol_consumption, data.smoking_status, data.exercise_frequency]])
+async def predict_sleep(data: dict, db: Session = Depends(get_db)):
+    try:
+        # Prepare input for model
+        input_features = np.array([
+            data['age'],
+            data['gender'],
+            data['sleep_duration'],
+            data['rem_sleep_percentage'],
+            data['light_sleep_percentage'],
+            data['awakenings'],
+            data['caffeine_consumption'],
+            data['alcohol_consumption'],
+            data['smoking_status'],
+            data['exercise_frequency']
+        ]).reshape(1, -1)
 
-    sleep_efficiency = model.predict(input_data)[0]
+        # Predict
+        prediction = model.predict(input_features)[0]
+        sleep_efficiency = round(prediction, 2)
 
-    #add recommendations Based on Model Output
-    recommendations = []
-    if sleep_efficiency < 75:
-        recommendations.append("Your sleep efficiency is low. Try improving bedtime consistency.")
-    if data.sleep_duration < 6:
-        recommendations.append("Consider increasing your total sleep time.")
-    if data.caffeine_consumption > 2:
-        recommendations.append("Try reducing caffeine intake before bedtime.")
-    if data.alcohol_consumption > 1:
-        recommendations.append("Consider reducing alcohol consumption before sleep.")
-    if data.awakenings > 2:
-        recommendations.append("Frequent awakenings might indicate sleep disturbances. Try a relaxing bedtime routine.")
-    if data.exercise_frequency < 2:
-        recommendations.append("Exercising regularly can improve sleep quality.")
+        # Save to database
+        new_entry = models.UserSleepEntry(
+            age=data['age'],
+            gender=data['gender'],
+            sleep_duration=data['sleep_duration'],
+            rem_sleep_percentage=data['rem_sleep_percentage'],
+            light_sleep_percentage=data['light_sleep_percentage'],
+            awakenings=data['awakenings'],
+            caffeine_consumption=data['caffeine_consumption'],
+            alcohol_consumption=data['alcohol_consumption'],
+            smoking_status=data['smoking_status'],
+            exercise_frequency=data['exercise_frequency'],
+            predicted_sleep_efficiency=sleep_efficiency
+        )
 
-    return {"sleep_efficiency": round(sleep_efficiency, 2), "recommendations": recommendations}
+        db.add(new_entry)
+        db.commit()
+        db.refresh(new_entry)
+
+        return {"sleep_efficiency": sleep_efficiency, "message": "Prediction saved successfully."}
+    
+    except Exception as e:
+        return {"error": str(e)}

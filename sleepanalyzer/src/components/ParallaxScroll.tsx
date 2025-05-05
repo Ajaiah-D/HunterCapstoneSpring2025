@@ -43,7 +43,7 @@ const ParallaxScroll = ({ backimage, foreimage, children, height }: Props) => {
   return (
     <ParallaxBanner
       layers={[background, headline, foreground, gradientOverlay]}
-      className={`${height}`}
+      className={`${height} overflow-y-hidden`}
     />
   );
 };
