@@ -245,9 +245,6 @@ const Login = (props: Props) => {
               </CustomButton>
             </p>
 
-            {/* printing the error if an error is returned */}
-            {error && <div className="error text-white">{error}</div>}
-
           </form>
         </div>
 
@@ -333,7 +330,6 @@ const Login = (props: Props) => {
                 Sign Up
               </CustomButton>
             </p>
-            {error && <div className="error text-white">{error}</div>}
 
             {/* Leads to login page when clicked */}
             <div className="social-icons">
@@ -349,6 +345,14 @@ const Login = (props: Props) => {
         </div>
         
       </div>
+
+      {error && 
+          <div 
+            className="fixed bg-red-400 text-white p-5 right-3 bottom-3 rounded-md drop-shadow-xl">
+            {error}
+          </div>
+      }
+
     </section>
   );
 };
