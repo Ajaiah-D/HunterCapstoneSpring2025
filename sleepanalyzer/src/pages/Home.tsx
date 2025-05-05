@@ -54,18 +54,18 @@ const Home = (props: Props) => {
           className="p-10 h-screen w-screen bg-[#080044] grid place-items-center overflow-y-hidden"
         >
           <SlideInTransition
-            className="center w-4/6 gap-3 p-5"
+            className="center w-4/6 gap-3 text-3xl"
             repeat={true}
           >
             <h1 className="font-header text-5xl mb-10">Why Sleep Analyzer?</h1>
-            <p className="text-3xl">
-              {" "}
+            <p className="text-4xl">
               Sleep is critical to our development, health and everyday life.
             </p>
             <p> Lack of sleep can lead to: </p>
-            <ul className="list-disc w-fit grid m-auto">
-              <li>Daytime sleepiness and less energy</li>
+            <ul className="list-disc w-fit grid m-auto text-left">
               <li>Greater risk in getting severe diseases</li>
+              <li>Daytime sleepiness and less energy</li>
+              <li>Poor sleep quality which has been linked to higher risk of heart disease</li>
             </ul>
           </SlideInTransition>
         </div>
