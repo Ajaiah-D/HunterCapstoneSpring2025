@@ -51,7 +51,7 @@ const Home = (props: Props) => {
         {/* why sleep analyzer section */}
         <div
           id="why"
-          className="p-10 h-screen w-screen bg-[#080044] grid place-items-center"
+          className="p-10 h-screen w-screen bg-[#080044] grid place-items-center overflow-y-hidden"
         >
           <SlideInTransition
             className="center w-4/6 gap-3 p-5"
@@ -73,7 +73,7 @@ const Home = (props: Props) => {
         {/* what we do section */}
         <div
           id="what"
-          className="p-10 text-white bg-linear-to-b from-[#080044] to-[#33A7FA] h-screen grid place-items-center"
+          className="p-10 text-white bg-linear-to-b from-[#080044] to-[#33A7FA] h-screen grid place-items-center overflow-y-hidden"
         >
           <SlideInTransition
             className="center w-5/6 gap-5"
