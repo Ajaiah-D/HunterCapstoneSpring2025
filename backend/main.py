@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
-from backend.db import SessionLocal, engine
-from backend import models
+from db import SessionLocal, engine
+import models
 import pickle
 import numpy as np
 
