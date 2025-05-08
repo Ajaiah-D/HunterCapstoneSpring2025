@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { RxHamburgerMenu } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import CustomLink from './CustomLink';
@@ -81,7 +82,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                     className="rounded-full bg-lightcoral p-2"
                     onClick={() => setIsMenuToggled(!isMenuToggled)}
                   >
-                    <Bars3Icon className="h-6 w-6 text-white" />
+                    <RxHamburgerMenu className="h-6 w-6 text-white" />
                   </button>
                 )}
 
