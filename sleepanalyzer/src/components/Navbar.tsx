@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
+import { RxHamburgerMenu } from "react-icons/rx";
+import { FaXmark } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid"
 import CustomLink from './CustomLink';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import { AuthContext } from './AuthProvider';
@@ -82,7 +83,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                     className="rounded-full bg-lightcoral p-2"
                     onClick={() => setIsMenuToggled(!isMenuToggled)}
                   >
-                    <Bars3Icon className="h-6 w-6 text-white" />
+                    <RxHamburgerMenu className="h-6 w-6 text-white" />
                   </button>
                 )}
 
@@ -100,7 +101,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                 >
                   <div className="flex justify-end p-12">
                     <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
-                      <XMarkIcon className="h-6 w-g text-pink-300" />
+                      <FaXmark className="h-6 w-g text-pink-300" />
                     </button>
                   </div>
                   <div className='center gap-10 text-2xl bg-[#33a7fa] p-10'>
