@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { RxHamburgerMenu } from "react-icons/rx";
+import { FaXmark } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import CustomLink from './CustomLink';
@@ -100,7 +101,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                 >
                   <div className="flex justify-end p-12">
                     <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
-                      <XMarkIcon className="h-6 w-g text-pink-300" />
+                      <FaXmark className="h-6 w-g text-pink-300" />
                     </button>
                   </div>
                   <div className='center gap-10 text-2xl bg-[#33a7fa] p-10'>
