@@ -5,9 +5,10 @@ type Props = {};
 
 const Why = (props: Props) => {
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
+  const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col";
 
   return (
-    <div className={`w-screen text-white`}>
+    <div className={`h-fit overflow-x-hidden text-white`}>
       <div className="center h-[80vh] bgoverlay">
         <h1 className="mt-50 text-6xl">Why Sleep Analzyer?</h1>
         <img
@@ -48,7 +49,7 @@ const Why = (props: Props) => {
             <h1 className="text-5xl">
               Why is not getting enough sleep a bad thing?
             </h1>
-            <p className="w-4/6 m-auto grid">
+            <p className="w-5/6">
               Sleep is critical to our development. Lack of sleep can lead to
               health problems, negatively affect your life, affect your
               judgement and even possibly endanger your life.
@@ -58,34 +59,42 @@ const Why = (props: Props) => {
             <h3 className="text-4xl pb-4 border-b-2 border-[#2C229E]">
               The Statistics
             </h3>
-            <div className={`center gap-5 text-black`}>
-              <div className="flex items-center justify-center gap-3 p-5 w-[50rem]">
-                <img src="src/assets/heartdisease.jpg" className="h-[300px]" />
-                <p className="p-5">
+            <div className={`center gap-5 text-black relative object-contain`}>
+              <div className={`flex ${flexDirection} items-center justify-center gap-3 p-5 w-[50rem]`}>
+                <img 
+                  src="src/assets/heartdisease.jpg" 
+                  className="max-w-2/5" />
+                <p className="p-10 max-w-1/2">
                   48% increased risk of developing heart disease
                 </p>
               </div>
-              <div className="flex items-center justify-center gap-3 p-5 w-[50rem]">
-                <img src="src/assets/diabetes.jpg" className="h-[300px]" />
-                <p className="p-5">
+              <div className={`flex ${flexDirection} items-center justify-center gap-3 p-5 w-[50rem]`}>
+                <img 
+                  src="src/assets/diabetes.jpg" 
+                  className="max-w-2/5" />
+                <p className="p-10 max-w-1/2">
                   3x more likely to develop Type II Diabetes
                 </p>
               </div>
-              <div className="flex items-center justify-center gap-3 p-5 w-[50rem]">
-                <img src="src/assets/dementia.jpg" className="h-[300px]" />
-                <p className="p-5">33% increased risk of dementia</p>
+              <div className={`flex ${flexDirection} items-center justify-center gap-3 p-5 w-[50rem]`}>
+                <img 
+                  src="src/assets/dementia.jpg" 
+                  className="max-w-2/5" />
+                <p className="p-10 max-w-1/">
+                  33% increased risk of dementia
+                </p>
               </div>
-              <div className="flex items-center justify-center gap-3 p-5 w-[50rem]">
+              <div className={`flex ${flexDirection} items-center justify-center gap-3 p-5`}>
                 <img
                   src="https://img.freepik.com/free-vector/car-crash-concept-illustration_114360-7980.jpg?t=st=1746773191~exp=1746776791~hmac=8bf5ead449ed8fc1b295762f03e2231b6a8569fb6c3b923e28f5f38ce9af467e&w=2000"
-                  className="h-[300px]"
+                  className="max-w-2/5"
                 />
-                <p className="p-5">
+                <p className="p-10 max-w-1/2">
                   Sleep debt have also caused lead to 6000 fatal car crashes
                   because 1 in 25 people fall asleep behind the wheel.
                 </p>
               </div>
-              <p className="text-right w-[45rem]">Source: John Hopkins</p>
+              <p className="absolute bottom-0">Source: John Hopkins</p>
             </div>
           </div>
         </div>
@@ -103,7 +112,7 @@ const Why = (props: Props) => {
           2023). This shows sleep analyzers are really effective.
         </p>
       </div>
-      
+
     </div>
   );
 };
