@@ -1,7 +1,9 @@
+import CustomLink from "@/components/CustomLink";
 import SlideInTransition from "@/components/SlideInTransition";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { FaHeartCrack } from "react-icons/fa6";
 import { PiBrainBold } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -10,10 +12,10 @@ const Why = (props: Props) => {
   const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col";
 
   const stats = [
-    {id: "heartdisease", headline: "48% increased risk", text: "of developing heart disease", image: "src/assets/heartdisease.jpg"},
+    {id: "heartdisease", headline: "48% increased risk", text: "of developing heart disease", image: "src/assets/heartdisease.jpeg"},
     {id: "diabetes", headline: "3x more likely", text: "to develop Type II Diabetes", image: "src/assets/diabetes.jpg"},
     {id: "dementia", headline: "33% increased risk", text: "of dementia", image: "src/assets/dementia.jpg"},
-    {id: "carcrash", headline: "6000 fatal", text: "car crashes because 1 in 25 people fall asleep behind the wheel", image: "https://img.freepik.com/free-vector/car-crash-concept-illustration_114360-7980.jpg?t=st=1746773191~exp=1746776791~hmac=8bf5ead449ed8fc1b295762f03e2231b6a8569fb6c3b923e28f5f38ce9af467e&w=2000"},
+    {id: "carcrash", headline: "6000 fatal", text: "car crashes because 1 in 25 people fall asleep behind the wheel", image: "src/assets/carcrash.jpeg"},
   ];
 
   return (
@@ -53,8 +55,8 @@ const Why = (props: Props) => {
         </div>
 
         {/* negative effects of sleep deprivation */}
-        <div className="p-20 gap-5 text-black">
-          <div className="bg-white p-20 rounded-3xl center gap-10">
+        <div className="p-10 gap-5 text-black">
+          <div className="bg-white p-10 pt-20 pb-20 rounded-3xl center gap-10">
             <h1 className="text-5xl">
               Why is not getting enough sleep a bad thing?
             </h1>
@@ -70,19 +72,25 @@ const Why = (props: Props) => {
             </h3>
             <div className={`center gap-5 text-black relative object-contain`}>
               {stats.map((stat) => (
-                <div key={stat.id} className={`flex ${flexDirection} items-center justify-between gap-3 p-5 w-[50rem]`}>
+                <div key={stat.id} className={`flex ${flexDirection} items-center justify-center gap-3 p-5 w-[50rem]`}>
                   <img
                     src={stat.image}
-                    className="max-w-2/5"
+                    className="w-[300px] rounded-full border-4 border-[#2C229E]"
                   />
-                  <div className="stat max-w-1/2">
+                  <div className="stat w-1/2">
                     <h1 className="text-4xl">{stat.headline}</h1>
                     <p className="">{stat.text}</p>
                   </div>
                 </div>
               ))}
             </div>
-            <p className="w-full text-right">Source: John Hopkins</p>
+            <CustomLink 
+              page="https://www.hopkinsmedicine.org/health/wellness-and-prevention/the-effects-of-sleep-deprivation" 
+              className="w-full text-right hover:text-[#4361FE] transition"
+              external={true}
+            >
+              Source: John Hopkins
+            </CustomLink>
           </div>
         </div>
       </div>
