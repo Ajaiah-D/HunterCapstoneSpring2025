@@ -59,7 +59,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
               className={`${flexBetween} w-full gap-16`}
               >
                 <div className="font-header">
-                  <CustomLink page="" textColor="white"> 
+                  <CustomLink page=""> 
                     Sleep 
                   </CustomLink>
                 </div>
@@ -69,13 +69,13 @@ const Navbar = ({ isTopOfPage }: Props) => {
 
                 { aboveMediumScreen ? (
                   <div className={`${flexBetween} gap-8`}>
-                    <CustomLink page="" textColor="white">Home</CustomLink>
-                    <CustomLink page="why" textColor="white">Why?</CustomLink>
-                    <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
-                    {/* <CustomLink page="mental" textColor="white">Mental Health</CustomLink> */}
-                    {user ? (<><CustomLink page="profile" textColor="white">Hello, {user.displayName || user.email}</CustomLink>
+                    <CustomLink page="">Home</CustomLink>
+                    <CustomLink page="why">Why?</CustomLink>
+                    <CustomLink page="analyze">Analyze</CustomLink>
+                    {/* <CustomLink page="mental">Mental Health</CustomLink> */}
+                    {user ? (<><CustomLink page="profile">Hello, {user.displayName || user.email}</CustomLink>
                       <CustomButton onClick={handleLogout} noOriginalStyle={true} customization="text-white underline hover:text-lightcoral transition">Log Out</CustomButton></>) : 
-                    (<CustomLink page="login" textColor="white">Login</CustomLink>)}
+                    (<CustomLink page="login">Login</CustomLink>)}
                   </div> ) 
                 : (
                   // create hamburger menu if screen size is not large
@@ -105,13 +105,13 @@ const Navbar = ({ isTopOfPage }: Props) => {
                     </button>
                   </div>
                   <div className='center gap-10 text-2xl bg-[#33a7fa] p-10'>
-                    <CustomLink page="" textColor="white">Home</CustomLink>
-                    <CustomLink page="why" textColor="white">Why?</CustomLink>
-                    <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
-                    <CustomLink page="mental" textColor="white">Mental Health</CustomLink>
+                    <CustomLink page="">Home</CustomLink>
+                    <CustomLink page="why">Why?</CustomLink>
+                    <CustomLink page="analyze">Analyze</CustomLink>
+                    <CustomLink page="mental">Mental Health</CustomLink>
                     {user ? (<button onClick={handleLogout} 
                     className="text-white underline hover:text-lightcoral transition">Log Out</button>) : 
-                    (<CustomLink page="login" textColor="white">Login</CustomLink>)}
+                    (<CustomLink page="login">Login</CustomLink>)}
                   </div>
                 </div>
               )}
