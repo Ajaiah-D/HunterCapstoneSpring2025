@@ -1,11 +1,20 @@
 import SlideInTransition from "@/components/SlideInTransition";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { FaHeartCrack } from "react-icons/fa6";
+import { PiBrainBold } from "react-icons/pi";
 
 type Props = {};
 
 const Why = (props: Props) => {
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
   const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col";
+
+  const stats = [
+    {id: "heartdisease", headline: "48% increased risk", text: "of developing heart disease", image: "src/assets/heartdisease.jpg"},
+    {id: "diabetes", headline: "3x more likely", text: "to develop Type II Diabetes", image: "src/assets/diabetes.jpg"},
+    {id: "dementia", headline: "33% increased risk", text: "of dementia", image: "src/assets/dementia.jpg"},
+    {id: "carcrash", headline: "6000 fatal", text: "car crashes because 1 in 25 people fall asleep behind the wheel", image: "https://img.freepik.com/free-vector/car-crash-concept-illustration_114360-7980.jpg?t=st=1746773191~exp=1746776791~hmac=8bf5ead449ed8fc1b295762f03e2231b6a8569fb6c3b923e28f5f38ce9af467e&w=2000"},
+  ];
 
   return (
     <div className={`h-fit overflow-x-hidden text-white`}>
@@ -60,42 +69,20 @@ const Why = (props: Props) => {
               The Statistics
             </h3>
             <div className={`center gap-5 text-black relative object-contain`}>
-              <div className={`flex ${flexDirection} items-center justify-center gap-3 p-5 w-[50rem]`}>
-                <img 
-                  src="src/assets/heartdisease.jpg" 
-                  className="max-w-2/5" />
-                <p className="p-10 max-w-1/2">
-                  48% increased risk of developing heart disease
-                </p>
-              </div>
-              <div className={`flex ${flexDirection} items-center justify-center gap-3 p-5 w-[50rem]`}>
-                <img 
-                  src="src/assets/diabetes.jpg" 
-                  className="max-w-2/5" />
-                <p className="p-10 max-w-1/2">
-                  3x more likely to develop Type II Diabetes
-                </p>
-              </div>
-              <div className={`flex ${flexDirection} items-center justify-center gap-3 p-5 w-[50rem]`}>
-                <img 
-                  src="src/assets/dementia.jpg" 
-                  className="max-w-2/5" />
-                <p className="p-10 max-w-1/">
-                  33% increased risk of dementia
-                </p>
-              </div>
-              <div className={`flex ${flexDirection} items-center justify-center gap-3 p-5`}>
-                <img
-                  src="https://img.freepik.com/free-vector/car-crash-concept-illustration_114360-7980.jpg?t=st=1746773191~exp=1746776791~hmac=8bf5ead449ed8fc1b295762f03e2231b6a8569fb6c3b923e28f5f38ce9af467e&w=2000"
-                  className="max-w-2/5"
-                />
-                <p className="p-10 max-w-1/2">
-                  Sleep debt have also caused lead to 6000 fatal car crashes
-                  because 1 in 25 people fall asleep behind the wheel.
-                </p>
-              </div>
-              <p className="absolute bottom-0">Source: John Hopkins</p>
+              {stats.map((stat) => (
+                <div key={stat.id} className={`flex ${flexDirection} items-center justify-between gap-3 p-5 w-[50rem]`}>
+                  <img
+                    src={stat.image}
+                    className="max-w-2/5"
+                  />
+                  <div className="stat max-w-1/2">
+                    <h1 className="text-4xl">{stat.headline}</h1>
+                    <p className="">{stat.text}</p>
+                  </div>
+                </div>
+              ))}
             </div>
+            <p className="w-full text-right">Source: John Hopkins</p>
           </div>
         </div>
       </div>
