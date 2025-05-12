@@ -27,7 +27,7 @@ const Home = (props: Props) => {
   ];
 
   return (
-    <section className="font-main text-white">
+    <section className="text-white">
       <ParallaxProvider>
 
         {/* welcome section */}
@@ -60,7 +60,7 @@ const Home = (props: Props) => {
         {/* why sleep analyzer section */}
         <div
           id="why"
-          className="p-10 pt-15 h-fit w-screen bg-[#080044] grid place-items-center overflow-y-hidden"
+          className="p-10 pt-15 h-fit w-screen bg-linear-to-b from-[#080044] to-[#2C229E] grid place-items-center overflow-y-hidden"
         >
           <SlideInTransition
             className="center w-fit gap-5 text-3xl"
@@ -73,9 +73,9 @@ const Home = (props: Props) => {
                 Lack of sleep can lead to:
               </p>
               {why.map((item) => (
-                <div key={item.id} className="flex gap-3 mt-5 text-left w-full">
+                <div key={item.id} className="flex gap-3 mt-5 text-left w-full bg-white rounded-2xl">
                   <p
-                    className="bg-white text-black w-full p-5"
+                    className="text-black w-full p-5"
                   >
                     {item.text}
                   </p>
@@ -96,7 +96,7 @@ const Home = (props: Props) => {
         {/* what we do section */}
         <div
           id="what"
-          className="text-white bg-linear-to-b from-[#080044] to-[#33A7FA] h-fit w-screen grid place-items-center overflow-y-hidden pb-5"
+          className="text-white bg-linear-to-b from-[#2C229E] via-[#4361FE] to-[#AF95F2] h-fit w-screen grid place-items-center overflow-y-hidden pb-5"
         >
           <SlideInTransition
             className="center w-screen gap-5"
