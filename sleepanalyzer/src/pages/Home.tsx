@@ -3,12 +3,14 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import { BsFillClipboard2DataFill } from "react-icons/bs";
 import { MdDataExploration } from "react-icons/md";
 import { MdSelfImprovement } from "react-icons/md";
+import { FaCircleArrowRight } from "react-icons/fa6";
 
 import { ParallaxProvider } from "react-scroll-parallax";
 import { TypeAnimation } from "react-type-animation";
 import ParallaxScroll from "@/components/ParallaxScroll";
 import CustomButton from "@/components/CustomButton";
 import SlideInTransition from "@/components/SlideInTransition";
+import { hover } from "framer-motion";
 
 type Props = {};
 
@@ -81,12 +83,14 @@ const Home = (props: Props) => {
                   </p>
                 </div>
               ))}
-              <div>
+              <div className="text-2xl mt-5 flex gap-2">
+                Learn More 
                 <CustomButton
                   page="why"
-                  customization="center mt-10 gap-2 text-[15px]"
+                  customization="translate-y-1"
+                  noOriginalStyle={true}
                 >
-                  Learn More
+                  <FaCircleArrowRight className="hover:fill-brightblue" />
                 </CustomButton>
               </div>
             </div>
@@ -116,12 +120,16 @@ const Home = (props: Props) => {
               </div>
             ))}
           </div>
+          <div className="text-2xl mt-5 flex gap-2">
+            Try It Out Now! 
             <CustomButton
-              page="analyze"
-              customization="center mt-10 gap-2"
+                  page="why"
+                  customization="translate-y-1"
+                  noOriginalStyle={true}
             >
-              Try It Now!
+              <FaCircleArrowRight className="hover:fill-brightblue" />
             </CustomButton>
+          </div>
           </SlideInTransition>
         </div>
                 
