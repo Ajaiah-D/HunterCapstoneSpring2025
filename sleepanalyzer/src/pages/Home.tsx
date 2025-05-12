@@ -66,7 +66,7 @@ const Home = (props: Props) => {
             className="center w-fit gap-5 text-3xl"
             repeat={true}
           >
-            <h1 className="text-5xl mb-10">Why Sleep Analyzer?</h1>
+            <h1 className="text-5xl">Why Sleep Analyzer?</h1>
             <img src="src/assets/insomnia.png" alt="Insomnia" />
             <div className="center">
               <p className="text-4xl w-3/4">
