@@ -44,7 +44,6 @@ const Navbar = ({ isTopOfPage }: Props) => {
           top-0 
           z-1000 
           w-full 
-          py-6 
           font-main 
           text-2xl
         `}
@@ -59,8 +58,8 @@ const Navbar = ({ isTopOfPage }: Props) => {
               className={`${flexBetween} w-full gap-16`}
               >
                 <div className="font-header">
-                  <CustomLink page=""> 
-                    Sleep 
+                  <CustomLink page="" className="flex items-center gap-2 text-white"> 
+                    <img src="src/assets/logo.png" alt="logo" className="h-32 w-32" />
                   </CustomLink>
                 </div>
                 
