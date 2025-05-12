@@ -33,8 +33,9 @@ const CustomInput = ({
                 border-2
                 border-white
                 m-2
-                bg-transparent
                 w-4/6
+                bg-white/20
+                text-black
             `}
     />
   );
