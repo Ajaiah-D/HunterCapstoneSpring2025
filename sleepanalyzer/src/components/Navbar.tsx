@@ -20,7 +20,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
 
   // scrolling will add a navbar background
-  const navbarBackground = isTopOfPage ? "" : "bg-[#4361FE] drop-shadow";
+  const navbarBackground = isTopOfPage ? "" : "bg-brightblue drop-shadow";
 
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -95,7 +95,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                              z-100 
                              w-[300px]
                              h-screen
-                           bg-[#4361FE]
+                           bg-brightblue
                              drop-shadow-xl"
                 >
                   <div className="flex justify-end p-12">
@@ -103,7 +103,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                       <FaXmark className="h-6 w-g text-pink-300" />
                     </button>
                   </div>
-                  <div className='center gap-10 text-2xl bg-[#4361FE] p-10'>
+                  <div className='center gap-10 text-2xl bg-brightblue p-10'>
                     <CustomLink page="">Home</CustomLink>
                     <CustomLink page="why">Why?</CustomLink>
                     <CustomLink page="analyze">Analyze</CustomLink>

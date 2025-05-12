@@ -29,7 +29,7 @@ const Why = (props: Props) => {
       </div>
 
       {/* explaining why we need sleep analyzer */}
-      <div className="bg-gradient-to-br from-[#AF95F2] to-[#4361FE] opacity-70">
+      <div className="bg-gradient-to-br from-softviolet to-brightblue opacity-70">
         <div className="center gap-10 p-40 pb-0">
           <h2 className="text-5xl p-4 mt-5">Because It's Necessary</h2>
           <p>
@@ -67,7 +67,7 @@ const Why = (props: Props) => {
             </p>
 
             {/* some numbers to prove why sleep debt is bad */}
-            <h3 className="text-4xl pb-4 border-b-2 border-[#2C229E]">
+            <h3 className="text-4xl pb-4 border-b-2 border-darkblue">
               The Statistics
             </h3>
             <div className={`center gap-5 text-black relative object-contain`}>
@@ -75,7 +75,7 @@ const Why = (props: Props) => {
                 <div key={stat.id} className={`flex ${flexDirection} items-center justify-center gap-3 p-5 w-[50rem]`}>
                   <img
                     src={stat.image}
-                    className="w-[300px] rounded-full border-4 border-[#2C229E]"
+                    className="w-[300px] rounded-full border-4 border-darkblue"
                   />
                   <div className="stat w-1/2">
                     <h1 className="text-4xl">{stat.headline}</h1>
@@ -86,7 +86,7 @@ const Why = (props: Props) => {
             </div>
             <CustomLink 
               page="https://www.hopkinsmedicine.org/health/wellness-and-prevention/the-effects-of-sleep-deprivation" 
-              className="w-full text-right hover:text-[#4361FE] transition"
+              className="w-full text-right hover:text-brightblue transition"
               external={true}
             >
               Source: John Hopkins
@@ -96,7 +96,7 @@ const Why = (props: Props) => {
       </div>
 
       {/* benefits of sleep analyzer */}
-      <div className="center p-30 gap-10 bg-gradient-to-tr from-[#4361FE] to-[#2C229E]">
+      <div className="center p-30 gap-10 bg-gradient-to-tr from-brightblue to-darkblue">
         <h1 className="text-6xl">What can a sleep analyzer do for you?</h1>
         <p>
           A sleep analyzer can help met the needs of everyone experiencing sleep

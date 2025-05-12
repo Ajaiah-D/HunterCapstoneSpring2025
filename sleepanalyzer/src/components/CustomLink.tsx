@@ -9,7 +9,7 @@ type Props = {
 };
 
 const CustomLink = ({ children, page, className, external }: Props) => {
-  const style = className ? className : "p-3 text-white active:underline hover:text-[#AF95F2] transition";
+  const style = className ? className : "p-3 text-white active:underline hover:text-softviolet transition";
   if (!external) {
     return (
       <Link

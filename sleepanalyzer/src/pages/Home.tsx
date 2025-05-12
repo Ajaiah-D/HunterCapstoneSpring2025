@@ -60,7 +60,7 @@ const Home = (props: Props) => {
         {/* why sleep analyzer section */}
         <div
           id="why"
-          className="p-10 pt-15 h-fit w-screen bg-linear-to-b from-[#080044] to-[#2C229E] grid place-items-center overflow-y-hidden"
+          className="p-10 pt-15 h-fit w-screen bg-linear-to-b from-[#080044] to-darkblue grid place-items-center overflow-y-hidden"
         >
           <SlideInTransition
             className="center w-fit gap-5 text-3xl"
@@ -96,7 +96,7 @@ const Home = (props: Props) => {
         {/* what we do section */}
         <div
           id="what"
-          className="text-white bg-linear-to-b from-[#2C229E] via-[#4361FE] to-[#AF95F2] h-fit w-screen grid place-items-center overflow-y-hidden pb-5"
+          className="text-white bg-linear-to-b from-darkblue via-brightblue to-softviolet h-fit w-screen grid place-items-center overflow-y-hidden pb-5"
         >
           <SlideInTransition
             className="center w-screen gap-5"
@@ -105,8 +105,8 @@ const Home = (props: Props) => {
           <div className="center gap-5 w-screen">
             <h1 className="text-5xl mt-10"> What do we do? </h1>
             {what.map((item) => (
-              <div key={item.id} className="flex flex-col gap-3 mt-5 p-5 text-left w-[90%] text-black bg-white border-2 border-[#33A7FA] rounded-lg">
-                <div className="text-5xl flex gap-5 border-b-2 border-[#33A7FA]">
+              <div key={item.id} className="flex flex-col gap-3 mt-5 p-5 text-left w-[90%] text-black bg-white border-2 border-skyblue rounded-lg">
+                <div className="text-5xl flex gap-5 border-b-2 border-skyblue">
                   {item.icon}
                   <h2 className="text-4xl mb-10">{item.header}</h2>
                 </div>

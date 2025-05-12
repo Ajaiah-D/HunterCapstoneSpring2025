@@ -12,8 +12,11 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 1060px;
   --font-header: "Molle", cursive;
-  --font-main: "Abel", sans-serif;
   --color-lightcoral: #F08E80;
+  --color-darkblue: #2C229E;
+  --color-brightblue: #4361FE;
+  --color-softviolet: #AF95F2; 
+  --color-skyblue: #33A7FA;
 }
 
 /* shared css across all pages */
