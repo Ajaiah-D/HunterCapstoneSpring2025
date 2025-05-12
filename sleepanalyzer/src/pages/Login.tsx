@@ -165,20 +165,6 @@ const Login = (props: Props) => {
           {/* signup part */}
           <form className="center gap-3 pt-5 h-full" hidden={onLogin}>
             <h1 className="text-3xl">Signup</h1>
-            {/* <div className="w-full">
-              <CustomInput
-                type="string"
-                placeholder="Name"
-                value={userSignupInfo.displayName}
-                title="name"
-                onChange={(e) =>
-                  setUserSignupInfo({
-                    ...userSignupInfo,
-                    displayName: e.target.value,
-                  })
-                }
-              />
-            </div> */}
             <div className="w-full">
               <CustomInput
                 type="email"
@@ -234,7 +220,7 @@ const Login = (props: Props) => {
               Already have an account?
               <CustomButton
                 noOriginalStyle={true}
-                customization="underline hover:text-lightcoral ml-1"
+                customization="underline hover:text-black ml-1"
                 onClick={(e) => {
                   setOnLogin(true);
                   setError("");
@@ -300,15 +286,12 @@ const Login = (props: Props) => {
               />
             </div>
             <div className="w-4/6 flex justify-between">
-              <div>
-                <label>
-                  Remember Me
-                  <input type="checkbox" className="ml-2" />
-                </label>
-              </div>
+              {/* placeholder to make button align to the right */}
+              <div></div>
+
               <CustomButton
                 noOriginalStyle={true}
-                customization="underline hover:text-lightcoral ml-5"
+                customization="underline hover:text-black ml-5"
               >
                 Forgot Password
               </CustomButton>
@@ -320,7 +303,7 @@ const Login = (props: Props) => {
               Don't have an account?
               <CustomButton
                 noOriginalStyle={true}
-                customization="underline hover:text-lightcoral ml-1"
+                customization="underline hover:text-black ml-1"
                 onClick={(e) => {
                   setOnLogin(false);
                   setError("");
@@ -333,7 +316,7 @@ const Login = (props: Props) => {
             {/* Leads to login page when clicked */}
             <div className="social-icons">
               <button
-                className="border-2 border-white rounded-xl p-2 flex gap-2"
+                className="border-2 border-white rounded-xl p-2 flex gap-2 bg-[url(@/assets/starfall.gif)] bg-cover hover:bg-bottom"
                 onClick={handleGoogleSignin}
                 disabled={loading}
               >
