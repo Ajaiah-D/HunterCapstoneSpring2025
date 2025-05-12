@@ -33,24 +33,28 @@ const Why = (props: Props) => {
         <div className="center gap-10 p-40 pb-0">
           <h2 className="text-5xl p-4 mt-5">Because It's Necessary</h2>
           <p>
-            Sleep is an essential part of our lives, and it plays a crucial role
-            in our overall health and well-being. However, many people struggle
-            with sleep-related issues, such as insomnia, sleep apnea, and
-            restless leg syndrome. These problems can lead to a range of
-            negative consequences, including fatigue, irritability, and
-            difficulty concentrating. A sleep analyzer can help identify these
-            issues and provide valuable insights into your sleep patterns.
+            Sleep is something we all need, but let’s be honest—it doesn’t always come easy. 
+            It’s such a big part of our overall health, affecting everything from our mood to 
+            our energy levels, but a lot of us still struggle to get enough of it. Whether 
+            it’s trouble falling asleep, waking up throughout the night, or dealing with things 
+            like insomnia or sleep apnea, sleep issues are more common than you might think.
           </p>
           <p>
-            Sleep deprivation and disorder is becoming increasingly prevalent
-            throughtout the world, including the US. According to the American
-            Academy of Sleep Medicine and HCA Healthcare, 54% of Americans and
-            60% of adolescents experience sleep deprivation. Almost 30% have
-            trouble falling asleep (National Health and Nutrition Examination
-            Survey, 2017-2020) and 70 million (about 1/5) of Americans have a
-            sleeping disorder. Due to this, almost 80% of adults want to improve
-            their sleep but only 40% of them have sought medical help (Phillips,
-            2019).
+            What’s even more eye-opening is how widespread these issues are. Sleep deprivation 
+            and disorders are on the rise all over the world, including right here in America. 
+            According to the American Academy of Sleep Medicine and HCA Healthcare, more than 
+            half of American adults—and 60% of teens—aren’t getting enough sleep.
+          </p>
+          <p>
+            On top of that, nearly 30% of people say they have trouble just falling asleep 
+            (National Health and Nutrition Examination Survey, 2017-2020), and about 70 million 
+            Americans—that’s one in five—have an actual diagnosed sleep disorder. So, if you’ve 
+            been struggling, you’re definitely not alone.
+          </p>
+          <p>
+            What’s surprising, though, is that even though nearly 80% of adults say they want to improve 
+            their sleep, only about 40% have talked to a doctor or sought any kind of help (Phillips, 2019). 
+            That’s a pretty big gap—and it shows just how important it is to start taking sleep seriously.
           </p>
         </div>
 
@@ -58,12 +62,12 @@ const Why = (props: Props) => {
         <div className="p-10 gap-5 text-black">
           <div className="bg-white p-10 pt-20 pb-20 rounded-3xl center gap-10">
             <h1 className="text-5xl">
-              Why is not getting enough sleep a bad thing?
+              Why should we care about sleep?
             </h1>
             <p className="w-5/6">
-              Sleep is critical to our development. Lack of sleep can lead to
-              health problems, negatively affect your life, affect your
-              judgement and even possibly endanger your life.
+              Sleep plays a big role in how we grow and function. When we don’t get enough 
+              of it, it can mess with our health, cloud our judgment, and in some cases, 
+              even put us in danger.
             </p>
 
             {/* some numbers to prove why sleep debt is bad */}
@@ -99,12 +103,13 @@ const Why = (props: Props) => {
       <div className="center p-30 gap-10 bg-gradient-to-tr from-brightblue to-darkblue">
         <h1 className="text-6xl">What can a sleep analyzer do for you?</h1>
         <p>
-          A sleep analyzer can help met the needs of everyone experiencing sleep
-          problems by tracking your sleep quality and patterns and ways on how
-          you can improve your sleep. As of right now, 77% of users have
-          reported sleep analyzers were helpful (AASM, 2023) and 68% of users
-          have improved their behavior and sleeping habits because of it (AASM,
-          2023). This shows sleep analyzers are really effective.
+          That’s when a sleep analyzer can really help. It tracks your sleep quality and patterns, 
+          then offers personalized tips to help you get better rest. And it’s not just a gimmick—
+          77% of users say a sleep analyzer has been helpful (AASM, 2023), and 68% have actually 
+          improved their sleep habits because of it (AASM, 2023). That kind of impact shows 
+          just how effective these tools can be, so if you’ve been struggling with sleep, 
+          a sleep analyzer might be the simple first step toward feeling better, thinking clearer, 
+          and finally getting the rest you deserve.
         </p>
       </div>
 
