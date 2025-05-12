@@ -136,7 +136,6 @@ const Login = (props: Props) => {
     <section
       className={`h-screen
                 center
-                font-main
                 text-header
                 p-15
                 w-full
@@ -144,17 +143,17 @@ const Login = (props: Props) => {
       id="login"
     >
       <div
-        className={`flex ${flexDirection} rounded-2xl w-5/6 ${heightLength} mt-5 text-white border-4 border-white`}
+        className={`flex ${flexDirection} rounded-2xl w-5/6 ${heightLength} mt-15 text-white border-4 border-white`}
       >
         <div className="flex-1">
 
           {/* the welcome message on the login page */}
 
           <motion.div
-            className="center gap-5 h-full pb-3 bg-white"
+            className="center gap-5 h-full p-2 bg-white"
             hidden={!onLogin}
           >
-            <h1 className="text-6xl font-header font-semibold bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text text-transparent">
+            <h1 className="text-6xl font-header font-semibold bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text text-transparent p-2">
               Welcome, Friend!
             </h1>
             <h2 className={`text-5xl bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text bg-left-top text-transparent ${messageVisible}`}>
@@ -163,7 +162,7 @@ const Login = (props: Props) => {
           </motion.div>
 
           {/* signup part */}
-          <form className="center gap-3 pt-5 h-full" hidden={onLogin}>
+          <form className="center gap-3 p-5 h-full" hidden={onLogin}>
             <h1 className="text-3xl">Signup</h1>
             <div className="w-full">
               <CustomInput
@@ -236,8 +235,8 @@ const Login = (props: Props) => {
         <div className="flex-1">
 
           {/* Welcome message to user on signup page  */}
-          <div className="center gap-5 pt-5 h-full bg-white" hidden={onLogin}>
-            <h1 className="text-6xl font-header font-semibold bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text text-transparent">
+          <div className="center gap-5 p-2 h-full bg-white" hidden={onLogin}>
+            <h1 className="text-6xl font-header font-semibold bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text text-transparent p-2">
               Hi, there!
             </h1>
             <h2 className="text-3xl bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text text-transparent">
