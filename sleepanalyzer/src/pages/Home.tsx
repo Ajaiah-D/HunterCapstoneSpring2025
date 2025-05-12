@@ -10,7 +10,6 @@ import { TypeAnimation } from "react-type-animation";
 import ParallaxScroll from "@/components/ParallaxScroll";
 import CustomButton from "@/components/CustomButton";
 import SlideInTransition from "@/components/SlideInTransition";
-import { hover } from "framer-motion";
 
 type Props = {};
 
