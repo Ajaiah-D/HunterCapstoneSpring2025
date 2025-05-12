@@ -1,18 +1,30 @@
 import React from "react";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { BsFillClipboard2DataFill } from "react-icons/bs";
+import { MdDataExploration } from "react-icons/md";
+import { MdSelfImprovement } from "react-icons/md";
+
 import { ParallaxProvider } from "react-scroll-parallax";
 import { TypeAnimation } from "react-type-animation";
 import ParallaxScroll from "@/components/ParallaxScroll";
 import CustomButton from "@/components/CustomButton";
-// import CustomInput from "@/components/CustomInput";
-import { motion } from "framer-motion";
-import { FaArrowRight } from "react-icons/fa";
 import SlideInTransition from "@/components/SlideInTransition";
 
 type Props = {};
 
 const Home = (props: Props) => {
   // const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
+  const why = [
+    {id: 1, text: "Greater risk in getting severe diseases"},
+    {id: 2, text: "Daytime sleepiness and less energy"},
+    {id: 3, text: "Poor sleep quality which has been linked to higher risk of heart disease"},
+  ];
+
+  const what = [
+    {id: 1, icon: <BsFillClipboard2DataFill />, header: "Analyze", text: "Analyze sleep data to help you better understand your sleep"},
+    {id: 2, icon: <MdSelfImprovement />, header: "Improve", text: "Recommend ways on how you can improve your sleep quality"},
+    {id: 3, icon: <MdDataExploration/> , header: "Track", text: "Save and track your sleep data so you can see how it has changed and improved."},
+  ];
 
   return (
     <section className="font-main text-white">
@@ -40,93 +52,78 @@ const Home = (props: Props) => {
                 className="uppercase sm:text-7xl md:text-8xl lg:text-9xl text-3xl [text-shadow:_0_10px_0_rgb(55_70_176_/_40%)]"
               />
             </div>
-            <p className="mt-8 text-2xl">The only way to understand sleep</p>
+            <p className="mt-8 text-4xl">The only way to understand sleep</p>
 
-            <div className="mt-8">
-              <CustomButton page="why">Learn More</CustomButton>
-            </div>
           </div>
         </ParallaxScroll>
 
         {/* why sleep analyzer section */}
         <div
           id="why"
-          className="p-10 h-screen w-screen bg-[#080044] grid place-items-center overflow-y-hidden"
+          className="p-10 pt-15 h-fit w-screen bg-[#080044] grid place-items-center overflow-y-hidden"
         >
           <SlideInTransition
-            className="center w-4/6 gap-3 text-3xl"
+            className="center w-fit gap-5 text-3xl"
             repeat={true}
           >
-            <h1 className="font-header text-5xl mb-10">Why Sleep Analyzer?</h1>
-            <p className="text-4xl">
-              Sleep is critical to our development, health and everyday life.
-            </p>
-            <p> Lack of sleep can lead to: </p>
-            <ul className="list-disc w-fit grid m-auto text-left">
-              <li>Greater risk in getting severe diseases</li>
-              <li>Daytime sleepiness and less energy</li>
-              <li>Poor sleep quality which has been linked to higher risk of heart disease</li>
-            </ul>
+            <h1 className="text-5xl mb-10">Why Sleep Analyzer?</h1>
+            <img src="src/assets/insomnia.png" alt="Insomnia" />
+            <div className="center">
+              <p className="text-4xl w-3/4">
+                Lack of sleep can lead to:
+              </p>
+              {why.map((item) => (
+                <div key={item.id} className="flex gap-3 mt-5 text-left w-full">
+                  <p
+                    className="bg-white text-black w-full p-5"
+                  >
+                    {item.text}
+                  </p>
+                </div>
+              ))}
+              <div>
+                <CustomButton
+                  page="why"
+                  customization="center mt-10 gap-2 text-[15px]"
+                >
+                  Learn More
+                </CustomButton>
+              </div>
+            </div>
           </SlideInTransition>
         </div>
 
         {/* what we do section */}
         <div
           id="what"
-          className="p-10 text-white bg-linear-to-b from-[#080044] to-[#33A7FA] h-screen grid place-items-center overflow-y-hidden"
+          className="text-white bg-linear-to-b from-[#080044] to-[#33A7FA] h-fit w-screen grid place-items-center overflow-y-hidden pb-5"
         >
           <SlideInTransition
-            className="center w-5/6 gap-5"
+            className="center w-screen gap-5"
             repeat={true}
           >
-            <h1 className="font-header text-5xl mb-10">What do we do?</h1>
-            <div className="gap-10 center">
-              <div className="flex-1">
-                <h2 className="font-header text-5xl mb-10">Analyze</h2>
-                <h3>
-                  {" "}
-                  Analzye sleep data to help you better understand your sleep{" "}
-                </h3>
+          <div className="center gap-5 w-screen">
+            <h1 className="text-5xl mt-10"> What do we do? </h1>
+            {what.map((item) => (
+              <div key={item.id} className="flex flex-col gap-3 mt-5 p-5 text-left w-[90%] text-black bg-white border-2 border-[#33A7FA] rounded-lg">
+                <div className="text-5xl flex gap-5 border-b-2 border-[#33A7FA]">
+                  {item.icon}
+                  <h2 className="text-4xl mb-10">{item.header}</h2>
+                </div>
+                <div>
+                  <p>{item.text}</p>
+                </div>
               </div>
-              <div className="flex-1">
-                <h2 className="font-header text-5xl mb-10">Recommend</h2>
-                <h3>
-                  {" "}
-                  Recommend ways on how you can improve your sleep quality{" "}
-                </h3>
-              </div>
-              <div className="flex-1">
-                <h2 className="font-header text-5xl mb-10">Track</h2>
-                <h3>
-                  {" "}
-                  Save and track your sleep data so you can see how it has
-                  changed and improved.{" "}
-                </h3>
-              </div>
-            </div>
+            ))}
+          </div>
             <CustomButton
               page="analyze"
               customization="center mt-10 gap-2"
-              noOriginalStyle={true}
             >
-              <FaArrowRight />
               Try It Now!
             </CustomButton>
           </SlideInTransition>
         </div>
-
-        {/* contacts section */}
-        {/* <div id="contacts" className="p-10 text-black bg-lightcoral h-screen grid place-items-center">
-                    <div className="w-full gap-3 p-5 center">
-                        <h1 className="font-header text-5xl mb-10">Need help? Contact us</h1>
-                        <CustomInput placeholder="Name" type="string" title="Name">
-                        </CustomInput>
-                        <CustomInput placeholder="Email" type="email" title="Email">
-                        </CustomInput>
-                        <CustomInput placeholder="Message" type="string" title="Message" customization="h-[200px] text-wrap">
-                        </CustomInput>
-                    </div>
-                </div> */}
                 
       </ParallaxProvider>
     </section>
