@@ -7,13 +7,17 @@ import CustomLink from './CustomLink';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import { AuthContext } from './AuthProvider';
 import CustomButton from './CustomButton';
+import { User } from 'firebase/auth';
 
 type Props = {
   isTopOfPage: boolean;
+  currentUser: User | null;
 };
 
-const Navbar = ({ isTopOfPage }: Props) => {
+const Navbar = ({ isTopOfPage, currentUser }: Props) => {
   const flexBetween = "flex items-center justify-between";
+
+  const { logOut } = useContext(AuthContext);
 
   // changes navbar dependinng on screen size
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
@@ -21,8 +25,6 @@ const Navbar = ({ isTopOfPage }: Props) => {
 
   // scrolling will add a navbar background
   const navbarBackground = isTopOfPage ? "" : "bg-brightblue drop-shadow";
-
-  const { user, logOut } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -73,7 +75,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                     <CustomLink page="why">Why?</CustomLink>
                     <CustomLink page="analyze">Analyze</CustomLink>
                     {/* <CustomLink page="mental">Mental Health</CustomLink> */}
-                    {user ? (<><CustomLink page="profile">Hello, {user.displayName || user.email}</CustomLink>
+                    {currentUser ? (<><CustomLink page="profile">Hello, {currentUser.displayName || currentUser.email}</CustomLink>
                       <CustomButton onClick={handleLogout} noOriginalStyle={true} customization="text-white underline hover:text-lightcoral transition">Log Out</CustomButton></>) : 
                     (<CustomLink page="login">Login</CustomLink>)}
                   </div> ) 
@@ -109,7 +111,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                     <CustomLink page="why">Why?</CustomLink>
                     <CustomLink page="analyze">Analyze</CustomLink>
                     {/* <CustomLink page="mental">Mental Health</CustomLink> */}
-                    {user ? (<><CustomLink page="profile">Hello, {user.displayName || user.email}</CustomLink>
+                    {currentUser ? (<><CustomLink page="profile">Hello, {currentUser.displayName || currentUser.email}</CustomLink>
                       <CustomButton onClick={handleLogout} noOriginalStyle={true} customization="text-white underline hover:text-lightcoral transition">Log Out</CustomButton></>) : 
                     (<CustomLink page="login">Login</CustomLink>)}
                   </div>
