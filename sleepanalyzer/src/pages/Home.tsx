@@ -1,4 +1,4 @@
-import useMediaQuery from "@/hooks/useMediaQuery";
+// import useMediaQuery from "@/hooks/useMediaQuery";
 import { BsFillClipboard2DataFill } from "react-icons/bs";
 import { MdDataExploration } from "react-icons/md";
 import { MdSelfImprovement } from "react-icons/md";
