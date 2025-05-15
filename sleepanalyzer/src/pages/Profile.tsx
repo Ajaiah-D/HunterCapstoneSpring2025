@@ -100,12 +100,12 @@ const Profile = () => {
             placeholder={displayName} 
             type="string" 
             onChange={(e) => setDisplayName(e.target.value)} 
-          />
-          <CustomButton
-          noOriginalStyle={true}
-          onClick={handleUpdate}
-          disabled={loading}
-          >
+            />
+            <CustomButton
+            noOriginalStyle={true}
+            onClick={handleUpdate}
+            disabled={loading}
+            >
             <LuPencil />
           </CustomButton>
           </div>
