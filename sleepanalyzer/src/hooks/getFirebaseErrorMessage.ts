@@ -22,6 +22,10 @@ const getFirebaseErrorMessage = (code: string) => {
       message = "Incorrect Password";
       break;
 
+    case "auth/missing-password";
+      message = "Password must be provided";
+      break;
+
     case "auth/too-many-requests":
       message = "You're exceed the limit. Try again after sometime.";
       break;
