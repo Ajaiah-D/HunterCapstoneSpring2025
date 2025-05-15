@@ -107,7 +107,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                     <CustomLink page="">Home</CustomLink>
                     <CustomLink page="why">Why?</CustomLink>
                     <CustomLink page="analyze">Analyze</CustomLink>
-                    <CustomLink page="mental">Mental Health</CustomLink>
+                    {/* <CustomLink page="mental">Mental Health</CustomLink> */}
                     {user ? (<button onClick={handleLogout} 
                     className="text-white underline hover:text-lightcoral transition">Log Out</button>) : 
                     (<CustomLink page="login">Login</CustomLink>)}
