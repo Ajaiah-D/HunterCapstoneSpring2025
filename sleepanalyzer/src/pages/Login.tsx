@@ -330,34 +330,6 @@ const Login = (props: Props) => {
         
       </div>
 
-      <motion.div
-        variants={{
-            hidden: {
-                opacity: 0,
-            },
-            visible: {
-                opacity: 1,
-                transition: { type: 'spring', delay: 0.1 },
-            },
-            exit: {
-                opacity: 0,
-                transition: { ease: 'easeInOut' },
-            },
-        }}
-        initial="hidden"
-        exit="exit"
-        animate={controls}
-        transition={{ duration: 0.5 }}
-        className="flex flex-col items-center justify-center h-screen bg-gray-100"
-    >
-        <h1 className="text-6xl">
-            Forgot Password
-        </h1>
-        <form action="">
-
-        </form>
-    </motion.div>
-
       {/* Error message if there is an error */}
       {error && 
           <div 
