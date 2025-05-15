@@ -10,6 +10,7 @@ import Login from "@/pages/Login";
 // import Mental from "@/pages/Mental";
 import Why from "@/pages/Why";
 import Profile from "@/pages/Profile";
+import Error from "@/pages/Error";
 
 // components to protect or determine what pages show
 import AuthProvider from "@/components/AuthProvider";
@@ -37,8 +38,6 @@ function App() {
           <Navbar isTopOfPage={isTopOfPage} />
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* Forces page to go to homepage if path does not exist */}
-            <Route path="*" element={<Navigate to="/" />} />
             <Route path="Why" element={<Why />} />
             <Route path="Analyze" element={<Analyze />} />
             {/* <Route path="Mental" element={<Mental />} /> */}
@@ -49,7 +48,7 @@ function App() {
               <Route path="Profile" element={<Profile />} />
             </Route>
 
-            <Route path="*" element={<Login />}/>
+            <Route path="*" element={<Error />}/>
             
           </Routes>
         </BrowserRouter>
