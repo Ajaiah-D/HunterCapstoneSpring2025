@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
@@ -14,16 +14,16 @@ import Error from "@/pages/Error";
 import ForgotPassword from "@/pages/ForgotPassword";
 
 // components to protect or determine what pages show
-import AuthProvider from "@/components/AuthProvider";
+import AuthProvider, { AuthContext } from "@/components/AuthProvider";
 import ProtectedRoutes from "@/components/ProtectedRoutes";
-import { auth } from "./firebaseConfig";
-
+import useAuth from "./hooks/useAuth";
 
 function App() {
-  const user = auth.currentUser;
-  console.log("login: ", user);
-  //creates a background for navbar if we scroll
+  const { user } = useAuth();
+
+  // creates a background for navbar if we scroll, so we can see nav bar
   const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY === 0) {
@@ -35,11 +35,13 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // end of create background for navbar
+
   return (
     <>
       <AuthProvider>
         <BrowserRouter>
-          <Navbar isTopOfPage={isTopOfPage} />
+          <Navbar isTopOfPage={isTopOfPage} currentUser={user}/>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="Why" element={<Why />} />
