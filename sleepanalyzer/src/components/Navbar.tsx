@@ -19,6 +19,8 @@ const Navbar = ({ isTopOfPage, currentUser }: Props) => {
 
   const { logOut } = useContext(AuthContext);
 
+  console.log(currentUser);
+
   // changes navbar dependinng on screen size
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
@@ -96,9 +98,9 @@ const Navbar = ({ isTopOfPage, currentUser }: Props) => {
                              right-0 
                              top-0
                              z-100 
-                             w-[2/5]
+                             w-fit
                              h-screen
-                           bg-brightblue
+                             bg-brightblue
                              drop-shadow-xl"
                 >
                   <div className="flex justify-end p-12">
