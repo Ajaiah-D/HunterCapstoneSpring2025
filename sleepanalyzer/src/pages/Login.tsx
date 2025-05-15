@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { RiGoogleLine } from "react-icons/ri";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
@@ -7,10 +7,8 @@ import CustomButton from "@/components/CustomButton";
 import { AuthContext } from "@/components/AuthProvider";
 import { useNavigate } from "react-router";
 import { UserLogin, UserSignup } from "@/types/interface";
-import { auth } from "@/firebaseConfig";
 import { motion } from "framer-motion";
-
-type Props = {};
+import getFirebaseErrorMessage from "@/hooks/getFirebaseErrorMessage";
 
 const userLoggingIn: UserLogin = {
   email: "",
@@ -24,7 +22,7 @@ const newUser: UserSignup = {
   displayName: "",
 };
 
-const Login = (props: Props) => {
+const Login = () => {
 
   /* change flex direction of section if screen size is too small */
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
@@ -32,7 +30,7 @@ const Login = (props: Props) => {
   const messageVisible = aboveMediumScreen ? "visible" : "hidden";
   const aboveSmallScreen = useMediaQuery("(min-width: 600px)");
   const heightLength = aboveSmallScreen ? "h-screen" : "h-fit";
-
+  
   // determines if the button should be disabled on not, prevents double checking 
   const [loading, setLoading] = useState(false);
 
@@ -41,20 +39,19 @@ const Login = (props: Props) => {
 
   const [userLoginInfo, setUserLoginInfo] = useState(userLoggingIn);
   const [userSignupInfo, setUserSignupInfo] = useState(newUser);
-  const [error, setError] = useState("");
+  const [error, setError] = useState<String | null>(null);
 
 
-    const { googleSignIn, logIn, signUp, user } =
-        useContext(AuthContext);
+  const { googleSignIn, logIn, signUp, user } = useContext(AuthContext);
         
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-      if (user) {
+  useEffect(() => {
+    if (user) {
         navigate("/profile");
-      }
-    }, [user]);
+    }
+  }, [user]);
 
 
   // google login and sign up
@@ -68,11 +65,11 @@ const Login = (props: Props) => {
       if (
         typeof error === "object" &&
         error &&
-        "message" in error &&
-        typeof error.message === "string"
+        "code" in error &&
+        typeof error.code === "string"
       ) {
         // message gets narrowed to string!
-        setError(error.message);
+        setError(getFirebaseErrorMessage(error.code));
         console.log(error);
       }
     }
@@ -90,12 +87,13 @@ const Login = (props: Props) => {
       if (
         typeof error === "object" &&
         error &&
-        "message" in error &&
-        typeof error.message === "string"
+        "code" in error &&
+        typeof error.code === "string"
       ) {
         setLoading(false);
         // message gets narrowed to string!
-        return setError(error.message);
+        setError(getFirebaseErrorMessage(error.code));
+        console.log(error);
       }
     }
   };
@@ -117,11 +115,13 @@ const Login = (props: Props) => {
       if (
         typeof error === "object" &&
         error &&
-        "message" in error &&
-        typeof error.message === "string"
+        "code" in error &&
+        typeof error.code === "string" 
       ) {
+        setLoading(false);
         // message gets narrowed to string!
-        setError(error.message);
+        setError(getFirebaseErrorMessage(error.code));
+        console.log(error);
       }
     }
     setLoading(false);
@@ -129,14 +129,12 @@ const Login = (props: Props) => {
 
   // login motion
   // TO DO: add motion when changing between login and sign up pages
-
   console.log("Login page rendered!");
 
   return (
     <section
       className={`h-screen
                 center
-                font-main
                 text-header
                 p-15
                 w-full
@@ -144,17 +142,17 @@ const Login = (props: Props) => {
       id="login"
     >
       <div
-        className={`flex ${flexDirection} rounded-2xl w-5/6 ${heightLength} mt-5 text-white border-4 border-white`}
+        className={`flex ${flexDirection} rounded-2xl w-5/6 ${heightLength} mt-15 text-white border-4 border-white`}
       >
         <div className="flex-1">
 
           {/* the welcome message on the login page */}
 
           <motion.div
-            className="center gap-5 h-full pb-3 bg-white"
+            className="center gap-5 h-full p-2 bg-white"
             hidden={!onLogin}
           >
-            <h1 className="text-6xl font-header font-semibold bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text text-transparent">
+            <h1 className="text-6xl font-header font-semibold bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text text-transparent p-2">
               Welcome, Friend!
             </h1>
             <h2 className={`text-5xl bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text bg-left-top text-transparent ${messageVisible}`}>
@@ -163,22 +161,8 @@ const Login = (props: Props) => {
           </motion.div>
 
           {/* signup part */}
-          <form className="center gap-3 pt-5 h-full" hidden={onLogin}>
+          <form className="center gap-3 p-5 h-full" hidden={onLogin}>
             <h1 className="text-3xl">Signup</h1>
-            {/* <div className="w-full">
-              <CustomInput
-                type="string"
-                placeholder="Name"
-                value={userSignupInfo.displayName}
-                title="name"
-                onChange={(e) =>
-                  setUserSignupInfo({
-                    ...userSignupInfo,
-                    displayName: e.target.value,
-                  })
-                }
-              />
-            </div> */}
             <div className="w-full">
               <CustomInput
                 type="email"
@@ -234,8 +218,8 @@ const Login = (props: Props) => {
               Already have an account?
               <CustomButton
                 noOriginalStyle={true}
-                customization="underline hover:text-lightcoral ml-1"
-                onClick={(e) => {
+                customization="underline hover:text-black ml-1"
+                onClick={() => {
                   setOnLogin(true);
                   setError("");
                 }}
@@ -250,8 +234,8 @@ const Login = (props: Props) => {
         <div className="flex-1">
 
           {/* Welcome message to user on signup page  */}
-          <div className="center gap-5 pt-5 h-full bg-white" hidden={onLogin}>
-            <h1 className="text-6xl font-header font-semibold bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text text-transparent">
+          <div className="center gap-5 p-2 h-full bg-white" hidden={onLogin}>
+            <h1 className="text-6xl font-header font-semibold bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text text-transparent p-2">
               Hi, there!
             </h1>
             <h2 className="text-3xl bg-[url(@/assets/starfall.gif)] bg-cover bg-clip-text text-transparent">
@@ -272,7 +256,7 @@ const Login = (props: Props) => {
           </div>
 
           {/* Login Part */}
-          <form className="center gap-3 h-full pt-5 pb-5" hidden={!onLogin}>
+          <form name = "login" className="center gap-3 h-full pt-5 pb-5" hidden={!onLogin}>
             <h1 className="text-5xl">Login</h1>
             <div className="w-full">
               <CustomInput
@@ -300,15 +284,12 @@ const Login = (props: Props) => {
               />
             </div>
             <div className="w-4/6 flex justify-between">
-              <div>
-                <label>
-                  Remember Me
-                  <input type="checkbox" className="ml-2" />
-                </label>
-              </div>
+              <div></div>
+
               <CustomButton
                 noOriginalStyle={true}
-                customization="underline hover:text-lightcoral ml-5"
+                customization="underline hover:text-black ml-5"
+                page="ForgotPassword"
               >
                 Forgot Password
               </CustomButton>
@@ -320,8 +301,8 @@ const Login = (props: Props) => {
               Don't have an account?
               <CustomButton
                 noOriginalStyle={true}
-                customization="underline hover:text-lightcoral ml-1"
-                onClick={(e) => {
+                customization="underline hover:text-black ml-1"
+                onClick={() => {
                   setOnLogin(false);
                   setError("");
                 }}
@@ -333,7 +314,7 @@ const Login = (props: Props) => {
             {/* Leads to login page when clicked */}
             <div className="social-icons">
               <button
-                className="border-2 border-white rounded-xl p-2 flex gap-2"
+                className="border-2 border-white rounded-xl p-2 flex gap-2 bg-[url(@/assets/starfall.gif)] bg-cover hover:bg-bottom"
                 onClick={handleGoogleSignin}
                 disabled={loading}
               >

@@ -1,18 +1,21 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext,useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  sendEmailVerification,
   signOut,
   User,
   GoogleAuthProvider,
   updatePassword,
   updateProfile,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { UserLogin, UserSignup } from "@/types/interface";
-import { abort } from "process";
+import Loading from "@/pages/Loading";
+import useAuth from "@/hooks/useAuth";
 
 type Props = {
   children: React.ReactNode;
@@ -25,6 +28,9 @@ type AuthContextData = {
   logOut: typeof logOut;
   googleSignIn: typeof googleSignIn;
   updateUsername: typeof updateUsername;
+  changePassword: typeof changePassword;
+  forgotPassword: typeof forgotPassword;
+  verifyEmail: typeof verifyEmail;
 };
 
 const logIn = (creds: UserLogin) => {
@@ -34,6 +40,10 @@ const logIn = (creds: UserLogin) => {
 const signUp = (creds: UserSignup) => {
   return createUserWithEmailAndPassword(auth, creds.email, creds.password);
 };
+
+const verifyEmail = (user: User) => {
+  return sendEmailVerification(user);
+}
 
 const logOut = () => {
   return signOut(auth);
@@ -45,12 +55,16 @@ const googleSignIn = () => {
 };
 
 const updateUsername = (user: User, displayName: string) => {
-  const updatedUser = updateProfile(user, { displayName: displayName });
-  if (auth.currentUser != null) {
-    auth.updateCurrentUser(user);
-  }
-  return updatedUser;
+  return updateProfile(user, { displayName: displayName });
 };
+
+const changePassword = (user: User, newPassword: string) => {
+  return updatePassword(user, newPassword);
+}
+
+const forgotPassword = (email: string) => {
+  return sendPasswordResetEmail(auth, email);
+}
 
 // what we are going to pass and use on other pages
 const AuthContext = createContext<AuthContextData>({
@@ -60,10 +74,13 @@ const AuthContext = createContext<AuthContextData>({
   logOut,
   googleSignIn,
   updateUsername,
+  changePassword,
+  forgotPassword,
+  verifyEmail,
 });
 
 const AuthProvider = ({ children }: Props) => {
-  const [user, setUser] = useState<User | null>(null);
+  const {user, pending} = useAuth();
 
   const value = {
     user,
@@ -72,15 +89,14 @@ const AuthProvider = ({ children }: Props) => {
     logOut,
     googleSignIn,
     updateUsername,
+    changePassword,
+    forgotPassword,
+    verifyEmail,
   };
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-          setUser(currentUser);
-          console.log("Auth state changed:", currentUser);
-        });
-        return () => unsubscribe();
-      }, []);
+  if (pending) {
+    return <><Loading/></>
+  }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

@@ -1,27 +1,33 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
+import { RxHamburgerMenu } from "react-icons/rx";
+import { FaXmark } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid"
 import CustomLink from './CustomLink';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import { AuthContext } from './AuthProvider';
 import CustomButton from './CustomButton';
+import { User } from 'firebase/auth';
 
 type Props = {
   isTopOfPage: boolean;
+  currentUser: User | null;
 };
 
-const Navbar = ({ isTopOfPage }: Props) => {
+const Navbar = ({ isTopOfPage, currentUser }: Props) => {
   const flexBetween = "flex items-center justify-between";
+
+  const { logOut } = useContext(AuthContext);
+
+  console.log(currentUser);
 
   // changes navbar dependinng on screen size
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
 
   // scrolling will add a navbar background
-  const navbarBackground = isTopOfPage ? "" : "bg-[#33a7fa] drop-shadow";
+  const navbarBackground = isTopOfPage ? "" : "bg-brightblue drop-shadow";
 
-  const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -43,7 +49,6 @@ const Navbar = ({ isTopOfPage }: Props) => {
           top-0 
           z-1000 
           w-full 
-          py-6 
           font-main 
           text-2xl
         `}
@@ -58,8 +63,8 @@ const Navbar = ({ isTopOfPage }: Props) => {
               className={`${flexBetween} w-full gap-16`}
               >
                 <div className="font-header">
-                  <CustomLink page="" textColor="white"> 
-                    Sleep 
+                  <CustomLink page="" pic={true} className="flex items-center gap-2 text-white"> 
+                    <img src="src/assets/logo.png" alt="logo" className="h-32 w-32" />
                   </CustomLink>
                 </div>
                 
@@ -68,13 +73,13 @@ const Navbar = ({ isTopOfPage }: Props) => {
 
                 { aboveMediumScreen ? (
                   <div className={`${flexBetween} gap-8`}>
-                    <CustomLink page="" textColor="white">Home</CustomLink>
-                    <CustomLink page="why" textColor="white">Why?</CustomLink>
-                    <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
-                    {/* <CustomLink page="mental" textColor="white">Mental Health</CustomLink> */}
-                    {user ? (<><CustomLink page="profile" textColor="white">Hello, {user.displayName || user.email}</CustomLink>
+                    <CustomLink page="">Home</CustomLink>
+                    <CustomLink page="why">Why?</CustomLink>
+                    <CustomLink page="analyze">Analyze</CustomLink>
+                    {/* <CustomLink page="mental">Mental Health</CustomLink> */}
+                    {currentUser ? (<><CustomLink page="profile">Hello, {currentUser.displayName || currentUser.email}</CustomLink>
                       <CustomButton onClick={handleLogout} noOriginalStyle={true} customization="text-white underline hover:text-lightcoral transition">Log Out</CustomButton></>) : 
-                    (<CustomLink page="login" textColor="white">Login</CustomLink>)}
+                    (<CustomLink page="login">Login</CustomLink>)}
                   </div> ) 
                 : (
                   // create hamburger menu if screen size is not large
@@ -82,7 +87,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                     className="rounded-full bg-lightcoral p-2"
                     onClick={() => setIsMenuToggled(!isMenuToggled)}
                   >
-                    <Bars3Icon className="h-6 w-6 text-white" />
+                    <RxHamburgerMenu className="h-6 w-6 text-white" />
                   </button>
                 )}
 
@@ -93,24 +98,24 @@ const Navbar = ({ isTopOfPage }: Props) => {
                              right-0 
                              top-0
                              z-100 
-                             w-[300px]
+                             w-fit
                              h-screen
-                           bg-[#33a7fa]
+                             bg-brightblue
                              drop-shadow-xl"
                 >
                   <div className="flex justify-end p-12">
                     <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
-                      <XMarkIcon className="h-6 w-g text-pink-300" />
+                      <FaXmark className="h-6 w-g text-pink-300" />
                     </button>
                   </div>
-                  <div className='center gap-10 text-2xl bg-[#33a7fa] p-10'>
-                    <CustomLink page="" textColor="white">Home</CustomLink>
-                    <CustomLink page="why" textColor="white">Why?</CustomLink>
-                    <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
-                    <CustomLink page="mental" textColor="white">Mental Health</CustomLink>
-                    {user ? (<button onClick={handleLogout} 
-                    className="text-white underline hover:text-lightcoral transition">Log Out</button>) : 
-                    (<CustomLink page="login" textColor="white">Login</CustomLink>)}
+                  <div className='center gap-10 text-2xl bg-brightblue p-10'>
+                    <CustomLink page="">Home</CustomLink>
+                    <CustomLink page="why">Why?</CustomLink>
+                    <CustomLink page="analyze">Analyze</CustomLink>
+                    {/* <CustomLink page="mental">Mental Health</CustomLink> */}
+                    {currentUser ? (<><CustomLink page="profile">Hello, {currentUser.displayName || currentUser.email}</CustomLink>
+                      <CustomButton onClick={handleLogout} noOriginalStyle={true} customization="text-white underline hover:text-lightcoral transition">Log Out</CustomButton></>) : 
+                    (<CustomLink page="login">Login</CustomLink>)}
                   </div>
                 </div>
               )}
