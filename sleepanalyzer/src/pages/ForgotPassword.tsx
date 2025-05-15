@@ -45,8 +45,11 @@ const ForgotPassword = (props: Props) => {
           onChange={(e) => setEmail(e.target.value)}
           value={email}
         />
-        <CustomButton onClick={handleForgotPassword} disabled={disabled}>
+        <CustomButton onClick={handleForgotPassword} disabled={disabled} >
           Send Email
+        </CustomButton>
+        <CustomButton page="login" disabled={disabled} >
+          Go To Login
         </CustomButton>
       </form>
 
