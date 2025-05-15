@@ -16,10 +16,11 @@ import ForgotPassword from "@/pages/ForgotPassword";
 // components to protect or determine what pages show
 import AuthProvider from "@/components/AuthProvider";
 import ProtectedRoutes from "@/components/ProtectedRoutes";
+import { getAuth } from "firebase/auth";
 
 
 function App() {
-
+  const currentUser = getAuth().currentUser;
   //creates a background for navbar if we scroll
   const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
   useEffect(() => {
@@ -43,7 +44,7 @@ function App() {
             <Route path="Why" element={<Why />} />
             <Route path="Analyze" element={<Analyze />} />
             {/* <Route path="Mental" element={<Mental />} /> */}
-            <Route path="Login" element={<Login />} />
+            {!currentUser && <Route path="Login" element={<Login />} />}
             <Route path="ForgotPassword" element={<ForgotPassword />} />
 
             {/* can only access after logging in */}
