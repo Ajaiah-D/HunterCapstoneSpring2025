@@ -10,8 +10,6 @@ import { UserLogin, UserSignup } from "@/types/interface";
 import { motion, useAnimationControls } from "framer-motion";
 import getFirebaseErrorMessage from "@/hooks/getFirebaseErrorMessage";
 
-type Props = {};
-
 const userLoggingIn: UserLogin = {
   email: "",
   password: "",
@@ -24,7 +22,7 @@ const newUser: UserSignup = {
   displayName: "",
 };
 
-const Login = (props: Props) => {
+const Login = () => {
 
   /* change flex direction of section if screen size is too small */
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
@@ -32,9 +30,7 @@ const Login = (props: Props) => {
   const messageVisible = aboveMediumScreen ? "visible" : "hidden";
   const aboveSmallScreen = useMediaQuery("(min-width: 600px)");
   const heightLength = aboveSmallScreen ? "h-screen" : "h-fit";
-
-  const controls = useAnimationControls();
-
+  
   // determines if the button should be disabled on not, prevents double checking 
   const [loading, setLoading] = useState(false);
 
