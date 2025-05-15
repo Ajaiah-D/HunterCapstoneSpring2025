@@ -7,7 +7,7 @@ import CustomButton from "@/components/CustomButton";
 import { AuthContext } from "@/components/AuthProvider";
 import { useNavigate } from "react-router";
 import { UserLogin, UserSignup } from "@/types/interface";
-import { motion } from "framer-motion";
+import { motion, useAnimationControls } from "framer-motion";
 import getFirebaseErrorMessage from "@/hooks/getFirebaseErrorMessage";
 
 type Props = {};
@@ -33,6 +33,8 @@ const Login = (props: Props) => {
   const aboveSmallScreen = useMediaQuery("(min-width: 600px)");
   const heightLength = aboveSmallScreen ? "h-screen" : "h-fit";
 
+  const controls = useAnimationControls();
+
   // determines if the button should be disabled on not, prevents double checking 
   const [loading, setLoading] = useState(false);
 
@@ -44,17 +46,16 @@ const Login = (props: Props) => {
   const [error, setError] = useState<String | null>(null);
 
 
-    const { googleSignIn, logIn, signUp, user } =
-        useContext(AuthContext);
+  const { googleSignIn, logIn, signUp, user } = useContext(AuthContext);
         
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-      if (user) {
+  useEffect(() => {
+    if (user) {
         navigate("/profile");
-      }
-    }, [user]);
+    }
+  }, [user]);
 
 
   // google login and sign up
@@ -259,7 +260,7 @@ const Login = (props: Props) => {
           </div>
 
           {/* Login Part */}
-          <form className="center gap-3 h-full pt-5 pb-5" hidden={!onLogin}>
+          <form name = "login" className="center gap-3 h-full pt-5 pb-5" hidden={!onLogin}>
             <h1 className="text-5xl">Login</h1>
             <div className="w-full">
               <CustomInput
@@ -287,12 +288,12 @@ const Login = (props: Props) => {
               />
             </div>
             <div className="w-4/6 flex justify-between">
-              {/* placeholder to make button align to the right */}
               <div></div>
 
               <CustomButton
                 noOriginalStyle={true}
                 customization="underline hover:text-black ml-5"
+                page="ForgotPassword"
               >
                 Forgot Password
               </CustomButton>
@@ -328,6 +329,34 @@ const Login = (props: Props) => {
         </div>
         
       </div>
+
+      <motion.div
+        variants={{
+            hidden: {
+                opacity: 0,
+            },
+            visible: {
+                opacity: 1,
+                transition: { type: 'spring', delay: 0.1 },
+            },
+            exit: {
+                opacity: 0,
+                transition: { ease: 'easeInOut' },
+            },
+        }}
+        initial="hidden"
+        exit="exit"
+        animate={controls}
+        transition={{ duration: 0.5 }}
+        className="flex flex-col items-center justify-center h-screen bg-gray-100"
+    >
+        <h1 className="text-6xl">
+            Forgot Password
+        </h1>
+        <form action="">
+
+        </form>
+    </motion.div>
 
       {/* Error message if there is an error */}
       {error && 

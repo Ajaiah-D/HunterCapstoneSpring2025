@@ -11,10 +11,12 @@ import Login from "@/pages/Login";
 import Why from "@/pages/Why";
 import Profile from "@/pages/Profile";
 import Error from "@/pages/Error";
+import ForgotPassword from "@/pages/ForgotPassword";
 
 // components to protect or determine what pages show
 import AuthProvider from "@/components/AuthProvider";
 import ProtectedRoutes from "@/components/ProtectedRoutes";
+
 
 function App() {
 
@@ -42,6 +44,7 @@ function App() {
             <Route path="Analyze" element={<Analyze />} />
             {/* <Route path="Mental" element={<Mental />} /> */}
             <Route path="Login" element={<Login />} />
+            <Route path="ForgotPassword" element={<ForgotPassword />} />
 
             {/* can only access after logging in */}
             <Route element={<ProtectedRoutes />}>

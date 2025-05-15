@@ -36,6 +36,10 @@ const getFirebaseErrorMessage = (code: string) => {
       message = "Password should be at least 6 characters";
       break;
 
+    case "auth/missing-email":
+      message = "Email is required";
+      break;
+
     default:
       message = "Something went wrong";
       break;
