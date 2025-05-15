@@ -26,6 +26,7 @@ const Analyze = () => {
   const [datares, setDataRes] = useState<Response>();
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const { user } = useAuth();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -33,6 +34,7 @@ const Analyze = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  {/* Analyzing Data and Fetching Recommendations */}
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -52,37 +54,32 @@ const Analyze = () => {
       exercise: Number(formData.exercise_frequency),
     };
 
-    try {
-      const { user } = useAuth();
-
-      if (!user) {
-        setErrorMsg("You must be signed in to analyze your sleep.");
-        setLoading(false);
-        return;
-      }
-      else {
-        try {
-          const token = await user.getIdToken();
-          const res = await fetch("http://127.0.0.1:8000/predict", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(formattedData),
-          })
-          const data: ResponseType = await res?.json();
-          setResponse(data);
-          setDataRes(res);
-        } catch {
-            throw new Error(`Server returned ${datares?.status}`);
-        }
-      } 
-    } catch (error: any) {
-        setErrorMsg("Prediction failed: " + error.message);
-      } finally {
-        setLoading(false);
-      }
+    if (!user) {
+      setErrorMsg("You must be signed in to analyze your sleep.");
+      setLoading(false);
+      return;
+    }
+    else {
+      try {
+        const token = await user.getIdToken();
+        const res = await fetch("http://127.0.0.1:8000/predict", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(formattedData),
+        })
+        const data: ResponseType = await res?.json();
+        setResponse(data);
+        setDataRes(res);
+      } catch(error: any) {
+          setErrorMsg("Prediction failed: " + error.message);
+          throw new Error(`Server returned ${datares?.status}`);
+        } finally {
+            setLoading(false);
+          }
+    } 
   };
 
   // responsive height
