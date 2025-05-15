@@ -8,7 +8,7 @@ import { AuthContext } from "@/components/AuthProvider";
 import { useNavigate } from "react-router";
 import { UserLogin, UserSignup } from "@/types/interface";
 import { motion } from "framer-motion";
-import getFirebaseErrorMessage from "@/components/getFirebaseErrorMessage";
+import getFirebaseErrorMessage from "@/hooks/getFirebaseErrorMessage";
 
 type Props = {};
 
