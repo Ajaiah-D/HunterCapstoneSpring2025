@@ -14,7 +14,7 @@ const Error = (props: Props) => {
         <p className="text-3xl">
           Uh-oh. We lost you somewhere along the way.
         </p>
-        <CustomButton page="home" customization="hover:bg-lightcoral/50 transition border-2 border-lightcoral p-5 rounded-3xl bg-lightcoral text-white" noOriginalStyle={true}>
+        <CustomButton page="/" customization="hover:bg-lightcoral/50 transition border-2 border-lightcoral p-5 rounded-3xl bg-lightcoral text-white" noOriginalStyle={true}>
           Let's get you back on track!
         </CustomButton>
       </div>
