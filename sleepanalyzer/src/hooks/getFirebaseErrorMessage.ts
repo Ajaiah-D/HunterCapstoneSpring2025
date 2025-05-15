@@ -22,7 +22,7 @@ const getFirebaseErrorMessage = (code: string) => {
       message = "Incorrect Password";
       break;
 
-    case "auth/missing-password";
+    case "auth/missing-password":
       message = "Password must be provided";
       break;
 

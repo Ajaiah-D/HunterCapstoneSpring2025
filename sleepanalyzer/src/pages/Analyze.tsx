@@ -94,7 +94,7 @@ const Analyze = () => {
   const columns = aboveMediumScreen ? "grid-cols-2" : "grid-cols-1";
 
   return (
-    <div className={`center ${height}`}>
+    <div className={`center ${height} bg-transparent`}>
       <div className="h-[60px]"></div>
       <SlideInTransition className="w-full max-w-3xl p-4">
         <form onSubmit={handleSubmit} className="space-y-4 bg-white border-2 border-gray-300 shadow-xl rounded-lg p-8">
