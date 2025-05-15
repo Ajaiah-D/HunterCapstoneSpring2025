@@ -7,7 +7,7 @@ import Navbar from "@/components/Navbar";
 import Analyze from "@/pages/Analyze";
 import Home from "@/pages/Home";
 import Login from "@/pages/Login";
-import Mental from "@/pages/Mental";
+// import Mental from "@/pages/Mental";
 import Why from "@/pages/Why";
 import Profile from "@/pages/Profile";
 
@@ -41,13 +41,15 @@ function App() {
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="Why" element={<Why />} />
             <Route path="Analyze" element={<Analyze />} />
-            <Route path="Mental" element={<Mental />} />
+            {/* <Route path="Mental" element={<Mental />} /> */}
             <Route path="Login" element={<Login />} />
 
             {/* can only access after logging in */}
             <Route element={<ProtectedRoutes />}>
               <Route path="Profile" element={<Profile />} />
             </Route>
+
+            <Route path="*" element={<Login />}/>
             
           </Routes>
         </BrowserRouter>
