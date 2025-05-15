@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 // pages that we can navigate to
@@ -10,19 +10,16 @@ import Login from "@/pages/Login";
 // import Mental from "@/pages/Mental";
 import Why from "@/pages/Why";
 import Profile from "@/pages/Profile";
-import Error from "@/pages/Error";
+import Error from "@/pages/404";
 import ForgotPassword from "@/pages/ForgotPassword";
 
 // components to protect or determine what pages show
 import AuthProvider, { AuthContext } from "@/components/AuthProvider";
 import ProtectedRoutes from "@/components/ProtectedRoutes";
-import { getAuth } from "firebase/auth";
-import { auth } from "./firebaseConfig";
 
 
 function App() {
-  const user = auth.currentUser;
-  console.log("login: ", user);
+  const { user } = useContext(AuthContext)
   //creates a background for navbar if we scroll
   const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
   useEffect(() => {
@@ -48,7 +45,7 @@ function App() {
             {/* <Route path="Mental" element={<Mental />} /> */}
             {user ? (<><Route element={<ProtectedRoutes />}>
               <Route path="Profile" element={<Profile />}/>
-            </Route></>) : (<><Route path="Profile" element={<Profile />}/></>)}
+            </Route></>) : (<><Route path="Login" element={<Login />}/></>)}
             <Route path="ForgotPassword" element={<ForgotPassword />} />
 
             <Route path="*" element={<Error />}/>
