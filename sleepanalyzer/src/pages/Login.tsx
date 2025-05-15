@@ -7,8 +7,8 @@ import CustomButton from "@/components/CustomButton";
 import { AuthContext } from "@/components/AuthProvider";
 import { useNavigate } from "react-router";
 import { UserLogin, UserSignup } from "@/types/interface";
-import { auth } from "@/firebaseConfig";
 import { motion } from "framer-motion";
+import getFirebaseErrorMessage from "@/components/getFirebaseErrorMessage";
 
 type Props = {};
 
@@ -41,7 +41,7 @@ const Login = (props: Props) => {
 
   const [userLoginInfo, setUserLoginInfo] = useState(userLoggingIn);
   const [userSignupInfo, setUserSignupInfo] = useState(newUser);
-  const [error, setError] = useState("");
+  const [error, setError] = useState<String | null>(null);
 
 
     const { googleSignIn, logIn, signUp, user } =
@@ -68,11 +68,11 @@ const Login = (props: Props) => {
       if (
         typeof error === "object" &&
         error &&
-        "message" in error &&
-        typeof error.message === "string"
+        "code" in error &&
+        typeof error.code === "string"
       ) {
         // message gets narrowed to string!
-        setError(error.message);
+        setError(getFirebaseErrorMessage(error.code));
         console.log(error);
       }
     }
@@ -90,12 +90,13 @@ const Login = (props: Props) => {
       if (
         typeof error === "object" &&
         error &&
-        "message" in error &&
-        typeof error.message === "string"
+        "code" in error &&
+        typeof error.code === "string"
       ) {
         setLoading(false);
         // message gets narrowed to string!
-        return setError(error.message);
+        setError(getFirebaseErrorMessage(error.code));
+        console.log(error);
       }
     }
   };
@@ -117,11 +118,13 @@ const Login = (props: Props) => {
       if (
         typeof error === "object" &&
         error &&
-        "message" in error &&
-        typeof error.message === "string"
+        "code" in error &&
+        typeof error.code === "string" 
       ) {
+        setLoading(false);
         // message gets narrowed to string!
-        setError(error.message);
+        setError(getFirebaseErrorMessage(error.code));
+        console.log(error);
       }
     }
     setLoading(false);
@@ -129,7 +132,6 @@ const Login = (props: Props) => {
 
   // login motion
   // TO DO: add motion when changing between login and sign up pages
-
   console.log("Login page rendered!");
 
   return (
