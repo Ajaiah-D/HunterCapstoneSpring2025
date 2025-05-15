@@ -5,13 +5,15 @@ import { LuPencil } from "react-icons/lu";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import CustomInput from "@/components/CustomInput";
+import useAuth from "@/hooks/useAuth";
 
 const Profile = () => {
   const [photoURL, setPhotoURL] = useState("src/assets/logo.png");
   const [displayName, setDisplayName] = useState("");
   // const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
-  const { logOut, updateUsername, user } = useContext(AuthContext);
+  const { logOut, updateUsername } = useContext(AuthContext);
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,7 +46,7 @@ const Profile = () => {
       if(user) {
         setLoading(false);
         await updateUsername(user, displayName);
-        console.log("Updated username");
+        console.log("Updated username: ", user.displayName);
       }
     } catch(error) {
       console.log(error);
