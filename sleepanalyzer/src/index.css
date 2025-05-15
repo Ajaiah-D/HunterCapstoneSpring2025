@@ -12,8 +12,11 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 1060px;
   --font-header: "Molle", cursive;
-  --font-main: "Abel", sans-serif;
   --color-lightcoral: #F08E80;
+  --color-darkblue: #2C229E;
+  --color-brightblue: #4361FE;
+  --color-softviolet: #AF95F2; 
+  --color-skyblue: #33A7FA;
 }
 
 /* shared css across all pages */
@@ -40,9 +43,16 @@ button {
   text-align: center;
 }
 
-/* login and sign up page */
+/* login and sign up page bg */
 #login {
-  background-image: linear-gradient(180deg, rgba(175, 149, 242, 1), rgba(44, 34, 158, 1), rgba(22, 19, 102, 1)), url("@/assets/starfall.gif");
+  background-image: linear-gradient(180deg, rgba(40, 0, 68, 1), rgba(8,0,68, 1), rgba(22, 19, 102, 1)), url("@/assets/starfall.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: screen;
+}
+
+.bgoverlay {
+  background-image: linear-gradient(180deg, rgba(67, 97, 254, 1), rgba(51, 167, 250, 1), rgba(175, 149, 242, 1)), url("@/assets/starfall.gif");
   background-repeat: no-repeat;
   background-size: cover;
   background-blend-mode: screen;

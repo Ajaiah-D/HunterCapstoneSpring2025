@@ -20,7 +20,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
 
   // scrolling will add a navbar background
-  const navbarBackground = isTopOfPage ? "" : "bg-[#33a7fa] drop-shadow";
+  const navbarBackground = isTopOfPage ? "" : "bg-brightblue drop-shadow";
 
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -44,7 +44,6 @@ const Navbar = ({ isTopOfPage }: Props) => {
           top-0 
           z-1000 
           w-full 
-          py-6 
           font-main 
           text-2xl
         `}
@@ -59,8 +58,8 @@ const Navbar = ({ isTopOfPage }: Props) => {
               className={`${flexBetween} w-full gap-16`}
               >
                 <div className="font-header">
-                  <CustomLink page="" textColor="white"> 
-                    Sleep 
+                  <CustomLink page="" className="flex items-center gap-2 text-white"> 
+                    <img src="src/assets/logo.png" alt="logo" className="h-32 w-32" />
                   </CustomLink>
                 </div>
                 
@@ -69,13 +68,13 @@ const Navbar = ({ isTopOfPage }: Props) => {
 
                 { aboveMediumScreen ? (
                   <div className={`${flexBetween} gap-8`}>
-                    <CustomLink page="" textColor="white">Home</CustomLink>
-                    <CustomLink page="why" textColor="white">Why?</CustomLink>
-                    <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
-                    {/* <CustomLink page="mental" textColor="white">Mental Health</CustomLink> */}
-                    {user ? (<><CustomLink page="profile" textColor="white">Hello, {user.displayName || user.email}</CustomLink>
+                    <CustomLink page="">Home</CustomLink>
+                    <CustomLink page="why">Why?</CustomLink>
+                    <CustomLink page="analyze">Analyze</CustomLink>
+                    {/* <CustomLink page="mental">Mental Health</CustomLink> */}
+                    {user ? (<><CustomLink page="profile">Hello, {user.displayName || user.email}</CustomLink>
                       <CustomButton onClick={handleLogout} noOriginalStyle={true} customization="text-white underline hover:text-lightcoral transition">Log Out</CustomButton></>) : 
-                    (<CustomLink page="login" textColor="white">Login</CustomLink>)}
+                    (<CustomLink page="login">Login</CustomLink>)}
                   </div> ) 
                 : (
                   // create hamburger menu if screen size is not large
@@ -96,7 +95,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                              z-100 
                              w-[300px]
                              h-screen
-                           bg-[#33a7fa]
+                           bg-brightblue
                              drop-shadow-xl"
                 >
                   <div className="flex justify-end p-12">
@@ -104,14 +103,14 @@ const Navbar = ({ isTopOfPage }: Props) => {
                       <FaXmark className="h-6 w-g text-pink-300" />
                     </button>
                   </div>
-                  <div className='center gap-10 text-2xl bg-[#33a7fa] p-10'>
-                    <CustomLink page="" textColor="white">Home</CustomLink>
-                    <CustomLink page="why" textColor="white">Why?</CustomLink>
-                    <CustomLink page="analyze" textColor="white">Analyze</CustomLink>
-                    <CustomLink page="mental" textColor="white">Mental Health</CustomLink>
+                  <div className='center gap-10 text-2xl bg-brightblue p-10'>
+                    <CustomLink page="">Home</CustomLink>
+                    <CustomLink page="why">Why?</CustomLink>
+                    <CustomLink page="analyze">Analyze</CustomLink>
+                    {/* <CustomLink page="mental">Mental Health</CustomLink> */}
                     {user ? (<button onClick={handleLogout} 
                     className="text-white underline hover:text-lightcoral transition">Log Out</button>) : 
-                    (<CustomLink page="login" textColor="white">Login</CustomLink>)}
+                    (<CustomLink page="login">Login</CustomLink>)}
                   </div>
                 </div>
               )}
