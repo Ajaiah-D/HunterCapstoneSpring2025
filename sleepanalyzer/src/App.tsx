@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 // pages that we can navigate to
@@ -14,9 +14,8 @@ import Error from "@/pages/Error";
 import ForgotPassword from "@/pages/ForgotPassword";
 
 // components to protect or determine what pages show
-import AuthProvider, { AuthContext } from "@/components/AuthProvider";
+import AuthProvider from "@/components/AuthProvider";
 import ProtectedRoutes from "@/components/ProtectedRoutes";
-import { getAuth } from "firebase/auth";
 import { auth } from "./firebaseConfig";
 
 
@@ -48,7 +47,7 @@ function App() {
             {/* <Route path="Mental" element={<Mental />} /> */}
             {user ? (<><Route element={<ProtectedRoutes />}>
               <Route path="Profile" element={<Profile />}/>
-            </Route></>) : (<><Route path="Profile" element={<Profile />}/></>)}
+            </Route></>) : (<><Route path="Login" element={<Login />}/></>)}
             <Route path="ForgotPassword" element={<ForgotPassword />} />
 
             <Route path="*" element={<Error />}/>
