@@ -11,6 +11,7 @@ import {
   updatePassword,
   updateProfile,
   sendPasswordResetEmail,
+  getAuth,
 } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { UserLogin, UserSignup } from "@/types/interface";
@@ -64,6 +65,20 @@ const forgotPassword = (email: string) => {
   return sendPasswordResetEmail(auth, email);
 }
 
+export const useAuth = () => {
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+  useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, user => {
+          setCurrentUser(user);
+          console.log("User", currentUser);
+        });
+        return () => unsubscribe();
+      }, []);
+
+  return currentUser;
+}
+
 // what we are going to pass and use on other pages
 const AuthContext = createContext<AuthContextData>({
   user: auth.currentUser,
@@ -78,7 +93,7 @@ const AuthContext = createContext<AuthContextData>({
 });
 
 const AuthProvider = ({ children }: Props) => {
-  const [user, setUser] = useState<User | null>(null);
+  const user = useAuth();
 
   const value = {
     user,
@@ -91,14 +106,6 @@ const AuthProvider = ({ children }: Props) => {
     forgotPassword,
     verifyEmail,
   };
-
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-          setUser(currentUser);
-          console.log("Auth state changed:", currentUser);
-        });
-        return () => unsubscribe();
-      }, []);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
