@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
@@ -7,14 +7,13 @@ import Navbar from "@/components/Navbar";
 import Analyze from "@/pages/Analyze";
 import Home from "@/pages/Home";
 import Login from "@/pages/Login";
-// import Mental from "@/pages/Mental";
 import Why from "@/pages/Why";
 import Profile from "@/pages/Profile";
-import Error from "@/pages/Error";
 import ForgotPassword from "@/pages/ForgotPassword";
+import PageNotFound from "@/pages/404";
 
 // components to protect or determine what pages show
-import AuthProvider, { AuthContext } from "@/components/AuthProvider";
+import AuthProvider from "@/components/AuthProvider";
 import ProtectedRoutes from "@/components/ProtectedRoutes";
 import useAuth from "./hooks/useAuth";
 
@@ -46,13 +45,15 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="Why" element={<Why />} />
             <Route path="Analyze" element={<Analyze />} />
-            {/* <Route path="Mental" element={<Mental />} /> */}
+            <Route path="ForgotPassword" element={<ForgotPassword />} />
+            
+            {/* Links that appear based on status of user */}
             {user ? (<><Route element={<ProtectedRoutes />}>
               <Route path="Profile" element={<Profile />}/>
             </Route></>) : (<><Route path="Login" element={<Login />}/></>)}
-            <Route path="ForgotPassword" element={<ForgotPassword />} />
 
-            <Route path="*" element={<Error />}/>
+            {/* Paths that do not exist go to 404 page */}
+            <Route path="*" element={<PageNotFound />}/>
             
           </Routes>
         </BrowserRouter>
