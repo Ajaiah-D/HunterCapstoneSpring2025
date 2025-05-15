@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -11,7 +11,6 @@ import {
   updatePassword,
   updateProfile,
   sendPasswordResetEmail,
-  getAuth,
 } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { UserLogin, UserSignup } from "@/types/interface";
