@@ -4,9 +4,7 @@ import CustomInput from "@/components/CustomInput";
 import getFirebaseErrorMessage from "@/hooks/getFirebaseErrorMessage";
 import React, { useContext, useState } from "react";
 
-type Props = {};
-
-const ForgotPassword = (props: Props) => {
+const ForgotPassword = () => {
   const { forgotPassword } = useContext(AuthContext);
   const [email, setEmail] = useState<string>("");
   const [disabled, setDisabled] = useState<boolean>(false);
