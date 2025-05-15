@@ -1,8 +1,6 @@
 import SlideInTransition from "@/components/SlideInTransition";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import React, { useState } from "react";
-import { getAuth } from "firebase/auth";
-import "firebase/auth";
 import useAuth from "@/hooks/useAuth";
 
 type ResponseType = {
