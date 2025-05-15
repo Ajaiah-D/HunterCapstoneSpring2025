@@ -1,5 +1,4 @@
-import React from 'react'
-import { animate, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 type Props = {
     children: React.ReactNode;
