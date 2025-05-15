@@ -1,13 +1,8 @@
 import CustomLink from "@/components/CustomLink";
-import SlideInTransition from "@/components/SlideInTransition";
+// import SlideInTransition from "@/components/SlideInTransition";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import { FaHeartCrack } from "react-icons/fa6";
-import { PiBrainBold } from "react-icons/pi";
-import { Link } from "react-router-dom";
 
-type Props = {};
-
-const Why = (props: Props) => {
+const Why = () => {
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
   const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col";
 
