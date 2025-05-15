@@ -20,7 +20,7 @@ const CustomButton = ({
 }: Props) => {
   const style = noOriginalStyle
     ? customization
-    : "rounded-md px-10 py-2 bg-lightcoral hover:bg-transparent hover: border-2 hover: text-white hover: border-lightcoral " +
+    : "rounded-md px-10 py-2 bg-lightcoral hover:bg-transparent hover: border-2 hover: text-white hover: border-lightcoral transition" +
       customization;
   const button = onClick ? true : false;
 
