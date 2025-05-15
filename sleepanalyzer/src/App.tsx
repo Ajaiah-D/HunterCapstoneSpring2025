@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 
@@ -14,13 +14,15 @@ import Error from "@/pages/Error";
 import ForgotPassword from "@/pages/ForgotPassword";
 
 // components to protect or determine what pages show
-import AuthProvider from "@/components/AuthProvider";
+import AuthProvider, { AuthContext } from "@/components/AuthProvider";
 import ProtectedRoutes from "@/components/ProtectedRoutes";
 import { getAuth } from "firebase/auth";
+import { auth } from "./firebaseConfig";
 
 
 function App() {
-  const currentUser = getAuth().currentUser;
+  const user = auth.currentUser;
+  console.log("login: ", user);
   //creates a background for navbar if we scroll
   const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
   useEffect(() => {
@@ -44,13 +46,10 @@ function App() {
             <Route path="Why" element={<Why />} />
             <Route path="Analyze" element={<Analyze />} />
             {/* <Route path="Mental" element={<Mental />} /> */}
-            {!currentUser && <Route path="Login" element={<Login />} />}
+            {user ? (<><Route element={<ProtectedRoutes />}>
+              <Route path="Profile" element={<Profile />}/>
+            </Route></>) : (<><Route path="Profile" element={<Profile />}/></>)}
             <Route path="ForgotPassword" element={<ForgotPassword />} />
-
-            {/* can only access after logging in */}
-            <Route element={<ProtectedRoutes />}>
-              <Route path="Profile" element={<Profile />} />
-            </Route>
 
             <Route path="*" element={<Error />}/>
             
