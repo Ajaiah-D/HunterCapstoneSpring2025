@@ -52,7 +52,7 @@ const ForgotPassword = (props: Props) => {
 
       {/* Print Message that Email has been sent */}
       {message && (
-        <div className="fixed bg-brightblue text-white p-5 right-3 bottom-3 rounded-md drop-shadow-xl">
+        <div className="bg-brightblue text-white p-5 rounded-md drop-shadow-xl">
           {message}
         </div>
       )}
