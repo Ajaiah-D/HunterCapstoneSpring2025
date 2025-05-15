@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Navigate, Outlet } from "react-router";
-import { AuthContext } from "./AuthProvider";
+import { getAuth } from "firebase/auth";
 
 const ProtectedRoutes = () => {
-  const { user } = useContext(AuthContext);
+  const currentUser = getAuth().currentUser;
 
-  return user ? <Outlet /> : <Navigate to="/login" replace />;
+  return currentUser ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 export default ProtectedRoutes;
