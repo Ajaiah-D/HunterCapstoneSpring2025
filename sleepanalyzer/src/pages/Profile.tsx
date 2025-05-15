@@ -6,9 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import CustomInput from "@/components/CustomInput";
 
-type Props = {};
-
-const Profile = (props: Props) => {
+const Profile = () => {
   const [photoURL, setPhotoURL] = useState("src/assets/logo.png");
   const [displayName, setDisplayName] = useState("");
   // const [image, setImage] = useState<File | null>(null);
@@ -41,7 +39,7 @@ const Profile = (props: Props) => {
     }
   }, [user]);
 
-  const handleUpdate = async (e: React.MouseEvent<HTMLElement>) => {
+  const handleUpdate = async () => {
     try {
       if(user) {
         setLoading(false);
