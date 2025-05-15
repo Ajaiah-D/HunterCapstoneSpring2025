@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { RiGoogleLine } from "react-icons/ri";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
@@ -7,7 +7,7 @@ import CustomButton from "@/components/CustomButton";
 import { AuthContext } from "@/components/AuthProvider";
 import { useNavigate } from "react-router";
 import { UserLogin, UserSignup } from "@/types/interface";
-import { motion, useAnimationControls } from "framer-motion";
+import { motion } from "framer-motion";
 import getFirebaseErrorMessage from "@/hooks/getFirebaseErrorMessage";
 
 const userLoggingIn: UserLogin = {
@@ -219,7 +219,7 @@ const Login = () => {
               <CustomButton
                 noOriginalStyle={true}
                 customization="underline hover:text-black ml-1"
-                onClick={(e) => {
+                onClick={() => {
                   setOnLogin(true);
                   setError("");
                 }}
@@ -302,7 +302,7 @@ const Login = () => {
               <CustomButton
                 noOriginalStyle={true}
                 customization="underline hover:text-black ml-1"
-                onClick={(e) => {
+                onClick={() => {
                   setOnLogin(false);
                   setError("");
                 }}
