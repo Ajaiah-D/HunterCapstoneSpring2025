@@ -23,6 +23,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
   const navbarBackground = isTopOfPage ? "" : "bg-brightblue drop-shadow";
 
   const { user, logOut } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -93,7 +94,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
                              right-0 
                              top-0
                              z-100 
-                             w-[300px]
+                             w-[2/5]
                              h-screen
                            bg-brightblue
                              drop-shadow-xl"
@@ -108,8 +109,8 @@ const Navbar = ({ isTopOfPage }: Props) => {
                     <CustomLink page="why">Why?</CustomLink>
                     <CustomLink page="analyze">Analyze</CustomLink>
                     {/* <CustomLink page="mental">Mental Health</CustomLink> */}
-                    {user ? (<button onClick={handleLogout} 
-                    className="text-white underline hover:text-lightcoral transition">Log Out</button>) : 
+                    {user ? (<><CustomLink page="profile">Hello, {user.displayName || user.email}</CustomLink>
+                      <CustomButton onClick={handleLogout} noOriginalStyle={true} customization="text-white underline hover:text-lightcoral transition">Log Out</CustomButton></>) : 
                     (<CustomLink page="login">Login</CustomLink>)}
                   </div>
                 </div>

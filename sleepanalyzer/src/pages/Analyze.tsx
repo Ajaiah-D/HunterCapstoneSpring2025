@@ -86,9 +86,11 @@ const Analyze = () => {
     }
   };
 
-  const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
+  // responsive height
+  const aboveMediumScreen = useMediaQuery("(min-width: 1060px)") || useMediaQuery("(min-height: 1000px)");
   const height =
     aboveMediumScreen && response ? "h-fit" : aboveMediumScreen ? "h-screen" : "h-fit";
+
   const columns = aboveMediumScreen ? "grid-cols-2" : "grid-cols-1";
 
   return (
