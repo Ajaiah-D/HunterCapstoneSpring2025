@@ -1,23 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 type Props = {
   children: React.ReactNode;
   page: string;
   className?: string;
   external?: boolean;
+  pic?: boolean;
 };
 
-const CustomLink = ({ children, page, className, external }: Props) => {
-  const style = className ? className : "p-3 text-white active:underline hover:text-softviolet transition";
+const CustomLink = ({ children, page, className, external, pic }: Props) => {
+  const style = className ? className : "p-3 text-white hover:text-softviolet transition";
   if (!external) {
     return (
-      <Link
+      <NavLink
         to={"/" + page}
-        className={style}
+        className={({isActive}) => {
+          return isActive && !pic ? style + " border-b-[3px] border-white hover:border-softviolet" : style;
+        }}
       >
         {children}
-      </Link>
+      </NavLink>
     );
   }
   else {

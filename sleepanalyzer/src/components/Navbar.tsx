@@ -63,7 +63,7 @@ const Navbar = ({ isTopOfPage, currentUser }: Props) => {
               className={`${flexBetween} w-full gap-16`}
               >
                 <div className="font-header">
-                  <CustomLink page="" className="flex items-center gap-2 text-white"> 
+                  <CustomLink page="" pic={true} className="flex items-center gap-2 text-white"> 
                     <img src="src/assets/logo.png" alt="logo" className="h-32 w-32" />
                   </CustomLink>
                 </div>
