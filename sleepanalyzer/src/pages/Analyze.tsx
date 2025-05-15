@@ -25,6 +25,7 @@ const Analyze = () => {
   });
 
   const [response, setResponse] = useState<ResponseType | null>(null);
+  const [datares, setDataRes] = useState<Response>();
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -62,23 +63,22 @@ const Analyze = () => {
         return;
       }
       else {
-        const token = await user.getIdToken();
-
-        const res = await fetch("http://127.0.0.1:8000/predict", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(formattedData),
-        });
-
-        if (!res.ok) {
-          throw new Error(`Server returned ${res.status}`);
+        try {
+          const token = await user.getIdToken();
+          const res = await fetch("http://127.0.0.1:8000/predict", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(formattedData),
+          })
+          const data: ResponseType = await res?.json();
+          setResponse(data);
+          setDataRes(res);
+        } catch {
+            throw new Error(`Server returned ${datares?.status}`);
         }
-
-        const data: ResponseType = await res.json();
-        setResponse(data);
       } 
     } catch (error: any) {
         setErrorMsg("Prediction failed: " + error.message);
