@@ -29,6 +29,7 @@ body,
   height: 100%;
   width: 100%;
   overscroll-behavior: none;
+  background-color: linear-gradient(180deg, rgba(40, 0, 68, 1), rgba(8,0,68, 1), rgba(22, 19, 102, 1));
 }
 
 button {
