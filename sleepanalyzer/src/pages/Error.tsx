@@ -1,9 +1,6 @@
 import CustomButton from '@/components/CustomButton';
-import React from 'react';
 
-type Props = {};
-
-const Error = (props: Props) => {
+const Error = () => {
   
   return (
     <div className="w-screen h-screen center bg-gradient-to-br from-softviolet to-brightblue">
