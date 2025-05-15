@@ -23,7 +23,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
   const navbarBackground = isTopOfPage ? "" : "bg-brightblue drop-shadow";
 
   const { user, logOut } = useContext(AuthContext);
-  console.log("nav: ", user);
+
   const navigate = useNavigate();
 
   const handleLogout = async () => {
