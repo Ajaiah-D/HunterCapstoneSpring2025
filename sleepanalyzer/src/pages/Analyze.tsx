@@ -62,7 +62,7 @@ const Analyze = () => {
   };
 
   // responsive height
-  const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
+  const aboveMediumScreen = useMediaQuery("(min-width: 1060px)") || useMediaQuery("(min-height: 1000px)");
   let height = "h-fit";
   if (aboveMediumScreen && response) {
     height = "h-fit";
