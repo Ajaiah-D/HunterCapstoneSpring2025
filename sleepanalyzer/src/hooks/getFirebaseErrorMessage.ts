@@ -42,6 +42,10 @@ const getFirebaseErrorMessage = (code: string) => {
       message = "Email is required";
       break;
 
+    case "auth/unauthorized-domain":
+      message = "The domain you are using is not authorized to access this function";
+      break;
+
     default:
       message = "Something went wrong";
       break;
