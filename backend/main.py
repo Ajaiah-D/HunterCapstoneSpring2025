@@ -7,11 +7,12 @@ import pickle
 import numpy as np
 import firebase_admin
 from firebase_admin import auth, credentials
+from fastapi.middleware.cors import CORSMiddleware
 import os
 
 # Initialize Firebase Admin
 if not firebase_admin._apps:
-    cred = credentials.Certificate("firebase-admin.json")  # make sure this file exists
+    cred = credentials.Certificate(os.path.join(os.path.dirname(__file__), "firebase-admin.json"))
     firebase_admin.initialize_app(cred)
 
 # Load ML model
@@ -22,6 +23,14 @@ with open("sleep_model.pkl", "rb") as f:
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # or ["http://localhost:5173"] to be specific
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # DB session dependency
 def get_db():
@@ -50,12 +59,13 @@ async def predict_sleep(
 ):
     try:
         data = await request.json()
-
+        print("[Incoming Data]", data)
+        deepsleep = 100 - data['rem_sleep_percentage'] - data['light_sleep_percentage']
         input_features = np.array([
             data['age'],
             data['sleep_duration'],
             data['rem_sleep_percentage'],
-            data['deep_sleep_percentage'],
+            deepsleep,
             data['light_sleep_percentage'],
             data['awakenings'],
             data['caffeine_consumption'],
@@ -73,7 +83,7 @@ async def predict_sleep(
             sleep_efficiency=sleep_efficiency,
             sleep_quality="Good" if sleep_efficiency >= 85 else "Poor",
             rem_percentage=data['rem_sleep_percentage'],
-            deep_percentage=data['deep_sleep_percentage'],
+            deep_percentage=deepsleep,
             light_percentage=data['light_sleep_percentage'],
             awakenings=data['awakenings'],
             caffeine=data['caffeine_consumption'],

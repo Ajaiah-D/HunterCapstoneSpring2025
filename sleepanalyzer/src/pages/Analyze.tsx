@@ -44,15 +44,14 @@ const Analyze = () => {
 
     const formattedData = {
       age: Number(formData.age),
-      gender: Number(formData.gender),
       sleep_duration: Number(formData.sleep_duration),
       rem_sleep_percentage: Number(formData.rem_sleep_percentage),
       light_sleep_percentage: Number(formData.light_sleep_percentage),
       awakenings: Number(formData.awakenings),
-      caffeine: Number(formData.caffeine_consumption),
-      alcohol: Number(formData.alcohol_consumption),
-      smoker: Number(formData.smoking_status),
-      exercise: Number(formData.exercise_frequency),
+      caffeine_consumption: Number(formData.caffeine_consumption),
+      alcohol_consumption: Number(formData.alcohol_consumption),
+      smoking_status: Number(formData.smoking_status),
+      exercise_frequency: Number(formData.exercise_frequency),
     };
 
     if (!user) {
