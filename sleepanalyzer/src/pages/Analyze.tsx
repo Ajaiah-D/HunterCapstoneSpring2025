@@ -23,6 +23,7 @@ const Analyze = () => {
   });
 
   const [response, setResponse] = useState<ResponseType | null>(null);
+  const [token, setToken] = useState("");
   const [datares, setDataRes] = useState<Response>();
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -61,24 +62,35 @@ const Analyze = () => {
     }
     else {
       try {
-        const token = await user.getIdToken();
-        const res = await fetch("http://127.0.0.1:8000/predict", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(formattedData),
-        })
-        const data: ResponseType = await res?.json();
-        setResponse(data);
-        setDataRes(res);
-      } catch(error: any) {
+        setToken(await user.getIdToken());
+        try {
+          const res = await fetch("http://127.0.0.1:8000/predict", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(formattedData),
+          })
+          setDataRes(res);
+          try {
+            const data: ResponseType = await res?.json();
+            setResponse(data);
+          } catch(error: any) {
+            setErrorMsg("Prediction failed: " + error.message);
+            throw new Error(`Server returned ${datares?.status}`);
+          } finally {
+            setLoading(false);
+          }
+        } catch(error: any) {
           setErrorMsg("Prediction failed: " + error.message);
           throw new Error(`Server returned ${datares?.status}`);
         } finally {
             setLoading(false);
           }
+      } catch(error: any) {
+        setErrorMsg("No User Token Found");
+      }
     } 
   };
 
