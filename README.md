@@ -1,6 +1,6 @@
 # HunterCapstoneSpring2025
 
-## Live Page 
+## Live Page (Only Frontend, Backend is not yet deployed)
 [Sleep Better](https://huntercapstonespring2025.onrender.com/analyze)
 
 Issues with live page
