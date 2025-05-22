@@ -1,7 +1,7 @@
 # HunterCapstoneSpring2025
 
-Live Page </br>
-https://huntercapstonespring2025.onrender.com/analyze
+## Live Page 
+[Sleep Better](https://huntercapstonespring2025.onrender.com/analyze)
 
 Issues with live page
 - Image not loading
