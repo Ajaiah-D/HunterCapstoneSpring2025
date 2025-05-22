@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
       alias: [{ 
         find: "@", 
         replacement: mode === "production" 
-          ? path.resolve(__dirname, "/") : path.resolve(__dirname, "/src")
+          ? path.resolve(__dirname, "") : path.resolve(__dirname, "/src")
       }],
     },
     server: {
