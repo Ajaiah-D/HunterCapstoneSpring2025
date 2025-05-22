@@ -1,7 +1,6 @@
-import React, { createContext,useEffect, useState } from "react";
+import React, { createContext } from "react";
 import {
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
   sendEmailVerification,
