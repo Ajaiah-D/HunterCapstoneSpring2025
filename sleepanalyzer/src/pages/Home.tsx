@@ -32,7 +32,7 @@ const Home = () => {
         <ParallaxScroll
           backimage="/src/assets/starfall.gif"
           foreimage="/src/assets/rock.png"
-          height="h-screen"
+          height="min-h-screen"
         >
           <div className="center text-white">
             <div className="min-h-[3.5/6]">

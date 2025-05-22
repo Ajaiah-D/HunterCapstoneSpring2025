@@ -19,12 +19,12 @@ const Why = () => {
         <h1 className="mt-50 text-6xl">Why Sleep Analzyer?</h1>
         <img
           src="src/assets/home.gif"
-          className="h-[80vh] rounded-4xl border-4 translate-y-10"
+          className="w-[60vw] max-h-[70vh] rounded-4xl border-4 translate-y-10"
         />
       </div>
 
       {/* explaining why we need sleep analyzer */}
-      <div className="bg-gradient-to-br from-softviolet to-brightblue opacity-70">
+      <div className="bg-gradient-to-br from-softviolet to-brightblue">
         <div className="center gap-10 p-40 pb-0">
           <h2 className="text-5xl p-4 mt-5">Because It's Necessary</h2>
           <p>
