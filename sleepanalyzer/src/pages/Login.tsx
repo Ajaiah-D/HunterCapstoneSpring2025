@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { RiGoogleLine } from "react-icons/ri";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
@@ -7,10 +7,8 @@ import CustomButton from "@/components/CustomButton";
 import { AuthContext } from "@/components/AuthProvider";
 import { useNavigate } from "react-router";
 import { UserLogin, UserSignup } from "@/types/interface";
-import { motion, useAnimationControls } from "framer-motion";
+import { motion } from "framer-motion";
 import getFirebaseErrorMessage from "@/hooks/getFirebaseErrorMessage";
-
-type Props = {};
 
 const userLoggingIn: UserLogin = {
   email: "",
@@ -24,7 +22,7 @@ const newUser: UserSignup = {
   displayName: "",
 };
 
-const Login = (props: Props) => {
+const Login = () => {
 
   /* change flex direction of section if screen size is too small */
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
@@ -32,9 +30,7 @@ const Login = (props: Props) => {
   const messageVisible = aboveMediumScreen ? "visible" : "hidden";
   const aboveSmallScreen = useMediaQuery("(min-width: 600px)");
   const heightLength = aboveSmallScreen ? "h-screen" : "h-fit";
-
-  const controls = useAnimationControls();
-
+  
   // determines if the button should be disabled on not, prevents double checking 
   const [loading, setLoading] = useState(false);
 
@@ -223,7 +219,7 @@ const Login = (props: Props) => {
               <CustomButton
                 noOriginalStyle={true}
                 customization="underline hover:text-black ml-1"
-                onClick={(e) => {
+                onClick={() => {
                   setOnLogin(true);
                   setError("");
                 }}
@@ -306,7 +302,7 @@ const Login = (props: Props) => {
               <CustomButton
                 noOriginalStyle={true}
                 customization="underline hover:text-black ml-1"
-                onClick={(e) => {
+                onClick={() => {
                   setOnLogin(false);
                   setError("");
                 }}

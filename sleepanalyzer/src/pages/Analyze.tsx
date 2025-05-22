@@ -1,8 +1,7 @@
 import SlideInTransition from "@/components/SlideInTransition";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import React, { useState } from "react";
-import { getAuth } from "firebase/auth";
-import "firebase/auth";
+import useAuth from "@/hooks/useAuth";
 
 type ResponseType = {
   sleep_efficiency: number;
@@ -24,8 +23,11 @@ const Analyze = () => {
   });
 
   const [response, setResponse] = useState<ResponseType | null>(null);
+  const [token, setToken] = useState("");
+  const [datares, setDataRes] = useState<Response>();
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const { user } = useAuth();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -33,6 +35,7 @@ const Analyze = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  {/* Analyzing Data and Fetching Recommendations */}
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -51,51 +54,53 @@ const Analyze = () => {
       exercise_frequency: Number(formData.exercise_frequency),
     };
 
-    try {
-      const auth = getAuth();
-      const user = auth.currentUser;
-
-      if (!user) {
-        setErrorMsg("You must be signed in to analyze your sleep.");
-        setLoading(false);
-        return;
-      }
-
-      const token = await user.getIdToken();
-
-      const res = await fetch("http://127.0.0.1:8000/predict", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(formattedData),
-      });
-
-      if (!res.ok) {
-        throw new Error(`Server returned ${res.status}`);
-      }
-
-      const data: ResponseType = await res.json();
-      setResponse(data);
-    } catch (error: any) {
-      setErrorMsg("Prediction failed: " + error.message);
-    } finally {
+    if (!user) {
+      setErrorMsg("You must be signed in to analyze your sleep.");
       setLoading(false);
+      return;
     }
+    else {
+      try {
+        setToken(await user.getIdToken());
+        try {
+          const res = await fetch("http://127.0.0.1:8000/predict", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(formattedData),
+          })
+          setDataRes(res);
+          try {
+            const data: ResponseType = await res?.json();
+            setResponse(data);
+          } catch(error: any) {
+            setErrorMsg("Prediction failed: " + error.message);
+            throw new Error(`Server returned ${datares?.status}`);
+          } finally {
+            setLoading(false);
+          }
+        } catch(error: any) {
+          setErrorMsg("Prediction failed: " + error.message);
+          throw new Error(`Server returned ${datares?.status}`);
+        } finally {
+            setLoading(false);
+          }
+      } catch(error: any) {
+        setErrorMsg("No User Token Found");
+      }
+    } 
   };
 
   // responsive height
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)") || useMediaQuery("(min-height: 1000px)");
-  const height =
-    aboveMediumScreen && response ? "h-fit" : aboveMediumScreen ? "h-screen" : "h-fit";
 
   const columns = aboveMediumScreen ? "grid-cols-2" : "grid-cols-1";
 
   return (
-    <div className={`center ${height} bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E]`}>
-      <div className="h-[60px]"></div>
-      <SlideInTransition className="w-full max-w-3xl p-4">
+    <div className={`center min-h-screen bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E]`}>
+      <SlideInTransition className="w-full max-w-3xl p-4 m-30">
         <form onSubmit={handleSubmit} className="space-y-4 bg-white border-2 border-gray-300 shadow-xl rounded-lg p-8">
           <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Analyze Your Sleep</h1>
           <div className={`grid ${columns} gap-4`}>

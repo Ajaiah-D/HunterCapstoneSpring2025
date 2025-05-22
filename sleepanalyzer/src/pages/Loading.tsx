@@ -1,10 +1,7 @@
-import React from 'react';
 import { Hourglass } from 'ldrs/react';
 import "ldrs/react/Hourglass.css"
 
-type Props = {};
-
-const Loading = (props: Props) => {
+const Loading = () => {
   
   return (
     <div className="w-screen h-screen center bg-gradient-to-br from-softviolet via-brightblue to-darkblue">

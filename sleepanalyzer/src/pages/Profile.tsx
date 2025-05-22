@@ -5,15 +5,15 @@ import { LuPencil } from "react-icons/lu";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import CustomInput from "@/components/CustomInput";
+import useAuth from "@/hooks/useAuth";
 
-type Props = {};
-
-const Profile = (props: Props) => {
+const Profile = () => {
   const [photoURL, setPhotoURL] = useState("src/assets/logo.png");
   const [displayName, setDisplayName] = useState("");
   // const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
-  const { logOut, updateUsername, user } = useContext(AuthContext);
+  const { logOut, updateUsername } = useContext(AuthContext);
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,12 +41,12 @@ const Profile = (props: Props) => {
     }
   }, [user]);
 
-  const handleUpdate = async (e: React.MouseEvent<HTMLElement>) => {
+  const handleUpdate = async () => {
     try {
       if(user) {
         setLoading(false);
         await updateUsername(user, displayName);
-        console.log("Updated username");
+        console.log("Updated username: ", user.displayName);
       }
     } catch(error) {
       console.log(error);
@@ -100,12 +100,12 @@ const Profile = (props: Props) => {
             placeholder={displayName} 
             type="string" 
             onChange={(e) => setDisplayName(e.target.value)} 
-          />
-          <CustomButton
-          noOriginalStyle={true}
-          onClick={handleUpdate}
-          disabled={loading}
-          >
+            />
+            <CustomButton
+            noOriginalStyle={true}
+            onClick={handleUpdate}
+            disabled={loading}
+            >
             <LuPencil />
           </CustomButton>
           </div>

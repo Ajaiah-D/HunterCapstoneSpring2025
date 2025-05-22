@@ -1,7 +1,6 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext } from "react";
 import {
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
   sendEmailVerification,
@@ -15,6 +14,7 @@ import {
 import { auth } from "../firebaseConfig";
 import { UserLogin, UserSignup } from "@/types/interface";
 import Loading from "@/pages/Loading";
+import useAuth from "@/hooks/useAuth";
 
 type Props = {
   children: React.ReactNode;
@@ -79,17 +79,7 @@ const AuthContext = createContext<AuthContextData>({
 });
 
 const AuthProvider = ({ children }: Props) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [pending, setPending] = useState(true);
-
-  useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, user => {
-          setUser(user);
-          console.log("User: ", user);
-          setPending(false);
-        });
-        return () => unsubscribe();
-      }, []);
+  const {user, pending} = useAuth();
 
   const value = {
     user,

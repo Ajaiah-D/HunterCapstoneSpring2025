@@ -1,5 +1,3 @@
-import React from "react";
-
 const getFirebaseErrorMessage = (code: string) => {
   var message = null;
 
@@ -24,6 +22,10 @@ const getFirebaseErrorMessage = (code: string) => {
       message = "Incorrect Password";
       break;
 
+    case "auth/missing-password":
+      message = "Password must be provided";
+      break;
+
     case "auth/too-many-requests":
       message = "You're exceed the limit. Try again after sometime.";
       break;
@@ -38,6 +40,10 @@ const getFirebaseErrorMessage = (code: string) => {
 
     case "auth/missing-email":
       message = "Email is required";
+      break;
+
+    case "auth/unauthorized-domain":
+      message = "The domain you are using is not authorized to access this function";
       break;
 
     default:

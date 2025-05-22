@@ -1,5 +1,4 @@
-import React from "react";
-import useMediaQuery from "@/hooks/useMediaQuery";
+// import useMediaQuery from "@/hooks/useMediaQuery";
 import { BsFillClipboard2DataFill } from "react-icons/bs";
 import { MdDataExploration } from "react-icons/md";
 import { MdSelfImprovement } from "react-icons/md";
@@ -11,9 +10,7 @@ import ParallaxScroll from "@/components/ParallaxScroll";
 import CustomButton from "@/components/CustomButton";
 import SlideInTransition from "@/components/SlideInTransition";
 
-type Props = {};
-
-const Home = (props: Props) => {
+const Home = () => {
   // const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
   const why = [
     {id: 1, text: "Greater risk in getting severe diseases"},
@@ -35,7 +32,7 @@ const Home = (props: Props) => {
         <ParallaxScroll
           backimage="/src/assets/starfall.gif"
           foreimage="/src/assets/rock.png"
-          height="h-screen"
+          height="min-h-screen"
         >
           <div className="center text-white">
             <div className="min-h-[3.5/6]">
