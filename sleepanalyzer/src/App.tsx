@@ -16,6 +16,8 @@ import PageNotFound from "@/pages/404";
 import AuthProvider from "@/components/AuthProvider";
 import ProtectedRoutes from "@/components/ProtectedRoutes";
 import useAuth from "./hooks/useAuth";
+import Footnote from "./components/Footnote";
+
 
 function App() {
   const { user } = useAuth();
@@ -43,6 +45,8 @@ function App() {
           <Navbar isTopOfPage={isTopOfPage} currentUser={user}/>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/index" element={<Home />} />
             <Route path="Why" element={<Why />} />
             <Route path="Analyze" element={<Analyze />} />
             <Route path="ForgotPassword" element={<ForgotPassword />} />
@@ -56,6 +60,7 @@ function App() {
             <Route path="*" element={<PageNotFound />}/>
             
           </Routes>
+          <Footnote />
         </BrowserRouter>
       </AuthProvider>
     </>

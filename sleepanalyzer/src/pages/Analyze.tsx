@@ -8,7 +8,7 @@ type ResponseType = {
   recommendations?: string[];
 };
 
-const Analyze = () => {
+const Anal = () => {
   const [formData, setFormData] = useState({
     age: "",
     gender: "0",
@@ -27,6 +27,7 @@ const Analyze = () => {
   const [datares, setDataRes] = useState<Response>();
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+
   const { user } = useAuth();
 
   const handleChange = (
@@ -58,66 +59,141 @@ const Analyze = () => {
       setErrorMsg("You must be signed in to analyze your sleep.");
       setLoading(false);
       return;
-    }
-    else {
-      try {
-        setToken(await user.getIdToken());
-        const res = await fetch("http://127.0.0.1:8000/predict", {
+    } else {
+        try {
+            setToken(await user.getIdToken());
+            console.log(token);
+            const res = await fetch("http://127.0.0.1:8000/predict", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(formattedData),
-        })
-        const data: ResponseType = await res?.json();
-        setResponse(data);
-        setDataRes(res);
-      } catch(error: any) {
-        setErrorMsg("Prediction failed: " + error.message);
-        throw new Error(`Server returned ${datares?.status}`);
-      } finally {
+            })
+            const data: ResponseType = await res?.json();
+            setResponse(data);
+            setDataRes(res);
+        } catch(error: any) {
+            setErrorMsg("Prediction failed: " + error.message);
+            throw new Error(`Server returned ${datares?.status}`);
+        } finally {
             setLoading(false);
-          }
-    } 
+        }
+    }
   };
 
   // responsive elements
-  const aboveMediumScreen = useMediaQuery("(min-width: 1060px)") || useMediaQuery("(min-height: 1000px)");
+  const aboveMediumScreen =
+    useMediaQuery("(min-width: 1060px)") ||
+    useMediaQuery("(min-height: 1000px)");
 
   const columns = aboveMediumScreen ? "grid-cols-2" : "grid-cols-1";
 
   return (
-    <div className={`center min-h-screen bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E]`}>
+    <div
+      className={`center min-h-screen bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E]`}
+    >
       <SlideInTransition className="w-full max-w-3xl p-4 m-30">
-        <form onSubmit={handleSubmit} className="space-y-4 bg-white border-2 border-gray-300 shadow-xl rounded-lg p-8">
-          <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Analyze Your Sleep</h1>
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-4 bg-white border-2 border-gray-300 shadow-xl rounded-lg p-8"
+        >
+          <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
+            Analyze Your Sleep
+          </h1>
           <div className={`grid ${columns} gap-4`}>
-            <input name="age" type="number" placeholder="Age" required onChange={handleChange} className="input" />
+            <input
+              name="age"
+              type="number"
+              placeholder="Age"
+              required
+              onChange={handleChange}
+              className="input"
+            />
             <select name="gender" onChange={handleChange} className="input">
               <option value="0">Male</option>
               <option value="1">Female</option>
             </select>
-            <input name="sleep_duration" type="number" placeholder="Sleep Duration (hours)" required onChange={handleChange} className="input" />
-            <input name="rem_sleep_percentage" type="number" placeholder="REM Sleep %" required onChange={handleChange} className="input" />
-            <input name="light_sleep_percentage" type="number" placeholder="Light Sleep %" required onChange={handleChange} className="input" />
-            <input name="awakenings" type="number" placeholder="Awakenings per night" required onChange={handleChange} className="input" />
-            <input name="caffeine_consumption" type="number" placeholder="Caffeine (drinks per day)" required onChange={handleChange} className="input" />
-            <input name="alcohol_consumption" type="number" placeholder="Alcohol (drinks per day)" required onChange={handleChange} className="input" />
-            <select name="smoking_status" onChange={handleChange} className="input">
+            <input
+              name="sleep_duration"
+              type="number"
+              placeholder="Sleep Duration (hours)"
+              required
+              onChange={handleChange}
+              className="input"
+            />
+            <input
+              name="rem_sleep_percentage"
+              type="number"
+              placeholder="REM Sleep %"
+              required
+              onChange={handleChange}
+              className="input"
+            />
+            <input
+              name="light_sleep_percentage"
+              type="number"
+              placeholder="Light Sleep %"
+              required
+              onChange={handleChange}
+              className="input"
+            />
+            <input
+              name="awakenings"
+              type="number"
+              placeholder="Awakenings per night"
+              required
+              onChange={handleChange}
+              className="input"
+            />
+            <input
+              name="caffeine_consumption"
+              type="number"
+              placeholder="Caffeine (drinks per day)"
+              required
+              onChange={handleChange}
+              className="input"
+            />
+            <input
+              name="alcohol_consumption"
+              type="number"
+              placeholder="Alcohol (drinks per day)"
+              required
+              onChange={handleChange}
+              className="input"
+            />
+            <select
+              name="smoking_status"
+              onChange={handleChange}
+              className="input"
+            >
               <option value="0">Non-Smoker</option>
               <option value="1">Smoker</option>
             </select>
-            <input name="exercise_frequency" type="number" placeholder="Exercise per week (days)" required onChange={handleChange} className="input" />
+            <input
+              name="exercise_frequency"
+              type="number"
+              placeholder="Exercise per week (days)"
+              required
+              onChange={handleChange}
+              className="input"
+            />
           </div>
 
-          <button type="submit" className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+          >
             {loading ? "Analyzing..." : "Predict"}
           </button>
 
-          {errorMsg && <p className="text-red-600 text-center mt-2">{errorMsg}</p>}
+          {errorMsg && (
+            <p className="text-red-600 text-center mt-2">{errorMsg}</p>
+          )}
         </form>
 
+        {/* prints the analysis and recommendation given by the model */}
         {response && (
           <div className="mt-6 p-4 border rounded bg-white text-center shadow-md">
             <h2 className="text-xl font-semibold text-gray-800">Results:</h2>
@@ -138,9 +214,15 @@ const Analyze = () => {
             )}
           </div>
         )}
+
+        <div className="text-white p-5">
+          Thank you for accessing our website, but the backend has yet to be deployed, so this page will 
+          not be able to analyze your data as of yet. 
+        </div>
+    
       </SlideInTransition>
     </div>
   );
 };
 
-export default Analyze;
+export default Anal;
