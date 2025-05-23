@@ -12,7 +12,7 @@
 - If you run into any issues, please reach out to the contributers of this project. Thank you.
 
 ## Home Page
-![A picture of how the home page of our website looks like](/sleepanalyzer/src/assets/home.gif)
+https://github.com/user-attachments/assets/739a1ced-f6c7-4560-a060-efc491923d21
 
 <!-- ## Login Page
 ![A picture of how the home page of our website looks like](login.png) -->
