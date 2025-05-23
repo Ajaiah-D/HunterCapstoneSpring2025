@@ -214,6 +214,11 @@ const Anal = () => {
             )}
           </div>
         )}
+
+        <div className="text-white p-5">
+          Thank you for accessing our website, but the backend has yet to be deployed, so this page will 
+          not be able to analyze your data as of yet. 
+        </div>
     
       </SlideInTransition>
     </div>
