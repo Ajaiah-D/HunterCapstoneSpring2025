@@ -8,7 +8,7 @@ type ResponseType = {
   recommendations?: string[];
 };
 
-const Anal = () => {
+const Analyze = () => {
   const [formData, setFormData] = useState({
     age: "",
     gender: "0",
@@ -36,7 +36,9 @@ const Anal = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  {/* Analyzing Data and Fetching Recommendations */}
+  {
+    /* Analyzing Data and Fetching Recommendations */
+  }
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -60,35 +62,34 @@ const Anal = () => {
       setLoading(false);
       return;
     } else {
-        try {
-            setToken(await user.getIdToken());
-            console.log(token);
-            const res = await fetch("http://127.0.0.1:8000/predict", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(formattedData),
-            })
-            const data: ResponseType = await res?.json();
-            setResponse(data);
-            setDataRes(res);
-        } catch(error: any) {
-            setErrorMsg("Prediction failed: " + error.message);
-            throw new Error(`Server returned ${datares?.status}`);
-        } finally {
-            setLoading(false);
-        }
+      try {
+        setToken(await user.getIdToken());
+        const res = await fetch("http://127.0.0.1:8000/predict", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(formattedData),
+        });
+        const data: ResponseType = await res?.json();
+        setResponse(data);
+        setDataRes(res);
+      } catch (error: any) {
+        setErrorMsg("Prediction failed: " + error.message);
+        throw new Error(`Server returned ${datares?.status}`);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
   // responsive elements
-  const aboveMediumScreen =
-    useMediaQuery("(min-width: 1060px)") ||
-    useMediaQuery("(min-height: 1000px)");
+  const aboveMediumWidth = useMediaQuery("(min-width: 1060px)");
+  const aboveMediumHeight = useMediaQuery("(min-height: 1000px)");
 
-  const columns = aboveMediumScreen ? "grid-cols-2" : "grid-cols-1";
+  const columns =
+    aboveMediumWidth || aboveMediumHeight ? "grid-cols-2" : "grid-cols-1";
 
   return (
     <div
@@ -193,36 +194,39 @@ const Anal = () => {
           )}
         </form>
 
-        {/* prints the analysis and recommendation given by the model */}
         {response && (
           <div className="mt-6 p-4 border rounded bg-white text-center shadow-md">
             <h2 className="text-xl font-semibold text-gray-800">Results:</h2>
-            <p className="text-2xl font-bold text-blue-700">{response.sleep_efficiency}% Sleep Efficiency</p>
+            <p className="text-2xl font-bold text-blue-700">
+              {response.sleep_efficiency}% Sleep Efficiency
+            </p>
             {response.recommendations && (
               <>
-                <h3 className="text-lg font-semibold mt-4 text-gray-800">Recommendations:</h3>
+                <h3 className="text-lg font-semibold mt-4 text-gray-800">
+                  Recommendations:
+                </h3>
                 <ul className="text-left mx-auto max-w-md text-gray-700">
                   {response.recommendations.length > 0 ? (
-                    response.recommendations.map((rec: string, index: number) => (
-                      <li key={index} className="mt-1">✔ {rec}</li>
-                    ))
+                    response.recommendations.map(
+                      (rec: string, index: number) => (
+                        <li key={index} className="mt-1">
+                          ✔ {rec}
+                        </li>
+                      )
+                    )
                   ) : (
-                    <p className="text-gray-500 italic">No recommendations needed. Your sleep is good!</p>
+                    <p className="text-gray-500 italic">
+                      No recommendations needed. Your sleep is good!
+                    </p>
                   )}
                 </ul>
               </>
             )}
           </div>
         )}
-
-        <div className="text-white p-5">
-          Thank you for accessing our website, but the backend has yet to be deployed, so this page will 
-          not be able to analyze your data as of yet. 
-        </div>
-    
       </SlideInTransition>
     </div>
   );
 };
 
-export default Anal;
+export default Analyze;
