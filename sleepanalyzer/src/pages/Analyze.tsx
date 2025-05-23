@@ -62,38 +62,27 @@ const Analyze = () => {
     else {
       try {
         setToken(await user.getIdToken());
-        try {
-          const res = await fetch("http://127.0.0.1:8000/predict", {
+        const res = await fetch("http://127.0.0.1:8000/predict", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(formattedData),
-          })
-          setDataRes(res);
-          try {
-            const data: ResponseType = await res?.json();
-            setResponse(data);
-          } catch(error: any) {
-            setErrorMsg("Prediction failed: " + error.message);
-            throw new Error(`Server returned ${datares?.status}`);
-          } finally {
-            setLoading(false);
-          }
-        } catch(error: any) {
-          setErrorMsg("Prediction failed: " + error.message);
-          throw new Error(`Server returned ${datares?.status}`);
-        } finally {
-            setLoading(false);
-          }
+        })
+        const data: ResponseType = await res?.json();
+        setResponse(data);
+        setDataRes(res);
       } catch(error: any) {
-        setErrorMsg("No User Token Found");
-      }
+        setErrorMsg("Prediction failed: " + error.message);
+        throw new Error(`Server returned ${datares?.status}`);
+      } finally {
+            setLoading(false);
+          }
     } 
   };
 
-  // responsive height
+  // responsive elements
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)") || useMediaQuery("(min-height: 1000px)");
 
   const columns = aboveMediumScreen ? "grid-cols-2" : "grid-cols-1";
