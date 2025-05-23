@@ -1,6 +1,6 @@
 import CustomLink from "@/components/CustomLink";
-// import SlideInTransition from "@/components/SlideInTransition";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { useEffect } from "react";
 
 import login from "@/assets/login.gif";
 import heartdisease from "@/assets/heartdisease.jpeg";
@@ -8,7 +8,14 @@ import diabetes from "@/assets/diabetes.jpg";
 import dementia from "@/assets/dementia.jpg";
 import carcrash from "@/assets/carcrash.jpeg";
 
+
 const Why = () => {
+
+  /* when page reloads, start at the beginning of the page */
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
   const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col";
 
