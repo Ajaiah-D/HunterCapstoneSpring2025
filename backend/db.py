@@ -11,7 +11,10 @@ print("DATABASE_URL:", DATABASE_URL)
 if not DATABASE_URL:
     raise ValueError("DATABASE_URL is missing!")
 
-engine = create_engine(DATABASE_URL)
+engine = create_engine(
+    DATABASE_URL,
+    connect_args={"sslmode": "require"}
+)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
