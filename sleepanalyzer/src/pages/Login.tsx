@@ -80,7 +80,6 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      console.log("Signing In.");
       await logIn(userLoginInfo);
       navigate("/profile");
     } catch (error) {
@@ -129,7 +128,6 @@ const Login = () => {
 
   // login motion
   // TO DO: add motion when changing between login and sign up pages
-  console.log("Login page rendered!");
 
   return (
     <section
