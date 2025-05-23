@@ -3,10 +3,10 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import React, { useState } from "react";
 import useAuth from "@/hooks/useAuth";
 
-type ResponseType = {
-  sleep_efficiency: number;
-  recommendations?: string[];
-};
+// type ResponseType = {
+//   sleep_efficiency: number;
+//   recommendations?: string[];
+// };
 
 const Analyze = () => {
   const [formData, setFormData] = useState({
@@ -22,11 +22,12 @@ const Analyze = () => {
     exercise_frequency: "",
   });
 
-  const [response, setResponse] = useState<ResponseType | null>(null);
-  const [token, setToken] = useState("");
-  const [datares, setDataRes] = useState<Response>();
+  // const [response, setResponse] = useState<ResponseType | null>(null);
+  // const [token, setToken] = useState("");
+  // const [datares, setDataRes] = useState<Response>();
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+
   const { user } = useAuth();
 
   const handleChange = (
@@ -40,19 +41,19 @@ const Analyze = () => {
     e.preventDefault();
     setLoading(true);
     setErrorMsg("");
-    setResponse(null);
+    // setResponse(null);
 
-    const formattedData = {
-      age: Number(formData.age),
-      sleep_duration: Number(formData.sleep_duration),
-      rem_sleep_percentage: Number(formData.rem_sleep_percentage),
-      light_sleep_percentage: Number(formData.light_sleep_percentage),
-      awakenings: Number(formData.awakenings),
-      caffeine_consumption: Number(formData.caffeine_consumption),
-      alcohol_consumption: Number(formData.alcohol_consumption),
-      smoking_status: Number(formData.smoking_status),
-      exercise_frequency: Number(formData.exercise_frequency),
-    };
+    // const formattedData = {
+    //   age: Number(formData.age),
+    //   sleep_duration: Number(formData.sleep_duration),
+    //   rem_sleep_percentage: Number(formData.rem_sleep_percentage),
+    //   light_sleep_percentage: Number(formData.light_sleep_percentage),
+    //   awakenings: Number(formData.awakenings),
+    //   caffeine_consumption: Number(formData.caffeine_consumption),
+    //   alcohol_consumption: Number(formData.alcohol_consumption),
+    //   smoking_status: Number(formData.smoking_status),
+    //   exercise_frequency: Number(formData.exercise_frequency),
+    // };
 
     if (!user) {
       setErrorMsg("You must be signed in to analyze your sleep.");
@@ -60,25 +61,25 @@ const Analyze = () => {
       return;
     }
     else {
-      try {
-        setToken(await user.getIdToken());
-        const res = await fetch("http://127.0.0.1:8000/predict", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(formattedData),
-        })
-        const data: ResponseType = await res?.json();
-        setResponse(data);
-        setDataRes(res);
-      } catch(error: any) {
-        setErrorMsg("Prediction failed: " + error.message);
-        throw new Error(`Server returned ${datares?.status}`);
-      } finally {
-            setLoading(false);
-          }
+      // try {
+      //   setToken(await user.getIdToken());
+      //   const res = await fetch("http://127.0.0.1:8000/predict", {
+      //       method: "POST",
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //         Authorization: `Bearer ${token}`,
+      //       },
+      //       body: JSON.stringify(formattedData),
+      //   })
+      //   const data: ResponseType = await res?.json();
+      //   setResponse(data);
+      //   setDataRes(res);
+      // } catch(error: any) {
+      //   setErrorMsg("Prediction failed: " + error.message);
+      //   throw new Error(`Server returned ${datares?.status}`);
+      // } finally {
+      //       setLoading(false);
+      // }
     } 
   };
 
@@ -118,7 +119,7 @@ const Analyze = () => {
           {errorMsg && <p className="text-red-600 text-center mt-2">{errorMsg}</p>}
         </form>
 
-        {response && (
+        {/* {response && (
           <div className="mt-6 p-4 border rounded bg-white text-center shadow-md">
             <h2 className="text-xl font-semibold text-gray-800">Results:</h2>
             <p className="text-2xl font-bold text-blue-700">{response.sleep_efficiency}% Sleep Efficiency</p>
@@ -137,7 +138,7 @@ const Analyze = () => {
               </>
             )}
           </div>
-        )}
+        )} */}
       </SlideInTransition>
     </div>
   );
