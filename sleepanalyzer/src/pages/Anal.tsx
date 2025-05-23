@@ -3,6 +3,11 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import React, { useState } from "react";
 import useAuth from "@/hooks/useAuth";
 
+type ResponseType = {
+  sleep_efficiency: number;
+  recommendations?: string[];
+};
+
 const Anal = () => {
   const [formData, setFormData] = useState({
     age: "",
@@ -187,6 +192,29 @@ const Anal = () => {
             <p className="text-red-600 text-center mt-2">{errorMsg}</p>
           )}
         </form>
+
+        {/* prints the analysis and recommendation given by the model */}
+        {response && (
+          <div className="mt-6 p-4 border rounded bg-white text-center shadow-md">
+            <h2 className="text-xl font-semibold text-gray-800">Results:</h2>
+            <p className="text-2xl font-bold text-blue-700">{response.sleep_efficiency}% Sleep Efficiency</p>
+            {response.recommendations && (
+              <>
+                <h3 className="text-lg font-semibold mt-4 text-gray-800">Recommendations:</h3>
+                <ul className="text-left mx-auto max-w-md text-gray-700">
+                  {response.recommendations.length > 0 ? (
+                    response.recommendations.map((rec: string, index: number) => (
+                      <li key={index} className="mt-1">✔ {rec}</li>
+                    ))
+                  ) : (
+                    <p className="text-gray-500 italic">No recommendations needed. Your sleep is good!</p>
+                  )}
+                </ul>
+              </>
+            )}
+          </div>
+        )}
+    
       </SlideInTransition>
     </div>
   );
