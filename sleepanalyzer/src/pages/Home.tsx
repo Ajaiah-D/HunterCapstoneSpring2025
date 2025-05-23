@@ -10,6 +10,10 @@ import ParallaxScroll from "@/components/ParallaxScroll";
 import CustomButton from "@/components/CustomButton";
 import SlideInTransition from "@/components/SlideInTransition";
 
+import starfall from "@/assets/starfall.gif";
+import rocks from "@/assets/rock.png";
+import insomnia from "@/assets/insomnia.png";
+
 const Home = () => {
   // const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
   const why = [
@@ -30,8 +34,8 @@ const Home = () => {
 
         {/* welcome section */}
         <ParallaxScroll
-          backimage="/src/assets/starfall.gif"
-          foreimage="/src/assets/rock.png"
+          backimage={`${starfall}`}
+          foreimage={`${rocks}`}
           height="min-h-screen"
         >
           <div className="center text-white">
@@ -65,7 +69,7 @@ const Home = () => {
             repeat={true}
           >
             <h1 className="text-5xl">Why Sleep Analyzer?</h1>
-            <img src="src/assets/insomnia.png" alt="Insomnia" />
+            <img src={`${insomnia}`} alt="Insomnia" />
             <div className="center">
               <p className="text-4xl w-3/4">
                 Lack of sleep can lead to:

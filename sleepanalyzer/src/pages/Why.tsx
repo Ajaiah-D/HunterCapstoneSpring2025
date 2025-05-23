@@ -2,15 +2,21 @@ import CustomLink from "@/components/CustomLink";
 // import SlideInTransition from "@/components/SlideInTransition";
 import useMediaQuery from "@/hooks/useMediaQuery";
 
+import home from "@/assets/home.gif";
+import heartdisease from "@/assets/heartdisease.jpeg";
+import diabetes from "@/assets/diabetes.jpg";
+import dementia from "@/assets/dementia.jpg";
+import carcrash from "@/assets/carcrash.jpeg";
+
 const Why = () => {
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
   const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col";
 
   const stats = [
-    {id: "heartdisease", headline: "48% increased risk", text: "of developing heart disease", image: "src/assets/heartdisease.jpeg"},
-    {id: "diabetes", headline: "3x more likely", text: "to develop Type II Diabetes", image: "src/assets/diabetes.jpg"},
-    {id: "dementia", headline: "33% increased risk", text: "of dementia", image: "src/assets/dementia.jpg"},
-    {id: "carcrash", headline: "6000 fatal", text: "car crashes because 1 in 25 people fall asleep behind the wheel", image: "src/assets/carcrash.jpeg"},
+    {id: heartdisease, headline: "48% increased risk", text: "of developing heart disease", image: "src/assets/heartdisease.jpeg"},
+    {id: diabetes, headline: "3x more likely", text: "to develop Type II Diabetes", image: "src/assets/diabetes.jpg"},
+    {id: dementia, headline: "33% increased risk", text: "of dementia", image: "src/assets/dementia.jpg"},
+    {id: carcrash, headline: "6000 fatal", text: "car crashes because 1 in 25 people fall asleep behind the wheel", image: "src/assets/carcrash.jpeg"},
   ];
 
   return (
@@ -18,7 +24,7 @@ const Why = () => {
       <div className="center h-[80vh] bgoverlay">
         <h1 className="mt-50 text-6xl">Why Sleep Analzyer?</h1>
         <img
-          src="src/assets/home.gif"
+          src={`${home}`}
           className="w-[60vw] max-h-[70vh] rounded-4xl border-4 translate-y-10"
         />
       </div>
@@ -73,7 +79,7 @@ const Why = () => {
               {stats.map((stat) => (
                 <div key={stat.id} className={`flex ${flexDirection} items-center justify-center gap-3 p-5 w-[50rem]`}>
                   <img
-                    src={stat.image}
+                    src={`${stat.id}`}
                     className="w-[300px] rounded-full border-4 border-darkblue"
                   />
                   <div className="stat w-1/2">

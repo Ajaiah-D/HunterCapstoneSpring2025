@@ -9,6 +9,8 @@ import { AuthContext } from './AuthProvider';
 import CustomButton from './CustomButton';
 import { User } from 'firebase/auth';
 
+import logo from "@/assets/logo.png";
+
 type Props = {
   isTopOfPage: boolean;
   currentUser: User | null;
@@ -64,7 +66,7 @@ const Navbar = ({ isTopOfPage, currentUser }: Props) => {
               >
                 <div className="font-header">
                   <CustomLink page="" pic={true} className="flex items-center gap-2 text-white"> 
-                    <img src="src/assets/logo.png" alt="logo" className="h-32 w-32" />
+                    <img src={`${logo}`} alt="logo" className="h-32 w-32" />
                   </CustomLink>
                 </div>
                 
