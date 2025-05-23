@@ -21,8 +21,6 @@ const Navbar = ({ isTopOfPage, currentUser }: Props) => {
 
   const { logOut } = useContext(AuthContext);
 
-  console.log(currentUser);
-
   // changes navbar dependinng on screen size
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
