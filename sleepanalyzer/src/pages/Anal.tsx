@@ -17,6 +17,9 @@ const Anal = () => {
     exercise_frequency: "",
   });
 
+//   const [response, setResponse] = useState<ResponseType | null>(null);
+  const [token, setToken] = useState("");
+//   const [datares, setDataRes] = useState<Response>();
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -28,16 +31,27 @@ const Anal = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  {/* Analyzing Data and Fetching Recommendations */}
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setErrorMsg("");
+    //setResponse(null);
 
     if (!user) {
       setErrorMsg("You must be signed in to analyze your sleep.");
       setLoading(false);
       return;
     } else {
+        try {
+            setToken(await user.getIdToken());
+            console.log(token);
+        } catch(error: any) {
+            setErrorMsg("Prediction failed: " + error.message);
+            //throw new Error(`Server returned ${datares?.status}`);
+        } finally {
+            setLoading(false);
+        }
     }
   };
 
