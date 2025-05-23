@@ -11,13 +11,7 @@ export default defineConfig(({  }) => {
     tailwindcss(),
     ],
     resolve: {
-      //alias: [{ find: "@", replacement: path.resolve(__dirname, "/src")}],
       alias: [
-        // { 
-        //   find: "@i", 
-        //   replacement: mode === "production" 
-        //     ? path.resolve(__dirname, "") : path.resolve(__dirname, "/src")
-        // },
         {
           find: "@",
           replacement: path.resolve(__dirname, "/src")
