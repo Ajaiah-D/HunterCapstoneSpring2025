@@ -60,7 +60,7 @@ const Profile = ({ user }: Props) => {
         {/* Avatar */}
       <div>
         <img
-          src={`${logo}`}
+          src={`${logo}`} 
           alt="Avatar Image"
           className="w-[100px] h-[100px] border-2 border-white rounded-[50%] grid m-auto"
         />
