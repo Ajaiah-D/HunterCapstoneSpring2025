@@ -222,6 +222,7 @@ const Analyze = () => {
             )}
           </div>
         )}
+        
       </SlideInTransition>
     </div>
   );
