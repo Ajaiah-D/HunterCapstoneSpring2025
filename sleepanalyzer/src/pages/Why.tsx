@@ -38,8 +38,8 @@ const Why = () => {
 
       {/* explaining why we need sleep analyzer */}
       <div className="bg-gradient-to-br from-softviolet to-brightblue">
-        <div className="center gap-10 p-40 pb-0">
-          <h2 className="text-5xl p-4 mt-5">Because It's Necessary</h2>
+        <div className="center gap-10 p-20 w-screen">
+          <h2 className="text-5xl p-4 mt-20">Because It's Necessary</h2>
           <p>
             Sleep is something we all need, but let’s be honest—it doesn’t always come easy. 
             It’s such a big part of our overall health, affecting everything from our mood to 
@@ -68,7 +68,7 @@ const Why = () => {
 
         {/* negative effects of sleep deprivation */}
         <div className="p-10 gap-5 text-black">
-          <div className="bg-white p-10 pt-20 pb-20 rounded-3xl center gap-10">
+          <div className="bg-white p-10 pt-20 pb-20 mt-10 rounded-3xl center gap-10">
             <h1 className="text-5xl">
               Why should we care about sleep?
             </h1>
