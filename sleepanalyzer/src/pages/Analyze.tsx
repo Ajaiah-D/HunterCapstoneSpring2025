@@ -1,6 +1,6 @@
 import SlideInTransition from "@/components/SlideInTransition";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "@/hooks/useAuth";
 
 type ResponseType = {
@@ -9,6 +9,12 @@ type ResponseType = {
 };
 
 const Analyze = () => {
+
+  /* when page reloads, start at the beginning of the page */
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [formData, setFormData] = useState({
     age: "",
     gender: "0",
@@ -36,9 +42,7 @@ const Analyze = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  {
-    /* Analyzing Data and Fetching Recommendations */
-  }
+  {/* Analyzing Data and Fetching Recommendations */}
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -87,9 +91,7 @@ const Analyze = () => {
   // responsive elements
   const aboveMediumWidth = useMediaQuery("(min-width: 1060px)");
   const aboveMediumHeight = useMediaQuery("(min-height: 1000px)");
-
-  const columns =
-    aboveMediumWidth || aboveMediumHeight ? "grid-cols-2" : "grid-cols-1";
+  const columns = aboveMediumWidth || aboveMediumHeight ? "grid-cols-2" : "grid-cols-1";
 
   return (
     <div
@@ -194,6 +196,7 @@ const Analyze = () => {
           )}
         </form>
 
+        {/* printing out the analysis and recommendations from the model */}
         {response && (
           <div className="mt-6 p-4 border rounded bg-white text-center shadow-md">
             <h2 className="text-xl font-semibold text-gray-800">Results:</h2>
@@ -224,6 +227,7 @@ const Analyze = () => {
             )}
           </div>
         )}
+
       </SlideInTransition>
     </div>
   );

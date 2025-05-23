@@ -53,7 +53,7 @@ function App() {
             
             {/* Links that appear based on status of user */}
             {user ? (<><Route element={<ProtectedRoutes />}>
-              <Route path="Profile" element={<Profile />}/>
+              <Route path="Profile" element={<Profile user={user} />}/>
             </Route></>) : (<><Route path="Login" element={<Login />}/></>)}
 
             {/* Paths that do not exist go to 404 page */}

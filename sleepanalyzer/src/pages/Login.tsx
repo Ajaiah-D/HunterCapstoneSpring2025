@@ -24,6 +24,11 @@ const newUser: UserSignup = {
 
 const Login = () => {
 
+  /* when page reloads, start at the beginning of the page */
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   /* change flex direction of section if screen size is too small */
   const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
   const flexDirection = aboveMediumScreen ? "flex-row" : "flex-col";

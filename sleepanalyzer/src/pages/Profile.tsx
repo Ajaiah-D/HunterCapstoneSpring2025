@@ -1,42 +1,31 @@
 import { AuthContext } from "@/components/AuthProvider";
-// import { upload } from "@/components/AuthProvider";
 import CustomButton from "@/components/CustomButton";
 import { LuPencil } from "react-icons/lu";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import CustomInput from "@/components/CustomInput";
-import useAuth from "@/hooks/useAuth";
+import { User } from "firebase/auth";
 
-const Profile = () => {
-  const [photoURL, setPhotoURL] = useState("src/assets/logo.png");
+import logo from "@/assets/logo.png";
+
+type Props = {
+  user: User;
+}
+
+const Profile = ({ user }: Props) => {
   const [displayName, setDisplayName] = useState("");
-  // const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const { logOut, updateUsername } = useContext(AuthContext);
-  const { user } = useAuth();
   const navigate = useNavigate();
 
-  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = event.target.files?.[0];
-  //   if (file) {
-  //     setImage(file);
-  //   }
-  // };
-
-  // const handleUpload = async () => {
-  //   if (image && currentUser) {
-  //     upload(image, currentUser, setLoading);
-  //   }
-  // };
-
   useEffect(() => {
-    if (user?.photoURL) {
-      setPhotoURL(user.photoURL);
-    }
-    if (user?.displayName) {
+    /* when page reloads, start at the beginning of the page */
+    window.scrollTo(0, 0);
+    
+    if (user.displayName) {
       setDisplayName(user.displayName)
     }
-    else if (user?.email) {
+    else if (user.email) {
       setDisplayName(user.email)
     }
   }, [user]);
@@ -65,26 +54,16 @@ const Profile = () => {
     }
   };
 
-  if (!user) return null;
-
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#AF95F2] via-[#4361FE] to-[#2C229E] font-main center p-10 gap-10 text-center text-white overflow-x-hidden">
       <div className="bg-darkblue/50 center p-5 mt-20 w-full">
         {/* Avatar */}
       <div>
         <img
-          src={photoURL}
+          src={`${logo}`}
           alt="Avatar Image"
           className="w-[100px] h-[100px] border-2 border-white rounded-[50%] grid m-auto"
         />
-        {/* <CustomInput type="file" onChange={handleFileChange} />
-        <CustomButton
-          noOriginalStyle={true}
-          onClick={handleUpload}
-          disabled={loading || !photoURL}
-        >
-          Upload
-        </CustomButton> */}
       </div>
 
       {/* Greeting */}

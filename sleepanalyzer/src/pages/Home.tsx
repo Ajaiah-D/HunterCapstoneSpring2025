@@ -13,9 +13,15 @@ import SlideInTransition from "@/components/SlideInTransition";
 import starfall from "@/assets/starfall.gif";
 import rocks from "@/assets/rock.png";
 import insomnia from "@/assets/insomnia.png";
+import { useEffect } from "react";
 
 const Home = () => {
-  // const aboveMediumScreen = useMediaQuery("(min-width: 1060px)");
+
+  /* when page reloads, start at the beginning of the page */
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const why = [
     {id: 1, text: "Greater risk in getting severe diseases"},
     {id: 2, text: "Daytime sleepiness and less energy"},
