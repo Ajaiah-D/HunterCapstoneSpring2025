@@ -16,6 +16,7 @@ import PageNotFound from "@/pages/404";
 import AuthProvider from "@/components/AuthProvider";
 import ProtectedRoutes from "@/components/ProtectedRoutes";
 import useAuth from "./hooks/useAuth";
+import Footnote from "./components/Footnote";
 
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
             <Route path="*" element={<PageNotFound />}/>
             
           </Routes>
+          <Footnote />
         </BrowserRouter>
       </AuthProvider>
     </>
