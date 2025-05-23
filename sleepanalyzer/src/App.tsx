@@ -43,6 +43,8 @@ function App() {
           <Navbar isTopOfPage={isTopOfPage} currentUser={user}/>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/index" element={<Home />} />
             <Route path="Why" element={<Why />} />
             <Route path="Analyze" element={<Analyze />} />
             <Route path="ForgotPassword" element={<ForgotPassword />} />
