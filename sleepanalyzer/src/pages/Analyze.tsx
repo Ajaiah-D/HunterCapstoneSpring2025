@@ -229,7 +229,7 @@ const Analyze = () => {
         )}
 
         <p className="text-white text-center p-2">
-          The backend has not been deployed, so this page is not able to analyze data as of yet
+          The backend has not yet been deployed, so this page is not able to analyze data right now
           unless this project is ran locally. Sorry for the inconvenience and thank you for visiting
           our website.
         </p>
