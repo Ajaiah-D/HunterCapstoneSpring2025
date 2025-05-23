@@ -11,11 +11,13 @@ import Why from "@/pages/Why";
 import Profile from "@/pages/Profile";
 import ForgotPassword from "@/pages/ForgotPassword";
 import PageNotFound from "@/pages/404";
+import Anal from "@/pages/Anal";
 
 // components to protect or determine what pages show
 import AuthProvider from "@/components/AuthProvider";
 import ProtectedRoutes from "@/components/ProtectedRoutes";
 import useAuth from "./hooks/useAuth";
+
 
 function App() {
   const { user } = useAuth();
@@ -47,6 +49,7 @@ function App() {
             <Route path="/index" element={<Home />} />
             <Route path="Why" element={<Why />} />
             <Route path="Analyze" element={<Analyze />} />
+            <Route path="Anal" element={<Anal />} />
             <Route path="ForgotPassword" element={<ForgotPassword />} />
             
             {/* Links that appear based on status of user */}
