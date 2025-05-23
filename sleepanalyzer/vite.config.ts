@@ -4,20 +4,14 @@ import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 
 // https://vite.dev/config/
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ }) => {
   return {
     plugins: [
     react(),
     tailwindcss(),
     ],
     resolve: {
-      //alias: [{ find: "@", replacement: path.resolve(__dirname, "/src")}],
       alias: [
-        // { 
-        //   find: "@i", 
-        //   replacement: mode === "production" 
-        //     ? path.resolve(__dirname, "") : path.resolve(__dirname, "/src")
-        // },
         {
           find: "@",
           replacement: path.resolve(__dirname, "/src")
