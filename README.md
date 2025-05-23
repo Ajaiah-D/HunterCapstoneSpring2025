@@ -14,8 +14,11 @@
 ## Home Page
 https://github.com/user-attachments/assets/739a1ced-f6c7-4560-a060-efc491923d21
 
-<!-- ## Login Page
-![A picture of how the home page of our website looks like](login.png) -->
+## Why Page
+https://github.com/user-attachments/assets/5a355701-5340-4a48-9430-f6669f17f152
+
+## Login Page
+<img src="/sleepanalyzer/src/assets/login.gif" alt="drawing" style="height:500px;"/>
 
 ## Mobile Version
 <img src="/sleepanalyzer/src/assets/mobile.gif" alt="drawing" style="height:500px;"/>
