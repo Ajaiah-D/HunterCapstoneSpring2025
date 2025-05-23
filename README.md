@@ -22,3 +22,6 @@ https://github.com/user-attachments/assets/5a355701-5340-4a48-9430-f6669f17f152
 
 ## Mobile Version
 <img src="/sleepanalyzer/src/assets/mobile.gif" alt="picture of mobile version of website" style="height:500px;"/>
+
+## Analyze Page
+<img src="/sleepanalyzer/src/assets/Analyze_Page.gif" alt="Analyze Page Demo" width="600"/>
