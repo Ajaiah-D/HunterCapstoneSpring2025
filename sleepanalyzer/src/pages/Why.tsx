@@ -2,7 +2,7 @@ import CustomLink from "@/components/CustomLink";
 // import SlideInTransition from "@/components/SlideInTransition";
 import useMediaQuery from "@/hooks/useMediaQuery";
 
-import home from "@/assets/home.gif";
+import login from "@/assets/login.gif";
 import heartdisease from "@/assets/heartdisease.jpeg";
 import diabetes from "@/assets/diabetes.jpg";
 import dementia from "@/assets/dementia.jpg";
@@ -24,8 +24,8 @@ const Why = () => {
       <div className="center h-[80vh] bgoverlay">
         <h1 className="mt-50 text-6xl">Why Sleep Analzyer?</h1>
         <img
-          src={`${home}`}
-          className="w-[60vw] max-h-[70vh] rounded-4xl border-4 translate-y-10"
+          src={`${login}`}
+          className="w-[70vw] max-h-[80vh] rounded-4xl border-4 translate-y-10"
         />
       </div>
 
